@@ -1,8 +1,10 @@
+using Fusion;
 using UnityEngine;
 
 // [RequireComponent] を書くと、このスクリプトを入れた時に必要な部品を自動で追加してくれます
 [RequireComponent(typeof(CharacterController))]
-public class PlayerController : MonoBehaviour
+//public class PlayerController : MonoBehaviour
+public class PlayerController : NetworkBehaviour
 {
     [Header("移動設定")]
     public float moveSpeed = 25.0f;     // キャラクターの移動速度
