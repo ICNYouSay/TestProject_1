@@ -28,6 +28,14 @@ public class PlayerController : NetworkBehaviour
         anim = GetComponentInChildren<Animator>();
     }
 
+    // 普通のCharacterControllerではなく、Fusion専用の方をキャッシュする
+    private NetworkCharacterController _ncc;
+    
+    private void Awake()
+    {
+        _ncc = GetComponent<NetworkCharacterController>();
+    }
+
     // 1フレームごとに呼ばれる
     public override void FixedUpdateNetwork()
     {
@@ -66,7 +74,7 @@ public class PlayerController : NetworkBehaviour
 
                 // 移動の処理
                 // CharacterControllerを使って、実際にキャラクターを動かす
-                controller.Move(inputDir * moveSpeed * Time.deltaTime);
+                _ncc.Move(inputDir * moveSpeed * Time.deltaTime);
 
                 // アニメーションの処理
                 // アニメーターの "isWalking" スイッチを true (ON) にする
@@ -84,7 +92,7 @@ public class PlayerController : NetworkBehaviour
             if (!controller.isGrounded)
             {
                 // 常に下方向（Vector3.down）に重力分だけ移動させる
-                controller.Move(Vector3.down * gravity * Time.deltaTime);
+                _ncc.Move(Vector3.down * gravity * Time.deltaTime);
             }
         }
     }
