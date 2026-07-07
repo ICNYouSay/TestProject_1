@@ -1,8 +1,10 @@
+using Fusion;
 using UnityEngine;
+
 
 // [RequireComponent] を書くと、このスクリプトを入れた時に必要な部品を自動で追加してくれます
 [RequireComponent(typeof(CharacterController))]
-public class PlayerController : MonoBehaviour
+public class PlayerController : NetworkBehaviour
 {
     [Header("移動設定")]
     public float moveSpeed = 25.0f;     // キャラクターの移動速度
@@ -28,7 +30,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // 1フレームごとに呼ばれる
-    void Update()
+    public override void FixedUpdateNetwork()
     {
         // WASDキー（または矢印キー）の入力を -1.0 ～ 1.0 の間で取得
         float moveX = Input.GetAxis("Horizontal"); // A/D または 左/右
