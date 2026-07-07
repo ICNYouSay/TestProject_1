@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("移動設定")]
-    public float moveSpeed = 5.0f;     // キャラクターの移動速度
+    public float moveSpeed = 25.0f;     // キャラクターの移動速度
     public float turnSpeed = 10.0f;    // キャラクターが回転する時の速さ
     public float gravity = 9.8f;       // 地面に向かって引っ張る重力の強さ
 
