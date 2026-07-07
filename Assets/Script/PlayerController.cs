@@ -1,7 +1,6 @@
 using Fusion;
 using UnityEngine;
 
-
 // [RequireComponent] を書くと、このスクリプトを入れた時に必要な部品を自動で追加してくれます
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : NetworkBehaviour
