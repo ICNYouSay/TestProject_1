@@ -356,7 +356,8 @@ MonoBehaviour:
   EnableInterpolation: 1
   Flags: 262146
   NestedObjects: []
-  NetworkedBehaviours: []
+  NetworkedBehaviours:
+  - {fileID: 543710716}
   ForceRemoteRenderTimeframe: 0
 --- !u!1 &633699298 stripped
 GameObject:
