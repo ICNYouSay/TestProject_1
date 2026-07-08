@@ -448,8 +448,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f5e834c5078972458ffac557834f0fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  moveSpeed: 5
-  turnSpeed: 10
+  moveSpeed: 10
+  turnSpeed: 3
   gravity: 9.8
   modelRotationOffset: 0
 --- !u!143 &7092068770312552894
