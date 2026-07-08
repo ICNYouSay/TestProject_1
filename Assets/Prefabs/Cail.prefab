@@ -413,7 +413,7 @@ GameObject:
   - component: {fileID: 1222419479287641481}
   - component: {fileID: -4443767689959760422}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Cail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -512,9 +512,9 @@ MonoBehaviour:
   _stateAuthorityChangeErrorCorrectionDelta: 0
   gravity: -20
   jumpImpulse: 8
-  acceleration: 10
+  acceleration: 100
   braking: 10
-  maxSpeed: 5
+  maxSpeed: 10
   rotationSpeed: 15
 --- !u!1 &2190372916931332873
 GameObject:
