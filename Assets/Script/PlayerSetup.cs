@@ -17,5 +17,7 @@ public class PlayerSetup : NetworkBehaviour
         Instantiate(data.modelPrefab, modelContainer);
 
         // ステータス（コスト制限など）もこのデータから反映する
+        PlayerController playerController = GetComponent<PlayerController>();
+        playerController.modelRotationOffset = data.rotateoffset;
     }
 }
