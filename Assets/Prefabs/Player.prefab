@@ -412,7 +412,7 @@ GameObject:
   - component: {fileID: 7092068770312552894}
   - component: {fileID: 1222419479287641481}
   - component: {fileID: 51802144210361001}
-  - component: {fileID: -6171434965601586182}
+  - component: {fileID: -8150327144114213650}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -495,7 +495,7 @@ MonoBehaviour:
   Flags: 262402
   NestedObjects: []
   NetworkedBehaviours:
-  - {fileID: -6171434965601586182}
+  - {fileID: -8150327144114213650}
   - {fileID: 4103119227357069820}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &51802144210361001
@@ -512,9 +512,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::COD_Walk
   dustPrefab: {fileID: 823766349821155184, guid: 27001b4418f86b74aab171a63d1c4d61, type: 3}
   backOffset: 0.25
-  heightOffset: -0.5
-  spawnDistance: 0.5
---- !u!114 &-6171434965601586182
+  heightOffset: 0.1
+--- !u!114 &-8150327144114213650
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -531,7 +530,7 @@ MonoBehaviour:
   jumpImpulse: 8
   acceleration: 10
   braking: 10
-  maxSpeed: 2
+  maxSpeed: 10
   rotationSpeed: 15
 --- !u!1 &2190372916931332873
 GameObject:
