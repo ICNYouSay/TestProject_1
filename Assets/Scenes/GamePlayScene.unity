@@ -203,56 +203,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5495902117074765545, guid: 3a3fb57f6d463bc45be9b0622eae4377, type: 3}
---- !u!1 &488107857
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 488107859}
-  - component: {fileID: 488107858}
-  m_Layer: 0
-  m_Name: COD_Dush
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &488107858
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 488107857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35d396bcb8480c24eb784eebe6096a99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Effekseer::Effekseer.EffekseerEmitter
-  TimingOfUpdate: 0
-  EmitterScale: 0
-  TimeScale: 0
-  effectAsset: {fileID: 11400000, guid: 333cb2f4423221b4493c89e82e932d25, type: 2}
-  playOnStart: 0
-  isLooping: 0
---- !u!4 &488107859
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 488107857}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.94177, y: -2.71752, z: 2.14584}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &826883693
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -844,4 +794,3 @@ SceneRoots:
   - {fileID: 284118443}
   - {fileID: 1993346719}
   - {fileID: 2135446464}
-  - {fileID: 488107859}

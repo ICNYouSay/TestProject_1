@@ -4,28 +4,28 @@ using UnityEngine;
 public class COD_Walk : MonoBehaviour
 {
 
-    // エフェクトを再生するための EffekseerEmitter コンポーネントの参照
-    [Header("土煙エフェクト設定")]
+    [Header("土煙プレハブ")]
     [SerializeField]
-    private EffekseerEmitter dust;
+    private EffekseerEmitter dustPrefab;
 
-    // エフェクトの位置を調整するためのオフセット値
     [Header("エフェクト位置調整")]
     [SerializeField]
     private float backOffset = 0.25f;
 
-    //エフェクトを地面から少し上にずらすためのオフセット値
-    [Header("地面から浮かせる高さ")]
     [SerializeField]
     private float heightOffset = 0.1f;
 
-    // 入力があるかどうかを判定するためのフラグ
-    private bool isPlaying;
+    [Header("何m移動したら生成するか")]
+    [SerializeField]
+    private float spawnDistance = 0.5f;
+
+    // 前回生成した位置
+    private Vector3 lastSpawnPosition;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        lastSpawnPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -35,34 +35,35 @@ public class COD_Walk : MonoBehaviour
         float moveX = Input.GetAxis("Horizontal");
         float moveZ = Input.GetAxis("Vertical");
 
-        // 入力があるかどうかを判定
+        // 移動しているかどうかを判定
         bool isMoving = moveX != 0 || moveZ != 0;
 
-        //エフェクトの位置をプレイヤーに合わせる
-        dust.transform.position =
-            transform.position -
-            transform.forward * backOffset
-            + Vector3.up * heightOffset; // 少し上にずらす
+        //動いていなければ何もしない
+        if (!isMoving)
+            return;
 
-        //エフェクトの向きをプレイヤーに合わせる
-        dust.transform.rotation = transform.rotation;
+        // 一定距離移動したら生成
+        if (Vector3.Distance(transform.position, lastSpawnPosition) >= spawnDistance)
+        {
+            // エフェクトの生成位置を計算
+            Vector3 pos =
+                transform.position
+                - transform.forward * backOffset
+                + Vector3.up * heightOffset;
 
-        // 入力がある場合はエフェクトを再生し、入力がない場合は停止する
-        if (isMoving)
-        {
-            if (!isPlaying)// 入力がある場合はエフェクトを再生
-            {
-                dust.Play();// エフェクトを再生
-                isPlaying = true;// フラグを更新
-            }
-        }
-        else
-        {
-            if (isPlaying)// 入力がない場合はエフェクトを停止
-            {
-                dust.Stop();// エフェクトを停止
-                isPlaying = false;// フラグを更新
-            }
+            // エフェクトを生成して再生
+            EffekseerEmitter effect = Instantiate(
+                dustPrefab,
+                pos,
+                transform.rotation);
+
+            //エフェクトを再生
+            effect.Play();
+
+            // エフェクトの寿命後に削除
+            Destroy(effect.gameObject, 0.5f);
+
+            lastSpawnPosition = transform.position;
         }
     }
 

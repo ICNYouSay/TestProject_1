@@ -25,8 +25,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 859453887951920091}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.19, y: -1.523, z: -0.25}
+  m_LocalRotation: {x: 0.7057259, y: 0, z: 0, w: 0.70848507}
+  m_LocalPosition: {x: 7.9179688, y: -1.2876972, z: 1.5097667}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -49,4 +49,4 @@ MonoBehaviour:
   TimeScale: 0
   effectAsset: {fileID: 11400000, guid: 333cb2f4423221b4493c89e82e932d25, type: 2}
   playOnStart: 0
-  isLooping: 1
+  isLooping: 0
