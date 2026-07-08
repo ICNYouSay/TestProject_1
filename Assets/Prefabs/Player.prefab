@@ -449,7 +449,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   moveSpeed: 10
-  turnSpeed: 3
+  turnSpeed: 5
   gravity: 9.8
   modelRotationOffset: 0
 --- !u!143 &7092068770312552894
@@ -513,6 +513,7 @@ MonoBehaviour:
   dustPrefab: {fileID: 823766349821155184, guid: 27001b4418f86b74aab171a63d1c4d61, type: 3}
   backOffset: 0.25
   heightOffset: 0.1
+  spawnDistance: 0.5
 --- !u!114 &-8150327144114213650
 MonoBehaviour:
   m_ObjectHideFlags: 0
