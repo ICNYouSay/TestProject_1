@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2851591835344119872}
   - component: {fileID: 5196148582981620815}
   m_Layer: 0
-  m_Name: PlayerData
+  m_Name: GoldenLittleMac
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,6 +51,7 @@ MonoBehaviour:
   allCharacterData:
   - {fileID: 11400000, guid: 9d60bc0d33f24c343a8546e24626f6bc, type: 2}
   - {fileID: 11400000, guid: 298f6f7a4a0f5ad4982761e4623cbb02, type: 2}
+  - {fileID: 11400000, guid: 59e6d05beb9f7c14f86ef22c6c90c591, type: 2}
   modelContainer: {fileID: 3726127093229725856}
   _SelectedCharacterID: 0
 --- !u!143 &333589777318679443
