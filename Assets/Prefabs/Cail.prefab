@@ -414,7 +414,7 @@ GameObject:
   - component: {fileID: 51802144210361001}
   - component: {fileID: -8150327144114213650}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Cail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -429,7 +429,7 @@ Transform:
   m_GameObject: {fileID: 1513334056372939434}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.19, y: -1.623, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -529,7 +529,7 @@ MonoBehaviour:
   _stateAuthorityChangeErrorCorrectionDelta: 0
   gravity: -20
   jumpImpulse: 8
-  acceleration: 10
+  acceleration: 100
   braking: 10
   maxSpeed: 10
   rotationSpeed: 15

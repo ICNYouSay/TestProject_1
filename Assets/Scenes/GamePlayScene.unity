@@ -780,7 +780,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0735aceea02f984e9f37a743f611ad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NetworkConnectManager
-  playerPrefab: {fileID: 1222419479287641481, guid: a53aa2f65290a2741b6511f393555dd9, type: 3}
+  playerPrefab: {fileID: 2851591835344119872, guid: e064c91a3b800c64887c8f9cd3fe6621, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
