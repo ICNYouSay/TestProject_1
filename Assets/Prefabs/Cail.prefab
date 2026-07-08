@@ -411,7 +411,8 @@ GameObject:
   - component: {fileID: 4103119227357069820}
   - component: {fileID: 7092068770312552894}
   - component: {fileID: 1222419479287641481}
-  - component: {fileID: -4443767689959760422}
+  - component: {fileID: 51802144210361001}
+  - component: {fileID: -8150327144114213650}
   m_Layer: 0
   m_Name: Cail
   m_TagString: Untagged
@@ -447,8 +448,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f5e834c5078972458ffac557834f0fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  moveSpeed: 5
-  turnSpeed: 10
+  moveSpeed: 10
+  turnSpeed: 3
   gravity: 9.8
   modelRotationOffset: 0
 --- !u!143 &7092068770312552894
@@ -494,10 +495,25 @@ MonoBehaviour:
   Flags: 262402
   NestedObjects: []
   NetworkedBehaviours:
-  - {fileID: -4443767689959760422}
+  - {fileID: -8150327144114213650}
   - {fileID: 4103119227357069820}
   ForceRemoteRenderTimeframe: 0
---- !u!114 &-4443767689959760422
+--- !u!114 &51802144210361001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513334056372939434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7fb4c7f0a04e67449771dd92c6284f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::COD_Walk
+  dustPrefab: {fileID: 823766349821155184, guid: 27001b4418f86b74aab171a63d1c4d61, type: 3}
+  backOffset: 0.25
+  heightOffset: 0.1
+--- !u!114 &-8150327144114213650
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
