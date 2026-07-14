@@ -40,8 +40,11 @@ public class PlayerController : NetworkBehaviour
     public override void FixedUpdateNetwork()
     {
         Debug.Log($"FUN動作中 権限の有無: {HasStateAuthority}");
-        if (HasStateAuthority)    if (!Object.HasInputAuthority)
+        if (HasStateAuthority)
+        if (!Object.HasInputAuthority)
         return;
+
+
         {
             // WASDキー（または矢印キー）の入力を -1.0 ～ 1.0 の間で取得
             float moveX = Input.GetAxis("Horizontal"); // A/D または 左/右
