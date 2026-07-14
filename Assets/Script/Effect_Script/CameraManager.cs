@@ -6,9 +6,11 @@ public class CameraManager : MonoBehaviour
     //インスタンス
     public static CameraManager Instance;
 
-    [Header("シーンに配置したCinemachine Camera")]
+    [Header("VirtualCameraPrefabを設定")]
     [SerializeField]
-    private CinemachineVirtualCamera virtualCamera;
+    private CinemachineVirtualCamera virtualCameraPrefab;
+
+    private CinemachineVirtualCamera currentCamera;
 
     private void Awake()
     {
@@ -19,11 +21,18 @@ public class CameraManager : MonoBehaviour
     //カメラの追従対象を変更する
     public void SetTarget(Transform target)
     {
-        //追従対象
-        virtualCamera.Follow = target;
+        //既にカメラがあるなら削除
+        if (currentCamera != null)
+        {
+            Destroy(currentCamera.gameObject);
+        }
 
-        //注視対象
-        virtualCamera.LookAt = target;
+        //新しいVirtualCameraを生成
+        currentCamera = Instantiate(virtualCameraPrefab);
+
+        //プレイヤーを追従
+        currentCamera.Follow = target;
+        currentCamera.LookAt = target;
     }
 
 }
