@@ -493,10 +493,9 @@ MonoBehaviour:
   SortKey: 3038508288
   SendPriority: 1
   EnableInterpolation: 1
-  Flags: 262402
+  Flags: 262146
   NestedObjects: []
   NetworkedBehaviours:
-  - {fileID: -8150327144114213650}
   - {fileID: 4103119227357069820}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &51802144210361001
