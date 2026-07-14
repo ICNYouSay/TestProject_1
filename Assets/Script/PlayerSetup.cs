@@ -27,6 +27,7 @@ public class PlayerSetup : NetworkBehaviour
         //自分が走査するプレイヤーだけカメラを設定
         if (Object.HasInputAuthority)
         {
+            Debug.Log("自分のカメラを設定");
             CameraManager.Instance.SetTarget(playerController.transform);
         }
 
