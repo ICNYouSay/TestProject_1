@@ -1,5 +1,6 @@
 using UnityEngine.Timeline;
 using UnityEngine;
+using Cinemachine;
 
 
 //TimelineでShakeトラックの制御を行うスクリプト
