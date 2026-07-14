@@ -413,7 +413,6 @@ GameObject:
   - component: {fileID: 1222419479287641481}
   - component: {fileID: 51802144210361001}
   - component: {fileID: -8150327144114213650}
-  - component: {fileID: 7522775758807756621}
   m_Layer: 0
   m_Name: Cail
   m_TagString: Untagged
@@ -494,10 +493,9 @@ MonoBehaviour:
   SortKey: 3038508288
   SendPriority: 1
   EnableInterpolation: 1
-  Flags: 262402
+  Flags: 262146
   NestedObjects: []
   NetworkedBehaviours:
-  - {fileID: -8150327144114213650}
   - {fileID: 4103119227357069820}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &51802144210361001
@@ -535,28 +533,6 @@ MonoBehaviour:
   braking: 10
   maxSpeed: 10
   rotationSpeed: 15
---- !u!95 &7522775758807756621
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1513334056372939434}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 28f6f8df46b62ac449f396c8ea038dcb, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2190372916931332873
 GameObject:
   m_ObjectHideFlags: 0
