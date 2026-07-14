@@ -6,6 +6,10 @@ public class PlayerSetup : NetworkBehaviour
     [SerializeField] private CharacterData[] allCharacterData; // 全キャラのデータを入れておく
     [SerializeField] private Transform modelContainer;        // 見た目モデルを配置する親オブジェクト
 
+    [Header("プレイヤーコントローラー")]
+    [SerializeField]
+    private PlayerController playerController;
+
     // どのキャラを選んだかを同期する変数
     [Networked] public int SelectedCharacterID { get; set; }
     public override void Spawned()
@@ -19,5 +23,12 @@ public class PlayerSetup : NetworkBehaviour
         // ステータス（コスト制限など）もこのデータから反映する
         PlayerController playerController = GetComponent<PlayerController>();
         playerController.modelRotationOffset = data.rotateoffset;
+
+        //自分が走査するプレイヤーだけカメラを設定
+        if (Object.HasInputAuthority)
+        {
+            CameraManager.Instance.SetTarget(playerController.transform);
+        }
+
     }
 }
