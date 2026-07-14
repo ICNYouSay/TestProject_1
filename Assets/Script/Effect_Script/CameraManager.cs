@@ -21,18 +21,26 @@ public class CameraManager : MonoBehaviour
     //カメラの追従対象を変更する
     public void SetTarget(Transform target)
     {
+        Debug.Log($"SetTarget : {target.name}");
+
         //既にカメラがあるなら削除
         if (currentCamera != null)
         {
+            Debug.Log("古いVirtualCameraを削除");
             Destroy(currentCamera.gameObject);
         }
 
         //新しいVirtualCameraを生成
         currentCamera = Instantiate(virtualCameraPrefab);
 
+        Debug.Log($"生成したVirtualCamera : {currentCamera.name}");
+
         //プレイヤーを追従
         currentCamera.Follow = target;
         currentCamera.LookAt = target;
+
+        Debug.Log($"Follow = {currentCamera.Follow.name}");
+
     }
 
 }

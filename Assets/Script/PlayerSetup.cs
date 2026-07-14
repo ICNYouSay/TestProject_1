@@ -24,6 +24,10 @@ public class PlayerSetup : NetworkBehaviour
         PlayerController playerController = GetComponent<PlayerController>();
         playerController.modelRotationOffset = data.rotateoffset;
 
+        Debug.Log($"CameraManager = {CameraManager.Instance}");
+        Debug.Log($"PlayerController = {playerController}");
+        Debug.Log($"HasInputAuthority = {Object.HasInputAuthority}");
+
         //自分が走査するプレイヤーだけカメラを設定
         if (Object.HasInputAuthority)
         {
