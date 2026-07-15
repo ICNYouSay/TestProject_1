@@ -45,6 +45,7 @@ public class PlayerController : NetworkBehaviour
         return;
 
 
+        //移動
         {
             // WASDキー（または矢印キー）の入力を -1.0 ～ 1.0 の間で取得
             float moveX = Input.GetAxis("Horizontal"); // A/D または 左/右
@@ -98,5 +99,16 @@ public class PlayerController : NetworkBehaviour
                 _ncc.Move(Vector3.down * gravity * Time.deltaTime);
             }
         }
+
+        //ジャンプ
+        {
+            //Spaceキーでジャンプ
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                anim.SetBool("isJumping", true);
+            }
+
+        }
+
     }
 }
