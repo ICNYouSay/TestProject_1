@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2851591835344119872}
   - component: {fileID: 5196148582981620815}
   m_Layer: 0
-  m_Name: GoldenLittleMac
+  m_Name: PlayerData
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
