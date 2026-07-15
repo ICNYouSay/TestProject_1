@@ -12,10 +12,16 @@ public class CameraManager : MonoBehaviour
 
     private CinemachineVirtualCamera currentCamera;
 
+    //VirtualCamera‚ÌAimİ’è
+    private CinemachineComposer composer;
+
     private void Awake()
     {
         //©g‚ğInstance‚Æ‚µ‚Ä“o˜^
         Instance = this;
+
+        //CinemachineComposeræ“¾
+        composer = currentCamera.GetCinemachineComponent<CinemachineComposer>();
     }
 
     //ƒJƒƒ‰‚Ì’Ç]‘ÎÛ‚ğ•ÏX‚·‚é
@@ -39,8 +45,18 @@ public class CameraManager : MonoBehaviour
         currentCamera.Follow = target;
         currentCamera.LookAt = target;
 
+
         Debug.Log($"Follow = {currentCamera.Follow.name}");
 
+        // Body(Transposer)‚ğæ“¾
+        var transposer = currentCamera.GetCinemachineComponent<CinemachineTransposer>();
+
+        if (transposer != null)
+        {
+            transposer.m_FollowOffset = new Vector3(0f, 5f, -10f);
+        }
+
+        
     }
 
 }
