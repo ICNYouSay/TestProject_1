@@ -39,7 +39,16 @@ public class CameraManager : MonoBehaviour
         currentCamera.Follow = target;
         currentCamera.LookAt = target;
 
+
         Debug.Log($"Follow = {currentCamera.Follow.name}");
+
+        // Body(Transposer)‚ðŽæ“¾
+        var transposer = currentCamera.GetCinemachineComponent<CinemachineTransposer>();
+
+        if (transposer != null)
+        {
+            transposer.m_FollowOffset = new Vector3(0f, 5f, -10f);
+        }
 
     }
 

@@ -45,7 +45,7 @@ public class PlayerController : NetworkBehaviour
         return;
 
 
-        //移動
+        //移動処理
         {
             // WASDキー（または矢印キー）の入力を -1.0 ～ 1.0 の間で取得
             float moveX = Input.GetAxis("Horizontal"); // A/D または 左/右
