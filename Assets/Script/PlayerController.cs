@@ -99,5 +99,16 @@ public class PlayerController : NetworkBehaviour
                 _ncc.Move(Vector3.down * gravity * Time.deltaTime);
             }
         }
+
+        //ジャンプ
+        {
+            //Spaceキーでジャンプ
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                anim.SetBool("isJumping", true);
+            }
+
+        }
+
     }
 }
