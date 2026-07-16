@@ -1019,8 +1019,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1615632292}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.1736482, y: 0, z: 0, w: 0.9848078}
+  m_LocalPosition: {x: 0, y: 5.736161, z: -7.517541}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1050,10 +1050,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8a13e26fd5ab934fbe546bb5df6c587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraController
-  target: {fileID: 5202616058924346272, guid: a53aa2f65290a2741b6511f393555dd9, type: 3}
-  mouseSensitivity: 2
-  distance: 8
-  height: 3
+  mouseSensitivity: 20
+  distance: 7
+  height: 0
+  followSpeed: 10
 --- !u!114 &1615632298
 MonoBehaviour:
   m_ObjectHideFlags: 0

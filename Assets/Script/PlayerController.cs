@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : NetworkBehaviour
 {
     [Header("移動設定")]
-    public float moveSpeed = 5.0f;    
+    public float moveSpeed = 5.0f;
     public float turnSpeed = 10.0f;
 
     [Header("モデルの向き補正")]
@@ -50,6 +50,7 @@ public class PlayerController : NetworkBehaviour
             // 回転処理
             Quaternion targetRotation = Quaternion.LookRotation(inputDir);
             Quaternion offsetRotation = Quaternion.Euler(0, modelRotationOffset, 0);
+            
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation * offsetRotation, turnSpeed * Runner.DeltaTime);
 
             // 移動速度をセット
@@ -62,7 +63,17 @@ public class PlayerController : NetworkBehaviour
             if (anim != null) anim.SetBool("isWalking", false);
         }
 
+        //ジャンプ攻撃
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (anim != null) anim.SetBool("isJumping", true);
+        }
+
+
         // NetworkCharacterControllerのMoveを使う
         _ncc.Move(moveVelocity * Runner.DeltaTime);
+
     }
+
+   
 }
