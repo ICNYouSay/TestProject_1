@@ -1,5 +1,6 @@
-using UnityEngine;
 using Cinemachine;
+using Photon.Realtime;
+using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class CameraManager : MonoBehaviour
     [SerializeField]
     private CinemachineVirtualCamera virtualCameraPrefab;
 
+    //現在使用するVirtualCamera
     private CinemachineVirtualCamera currentCamera;
 
     //VirtualCameraのAim設定
@@ -19,43 +21,56 @@ public class CameraManager : MonoBehaviour
     {
         //自身をInstanceとして登録
         Instance = this;
-
-        //CinemachineComposer取得
-        composer = currentCamera.GetCinemachineComponent<CinemachineComposer>();
     }
 
     //カメラの追従対象を変更する
     public void SetTarget(Transform target)
     {
-        Debug.Log($"SetTarget : {target.name}");
-
-        //既にカメラがあるなら削除
+        // 古いVirtualCameraを削除
         if (currentCamera != null)
         {
-            Debug.Log("古いVirtualCameraを削除");
             Destroy(currentCamera.gameObject);
         }
 
-        //新しいVirtualCameraを生成
+        // 新しいVirtualCamera生成
         currentCamera = Instantiate(virtualCameraPrefab);
 
-        Debug.Log($"生成したVirtualCamera : {currentCamera.name}");
+        // CameraTarget取得
+        Transform cameraTarget = target.Find("CameraTarget");
 
-        //プレイヤーを追従
-        currentCamera.Follow = target;
-        currentCamera.LookAt = target;
-
-        Debug.Log($"Follow = {currentCamera.Follow.name}");
-
-        // Body(Transposer)を取得
-        var transposer = currentCamera.GetCinemachineComponent<CinemachineTransposer>();
-
-        if (transposer != null)
+        foreach (Transform t in target.GetComponentsInChildren<Transform>(true))
         {
-            transposer.m_FollowOffset = new Vector3(0f, 5f, -10f);
+            if (t.name == "CameraTarget")
+            {
+                cameraTarget = t;
+                break;
+            }
         }
 
-        
+        // Follow・LookAt設定
+        currentCamera.Follow = cameraTarget;
+        currentCamera.LookAt = cameraTarget;
+
+        // Third Person Follow取得
+        Cinemachine3rdPersonFollow thirdPerson =
+            currentCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
+
+        if (thirdPerson != null)
+        {
+            thirdPerson.ShoulderOffset = Vector3.zero;
+            thirdPerson.VerticalArmLength = 3.0f;
+            thirdPerson.CameraDistance = 8.0f;
+        }
+
+        // CameraControllerへ渡す
+        CameraController controller = Camera.main.GetComponent<CameraController>();
+
+        if (controller != null)
+        {
+            controller.SetVirtualCamera(currentCamera);
+            controller.SetTarget(cameraTarget);
+        }
+
     }
 
 }

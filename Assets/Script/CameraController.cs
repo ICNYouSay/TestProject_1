@@ -1,52 +1,102 @@
 using UnityEngine;
+using Cinemachine;
 
 public class CameraController : MonoBehaviour
 {
-    // 追いかける対象
-    public Transform target;
+    // カメラが追従する対象（プレイヤーキャラクターの子オブジェクト CameraTarget）
+    private Transform target;
 
-    // 感度
-    public float mouseSensitivity = 2.0f;
+    // 操作するVirtualCamera
+    private CinemachineVirtualCamera virtualCamera;
 
-    private float rotationX = 0f;
-    private float rotationY = 0f;
+    [Header("マウス設定")]
 
-    // キャラからの距離
-    public float distance = 10.0f;
-    // カメラの高さ
-    public float height = 3.0f;     
+    // マウスの左右移動の感度
+    [SerializeField]
+    private float mouseSensitivity = 150f;
 
-    void Start()
+    [Header("カメラ設定")]
+
+    [Header("どれだけ後ろに離すか")]
+    // CameraTargetからどれだけ後ろに離すか
+    [SerializeField]
+    private float distance = 8f;
+
+    [Header("どれだけ上に配置するか")]
+    // CameraTargetからどれだけ上に配置するか
+    [SerializeField]
+    private float height = 2f;
+
+    [Header("どれだけの速度で追従するか")]
+    // カメラが追従する速度
+    // 値が大きいほど素早く追従します
+    [SerializeField]
+    private float followSpeed = 10f;
+
+    // カメラの左右回転角度
+    private float yaw = 0f;
+
+    private void Start()
     {
-        // マウスカーソルを画面中央で固定して消す
+        // マウスカーソルを画面中央に固定
         Cursor.lockState = CursorLockMode.Locked;
+
+        // マウスカーソルを非表示
+        Cursor.visible = false;
     }
 
-    void Update()
+    private void LateUpdate()
     {
-        if (target == null) return;
+        // ターゲットまたはVirtualCameraが設定されていなければ何もしない
+        if (target == null || virtualCamera == null)
+            return;
 
-        // マウスの入力を取得
-        rotationX += Input.GetAxis("Mouse X") * mouseSensitivity;
-        rotationY -= Input.GetAxis("Mouse Y") * mouseSensitivity;
+        //--------------------------------------------------
+        // マウスの左右入力を取得
+        //--------------------------------------------------
+        yaw += Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
 
-        // 上下の視界制限
-        rotationY = Mathf.Clamp(rotationY, -20f, 50f);
+        //--------------------------------------------------
+        // カメラの回転を作成
+        // Y軸のみ回転させる
+        //--------------------------------------------------
+        Quaternion rotation = Quaternion.Euler(0f, yaw, 0f);
 
-        // 回転を作成（上下左右の両方を含める）
-        Quaternion rotation = Quaternion.Euler(rotationY, rotationX, 0);
+        //--------------------------------------------------
+        // CameraTargetを中心とした注視位置を計算
+        //--------------------------------------------------
+        Vector3 lookPoint = target.position + Vector3.up * height;
 
-        // 注視点を計算
-        // heightはカメラの高さではなくキャラのどの高さを中心にするか
-        Vector3 lookAtPoint = target.position + Vector3.up * height;
+        //--------------------------------------------------
+        // カメラをプレイヤーの後方へ配置
+        //--------------------------------------------------
+        Vector3 desiredPosition =
+            lookPoint + rotation * new Vector3(0f, 0f, -distance);
 
-        // カメラの位置を計算
-        //（注視点から回転方向の後ろにdistance分下がる）
-        Vector3 position = lookAtPoint + (rotation * Vector3.back * distance);
+        //--------------------------------------------------
+        // カメラ位置を滑らかに移動
+        //--------------------------------------------------
+        virtualCamera.transform.position =
+            Vector3.Lerp(
+                virtualCamera.transform.position,
+                desiredPosition,
+                followSpeed * Time.deltaTime);
 
-        // 反映
-        transform.position = position;
-        transform.rotation = rotation;
+        //--------------------------------------------------
+        // カメラをプレイヤーへ向ける
+        //--------------------------------------------------
+        virtualCamera.transform.LookAt(lookPoint);
     }
 
+    /// カメラが追従する対象(CameraTarget)を設定
+    public void SetTarget(Transform newTarget)
+    {
+        target = newTarget;
+    }
+
+    /// 操作対象となるVirtualCameraを設定
+    public void SetVirtualCamera(CinemachineVirtualCamera cam)
+    {
+        virtualCamera = cam;
+    }
 }
