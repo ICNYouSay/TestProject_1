@@ -93,8 +93,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   moveSpeed: 5
-  turnSpeed: 10
-  gravity: 9.8
+  turnSpeed: 5
   modelRotationOffset: 0
 --- !u!114 &2851591835344119872
 MonoBehaviour:
