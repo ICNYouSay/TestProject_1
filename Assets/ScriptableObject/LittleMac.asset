@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8c9afdab7e985c478624bf0ddd3ace7, type: 3}
   m_Name: LittleMac
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
-  characterName: LittleMac
+  characterName: "\u30DE\u30A4\u30B1\u30EB"
   modelPrefab: {fileID: 8792546707293894513, guid: ec082f0f387dd3b4caac79b1f4435fb9, type: 3}
   rotateoffset: 0
   maxCost: 0
