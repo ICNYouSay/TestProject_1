@@ -68,7 +68,16 @@ public class PlayerController : NetworkBehaviour
         {
             if (anim != null) anim.SetBool("isJumping", true);
         }
-
+        // 現在のAnimatorのステート情報を取得（0はベースレイヤー）
+        AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+        if (anim.GetBool("isJumping"))
+        {
+            // normalizedTime が 1.0 以上なら、再生が1周（100%）完了している
+            if (stateInfo.normalizedTime >= 1.0f)
+            {
+                anim.SetBool("isJumping", false);
+            }
+        }
 
         // NetworkCharacterControllerのMoveを使う
         _ncc.Move(moveVelocity * Runner.DeltaTime);
