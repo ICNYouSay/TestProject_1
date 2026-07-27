@@ -21,7 +21,6 @@ public class PlayerSetup : NetworkBehaviour
         Instantiate(data.modelPrefab, modelContainer);
 
         // ステータス（コスト制限など）もこのデータから反映する
-        PlayerController playerController = GetComponent<PlayerController>();
         playerController.modelRotationOffset = data.rotateoffset;
 
         Debug.Log($"CameraManager = {CameraManager.Instance}");
@@ -35,5 +34,6 @@ public class PlayerSetup : NetworkBehaviour
             CameraManager.Instance.SetTarget(playerController.transform);
         }
 
+        playerController.transform.position = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f));
     }
 }
