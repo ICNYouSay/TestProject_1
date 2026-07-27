@@ -37,5 +37,7 @@ public class MyCell : FancyCell<MenuCellData>
         // --- 4. ‰œ‚Éˆø‚Á‚ñ‚Å‚¢‚éŠ´‚ğo‚·‚½‚ß‚É’[‚ğ”¼“§–¾‚É‚·‚é ---
         float alpha = Mathf.Lerp(1.0f, 0.3f, distanceAbs * 2f);
         GetComponent<CanvasGroup>().alpha = alpha;
+
+        Debug.Log($"Position: {position}");
     }
 }

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 866457387225006319}
   - component: {fileID: 2851591835344119872}
   - component: {fileID: 5196148582981620815}
+  - component: {fileID: -9083500331430149628}
   m_Layer: 0
   m_Name: PlayerData
   m_TagString: Untagged
@@ -53,8 +54,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 298f6f7a4a0f5ad4982761e4623cbb02, type: 2}
   - {fileID: 11400000, guid: 59e6d05beb9f7c14f86ef22c6c90c591, type: 2}
   modelContainer: {fileID: 3726127093229725856}
-  playerController: {fileID: 4103119227357069820, guid: a53aa2f65290a2741b6511f393555dd9, type: 3}
-  _SelectedCharacterID: 0
+  playerController: {fileID: 866457387225006319}
+  _SelectedCharacterID: 1
 --- !u!143 &333589777318679443
 CharacterController:
   m_ObjectHideFlags: 0
@@ -92,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f5e834c5078972458ffac557834f0fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  moveSpeed: 5
+  moveSpeed: 10
   turnSpeed: 5
   modelRotationOffset: 0
 --- !u!114 &2851591835344119872
@@ -136,3 +137,19 @@ MonoBehaviour:
   braking: 10
   maxSpeed: 10
   rotationSpeed: 15
+--- !u!114 &-9083500331430149628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2781576142622538108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7fb4c7f0a04e67449771dd92c6284f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::COD_Walk
+  dustPrefab: {fileID: 823766349821155184, guid: 27001b4418f86b74aab171a63d1c4d61, type: 3}
+  backOffset: 0.25
+  heightOffset: 0.1
+  spawnDistance: 0.5

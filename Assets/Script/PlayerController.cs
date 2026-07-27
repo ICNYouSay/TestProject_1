@@ -1,4 +1,5 @@
 using Fusion;
+using UnityEditor.UI;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -23,7 +24,8 @@ public class PlayerController : NetworkBehaviour
 
     private void Awake()
     {
-        _ncc = GetComponent<NetworkCharacterController>();
+        // このオブジェクトの子オブジェクトとして存在するモデルPrefabからNetworkCharacterControllerを取得
+        _ncc = GetComponentInChildren<NetworkCharacterController>();
     }
 
     public override void FixedUpdateNetwork()
@@ -66,22 +68,23 @@ public class PlayerController : NetworkBehaviour
         //ジャンプ攻撃
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (anim != null) anim.SetBool("isJumping", true);
+            if (anim != null) anim.SetBool("isAttacking", true);
         }
         // 現在のAnimatorのステート情報を取得（0はベースレイヤー）
         AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
-        if (anim.GetBool("isJumping"))
+        if (anim.GetBool("isAttacking"))
         {
             // normalizedTime が 1.0 以上なら、再生が1周（100%）完了している
             if (stateInfo.normalizedTime >= 1.0f)
             {
-                anim.SetBool("isJumping", false);
+                anim.SetBool("isAttacking", false);
             }
         }
 
         // NetworkCharacterControllerのMoveを使う
         _ncc.Move(moveVelocity * Runner.DeltaTime);
 
+        GameObject.FindGameObjectWithTag("PlayerModel").transform.position = transform.position;
     }
 
    
