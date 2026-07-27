@@ -69,22 +69,22 @@ public class PlayerController : NetworkBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (anim != null) anim.SetBool("isAttacking", true);
+            Debug.Log("isAttacking=true");
         }
-        // 現在のAnimatorのステート情報を取得（0はベースレイヤー）
-        AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
-        if (anim.GetBool("isAttacking"))
+        else if (anim.GetBool("isAttacking"))
         {
+            // 現在のAnimatorのステート情報を取得（0はベースレイヤー）
+            AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
             // normalizedTime が 1.0 以上なら、再生が1周（100%）完了している
             if (stateInfo.normalizedTime >= 1.0f)
             {
                 anim.SetBool("isAttacking", false);
+                Debug.Log("isAttacking=false");
             }
         }
 
         // NetworkCharacterControllerのMoveを使う
         _ncc.Move(moveVelocity * Runner.DeltaTime);
-
-        GameObject.FindGameObjectWithTag("PlayerModel").transform.position = transform.position;
     }
 
    
