@@ -86,6 +86,4 @@ public class PlayerController : NetworkBehaviour
         // NetworkCharacterController‚ÌMove‚ðŽg‚¤
         _ncc.Move(moveVelocity * Runner.DeltaTime);
     }
-
-   
 }
