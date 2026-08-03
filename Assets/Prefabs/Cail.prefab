@@ -410,6 +410,9 @@ GameObject:
   - component: {fileID: 5202616058924346272}
   - component: {fileID: 51802144210361001}
   - component: {fileID: -8150327144114213650}
+  - component: {fileID: 7092068770312552894}
+  - component: {fileID: 1222419479287641481}
+  - component: {fileID: 4103119227357069820}
   m_Layer: 0
   m_Name: Cail
   m_TagString: Untagged
@@ -434,7 +437,7 @@ Transform:
   - {fileID: 4454249536412510405}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4103119227357069820
+--- !u!114 &51802144210361001
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -443,13 +446,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 1513334056372939434}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f5e834c5078972458ffac557834f0fd, type: 3}
+  m_Script: {fileID: 11500000, guid: b7fb4c7f0a04e67449771dd92c6284f5, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  moveSpeed: 10
-  turnSpeed: 5
-  gravity: 9.8
-  modelRotationOffset: 0
+  m_EditorClassIdentifier: Assembly-CSharp::COD_Walk
+  dustPrefab: {fileID: 823766349821155184, guid: 27001b4418f86b74aab171a63d1c4d61, type: 3}
+  backOffset: 0.55
+  heightOffset: -1
+  spawnDistance: 0.5
+--- !u!114 &-8150327144114213650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513334056372939434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 378411a89480da345945c2f888327a2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Fusion.Unity::Fusion.NetworkCharacterController
+  _stateAuthorityChangeErrorCorrectionDelta: 0
+  gravity: -20
+  jumpImpulse: 8
+  acceleration: 100
+  braking: 10
+  maxSpeed: 10
+  rotationSpeed: 15
 --- !u!143 &7092068770312552894
 CharacterController:
   m_ObjectHideFlags: 0
@@ -496,7 +518,7 @@ MonoBehaviour:
   - {fileID: -8150327144114213650}
   - {fileID: 4103119227357069820}
   ForceRemoteRenderTimeframe: 0
---- !u!114 &51802144210361001
+--- !u!114 &4103119227357069820
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -505,32 +527,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1513334056372939434}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7fb4c7f0a04e67449771dd92c6284f5, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f5e834c5078972458ffac557834f0fd, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::COD_Walk
-  dustPrefab: {fileID: 823766349821155184, guid: 27001b4418f86b74aab171a63d1c4d61, type: 3}
-  backOffset: 0.25
-  heightOffset: 0.1
-  spawnDistance: 0.5
---- !u!114 &-8150327144114213650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1513334056372939434}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 378411a89480da345945c2f888327a2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Fusion.Unity::Fusion.NetworkCharacterController
-  _stateAuthorityChangeErrorCorrectionDelta: 0
-  gravity: -20
-  jumpImpulse: 8
-  acceleration: 100
-  braking: 10
-  maxSpeed: 10
-  rotationSpeed: 15
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  moveSpeed: 10
+  turnSpeed: 5
+  modelRotationOffset: 0
 --- !u!1 &2190372916931332873
 GameObject:
   m_ObjectHideFlags: 0
