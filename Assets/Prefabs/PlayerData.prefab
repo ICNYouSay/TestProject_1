@@ -55,7 +55,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 59e6d05beb9f7c14f86ef22c6c90c591, type: 2}
   modelContainer: {fileID: 3726127093229725856}
   playerController: {fileID: 866457387225006319}
-  _SelectedCharacterID: 1
+  _SelectedCharacterID: 0
 --- !u!143 &333589777318679443
 CharacterController:
   m_ObjectHideFlags: 0
