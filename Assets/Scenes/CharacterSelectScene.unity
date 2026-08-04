@@ -553,7 +553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5c88dd6f12dbae41bc572ae09e69aa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MyScrollView
-  cellInterval: 0.15
+  cellInterval: 0.2
   scrollOffset: 0.5
   loop: 1
   cellContainer: {fileID: 430575304}
