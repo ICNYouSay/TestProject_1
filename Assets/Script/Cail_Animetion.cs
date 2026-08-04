@@ -29,7 +29,7 @@ public class Cail_Animetion : MonoBehaviour
         {
             anim.SetInteger("Gungnir", 2);
             Debug.Log("Gungnir=2");
-            _ncc.Move(new Vector3(0.0f, 0.0f, 2.0f));
+            _ncc.Move(new Vector3(0.0f, 0.0f, 5.0f));
         }
     }
 
