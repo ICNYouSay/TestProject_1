@@ -673,8 +673,8 @@ GameObject:
   - component: {fileID: 5906149705014535447}
   - component: {fileID: 1990976819256566874}
   - component: {fileID: 6656040275813993283}
-  - component: {fileID: 7211090985751764850}
-  - component: {fileID: 6507758805819019362}
+  - component: {fileID: 4534279833662283192}
+  - component: {fileID: 2414522639076329548}
   m_Layer: 0
   m_Name: Cail_Walk
   m_TagString: Untagged
@@ -734,7 +734,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68dc2cfa057015949afd96ab98b47df7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Cail_Animetion
---- !u!114 &7211090985751764850
+--- !u!114 &4534279833662283192
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -746,11 +746,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 244132d072b2fcf4c973673ee60ef361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EffectEvent
-  effect_1: {fileID: 6507758805819019362}
+  effect_1: {fileID: 2414522639076329548}
   effect_2: {fileID: 0}
   effect_3: {fileID: 0}
   effect_4: {fileID: 0}
---- !u!114 &6507758805819019362
+--- !u!114 &2414522639076329548
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

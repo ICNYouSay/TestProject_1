@@ -14,14 +14,9 @@ public class Cail_Animetion : MonoBehaviour
         _ncc = GetComponentInParent<NetworkCharacterController>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) & anim.GetInteger("Gungnir") == 0)
-        {
-            if (anim != null) anim.SetInteger("Gungnir", 1);
-            Debug.Log("Gungnir=1");
-        }
+
     }
     public void GungnirJumped()
     {

@@ -83,6 +83,12 @@ public class PlayerController : NetworkBehaviour
             }
         }
 
+        if ((Input.GetKeyDown(KeyCode.E)) & (anim.GetInteger("Gungnir") == 0))
+        {
+            if (anim != null) anim.SetInteger("Gungnir", 1);
+            Debug.Log("Gungnir=1");
+        }
+
         // NetworkCharacterController‚ÌMove‚ðŽg‚¤
         _ncc.Move(moveVelocity * Runner.DeltaTime);
     }
