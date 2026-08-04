@@ -21,18 +21,19 @@ public class MyCell : FancyCell<MenuCellData>
         // --- 1. 上下移動（Y軸） ---
         // 画面中央（0.5）からの距離を計算
         float distanceFromCenter = position - 0.5f;
-        float yPos = distanceFromCenter * -900f; // 縦の広がり具合
+        float yPos = distanceFromCenter * -1000f; // 縦の広がり具合
 
         // --- 2. 斜め（ドラム型）にするための横移動（X軸） ---
         // Yの位置に応じて、右上に傾くようにX座標をオフセットする！
-        float xPos = yPos * 0.8f + 500f;
+        float xPos = yPos * 0.6f + 650f;
 
         transform.localPosition = new Vector3(xPos, yPos, 0);
 
         // --- 3. 中央（選択中）のアイテムだけ大きく強調する ---
         float distanceAbs = Mathf.Abs(distanceFromCenter);
-        float scale = Mathf.Lerp(0.12f, 0.07f, distanceAbs * 2f); // 中央は1.2倍、端は0.7倍
-        transform.localScale = new Vector3(scale * 2, scale, 1f);
+        //float scale = Mathf.Lerp(0.12f, 0.07f, distanceAbs * 2f); // 中央は1.2倍、端は0.7倍
+        float scale = 0.1f;
+        transform.localScale = new Vector3(scale * 3, scale, 1f);
 
         // --- 4. 奥に引っ込んでいる感を出すために端を半透明にする ---
         float alpha = Mathf.Lerp(1.0f, 0.3f, distanceAbs * 2f);
