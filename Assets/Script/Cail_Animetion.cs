@@ -6,7 +6,6 @@ public class Cail_Animetion : MonoBehaviour
     private CharacterController controller;
     private Animator anim;
     private NetworkCharacterController _ncc;
-    public PlayerController pc;
 
     void Start()
     {
@@ -17,8 +16,6 @@ public class Cail_Animetion : MonoBehaviour
 
     void Update()
     {
-        // “ü—ÍŒ ŒÀ‚ª‚È‚¢ê‡‚Íˆ—‚µ‚È‚¢
-        //if (!pc.Object.HasInputAuthority) return;
 
     }
     public void GungnirJumped()
