@@ -6,6 +6,7 @@ public class Cail_Animetion : MonoBehaviour
     private CharacterController controller;
     private Animator anim;
     private NetworkCharacterController _ncc;
+    public PlayerController pc;
 
     void Start()
     {
@@ -14,14 +15,11 @@ public class Cail_Animetion : MonoBehaviour
         _ncc = GetComponentInParent<NetworkCharacterController>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) & anim.GetInteger("Gungnir") == 0)
-        {
-            if (anim != null) anim.SetInteger("Gungnir", 1);
-            Debug.Log("Gungnir=1");
-        }
+        // “ü—ÍŒ ŒÀ‚ª‚È‚¢ê‡‚Íˆ—‚µ‚È‚¢
+        //if (!pc.Object.HasInputAuthority) return;
+
     }
     public void GungnirJumped()
     {

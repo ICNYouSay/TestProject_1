@@ -732,6 +732,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68dc2cfa057015949afd96ab98b47df7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Cail_Animetion
+  pc: {fileID: 4103119227357069820}
 --- !u!1 &3786393447553259028
 GameObject:
   m_ObjectHideFlags: 0
