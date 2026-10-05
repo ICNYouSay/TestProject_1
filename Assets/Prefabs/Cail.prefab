@@ -673,9 +673,9 @@ GameObject:
   - component: {fileID: 5906149705014535447}
   - component: {fileID: 1990976819256566874}
   - component: {fileID: 6656040275813993283}
-  - component: {fileID: 7211090985751764850}
-  - component: {fileID: 6507758805819019362}
   - component: {fileID: 1455385508384374669}
+  - component: {fileID: 2414522639076329548}
+  - component: {fileID: 4534279833662283192}
   m_Layer: 0
   m_Name: Cail_Walk
   m_TagString: Untagged
@@ -735,40 +735,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68dc2cfa057015949afd96ab98b47df7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Cail_Animetion
---- !u!114 &4534279833662283192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3435187726635752371}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 244132d072b2fcf4c973673ee60ef361, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EffectEvent
-  effect_1: {fileID: 6507758805819019362}
-  effect_2: {fileID: 1455385508384374669}
-  effect_3: {fileID: 0}
-  effect_4: {fileID: 0}
---- !u!114 &2414522639076329548
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3435187726635752371}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35d396bcb8480c24eb784eebe6096a99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Effekseer::Effekseer.EffekseerEmitter
-  TimingOfUpdate: 0
-  EmitterScale: 0
-  TimeScale: 0
-  effectAsset: {fileID: 11400000, guid: 58c4f0e60f2e8944f81fdd7f6481d3a5, type: 2}
-  playOnStart: 0
-  isLooping: 0
 --- !u!114 &1455385508384374669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -787,6 +753,40 @@ MonoBehaviour:
   effectAsset: {fileID: 11400000, guid: 4dd5205d46b02034dab667942160142e, type: 2}
   playOnStart: 0
   isLooping: 0
+--- !u!114 &2414522639076329548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3435187726635752371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35d396bcb8480c24eb784eebe6096a99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Effekseer::Effekseer.EffekseerEmitter
+  TimingOfUpdate: 0
+  EmitterScale: 0
+  TimeScale: 0
+  effectAsset: {fileID: 11400000, guid: 58c4f0e60f2e8944f81fdd7f6481d3a5, type: 2}
+  playOnStart: 0
+  isLooping: 0
+--- !u!114 &4534279833662283192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3435187726635752371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 244132d072b2fcf4c973673ee60ef361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EffectEvent
+  effect_1: {fileID: 2414522639076329548}
+  effect_2: {fileID: 1455385508384374669}
+  effect_3: {fileID: 0}
+  effect_4: {fileID: 0}
 --- !u!1 &3786393447553259028
 GameObject:
   m_ObjectHideFlags: 0
