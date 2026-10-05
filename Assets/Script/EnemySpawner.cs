@@ -30,11 +30,16 @@ public class EnemyWaveSpawner : MonoBehaviour
     {
         for (int i = 0; i < waveCount; i++)
         {
-            // ­‚µ‚¸‚ÂˆÊ’u‚ð‚¸‚ç‚µ‚Ä¢Š«i“¯‚¶êŠ‚Éd‚È‚é‚Æ“G‚ª‚«”ò‚Ô‚Ì‚ð–h‚®‚½‚ßj
-            Vector3 randomOffset = new Vector3(Random.Range(-2f, 2f), 0, Random.Range(-2f, 2f));
-            GameObject newEnemy = Instantiate(enemyPrefab, spawnPoint.position + randomOffset, spawnPoint.rotation);
+            // i”Ô–Ú‚Ì“G‚ð‰~Žüã‚É”z’u‚·‚éŒvŽZ
+            // 5‘Ì‚È‚ç72“x‚¸‚Â‚¸‚ç‚·
+            float angle = i * (360f / waveCount);
 
-            // ¶¬‚µ‚½“G‚ðƒŠƒXƒg‚É’Ç‰Á
+            // 6f‚Í”¼Œa
+            Vector3 offset = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), 0, Mathf.Sin(angle * Mathf.Deg2Rad)) * 6f; 
+
+            GameObject newEnemy = Instantiate(enemyPrefab, spawnPoint.position + offset, spawnPoint.rotation);
+
+            // “G‚ð¢Š«
             activeEnemies.Add(newEnemy);
         }
     }
