@@ -413,6 +413,8 @@ GameObject:
   - component: {fileID: 7092068770312552894}
   - component: {fileID: 1222419479287641481}
   - component: {fileID: 4103119227357069820}
+  - component: {fileID: 2822828799645048787}
+  - component: {fileID: 1828608064371819410}
   m_Layer: 0
   m_Name: Cail
   m_TagString: PlayerModel
@@ -533,6 +535,40 @@ MonoBehaviour:
   moveSpeed: 10
   turnSpeed: 5
   modelRotationOffset: 0
+--- !u!114 &2822828799645048787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513334056372939434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 244132d072b2fcf4c973673ee60ef361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EffectEvent
+  effect_1: {fileID: 1828608064371819410}
+  effect_2: {fileID: 0}
+  effect_3: {fileID: 0}
+  effect_4: {fileID: 0}
+--- !u!114 &1828608064371819410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513334056372939434}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35d396bcb8480c24eb784eebe6096a99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Effekseer::Effekseer.EffekseerEmitter
+  TimingOfUpdate: 0
+  EmitterScale: 0
+  TimeScale: 0
+  effectAsset: {fileID: 11400000, guid: 58c4f0e60f2e8944f81fdd7f6481d3a5, type: 2}
+  playOnStart: 0
+  isLooping: 0
 --- !u!1 &2190372916931332873
 GameObject:
   m_ObjectHideFlags: 0
