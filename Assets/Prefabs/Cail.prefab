@@ -735,7 +735,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68dc2cfa057015949afd96ab98b47df7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Cail_Animetion
---- !u!114 &7211090985751764850
+--- !u!114 &4534279833662283192
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -751,7 +751,7 @@ MonoBehaviour:
   effect_2: {fileID: 1455385508384374669}
   effect_3: {fileID: 0}
   effect_4: {fileID: 0}
---- !u!114 &6507758805819019362
+--- !u!114 &2414522639076329548
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
