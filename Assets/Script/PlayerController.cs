@@ -16,6 +16,8 @@ public class PlayerController : NetworkBehaviour
     private Animator anim;
     private NetworkCharacterController _ncc;
 
+    // カイルのスキル判定用
+    public SkillHitbox gungnirHitbox;
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -52,7 +54,7 @@ public class PlayerController : NetworkBehaviour
             // 回転処理
             Quaternion targetRotation = Quaternion.LookRotation(inputDir);
             Quaternion offsetRotation = Quaternion.Euler(0, modelRotationOffset, 0);
-            
+
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation * offsetRotation, turnSpeed * Runner.DeltaTime);
 
             // 移動速度をセット
@@ -87,6 +89,23 @@ public class PlayerController : NetworkBehaviour
         {
             if (anim != null) anim.SetInteger("Gungnir", 1);
             Debug.Log("Gungnir=1");
+
+            // 攻撃開始
+            if (gungnirHitbox != null) gungnirHitbox.EnableHitbox();
+
+        }
+
+        // 攻撃判定のOFF
+        if (anim.GetInteger("Gungnir") == 1)
+        {
+            AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+            // アニメーションが1周完了したら判定をOFFにする
+            if (stateInfo.normalizedTime >= 1.0f)
+            {
+                anim.SetInteger("Gungnir", 0); // 待機状態に戻す
+                if (gungnirHitbox != null) gungnirHitbox.DisableHitbox(); // OFFにする
+                Debug.Log("Gungnir終了");
+            }
         }
 
         // NetworkCharacterControllerのMoveを使う
