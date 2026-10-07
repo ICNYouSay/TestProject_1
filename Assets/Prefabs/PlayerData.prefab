@@ -96,6 +96,7 @@ MonoBehaviour:
   moveSpeed: 10
   turnSpeed: 5
   modelRotationOffset: 0
+  gungnirHitbox: {fileID: 0}
 --- !u!114 &2851591835344119872
 MonoBehaviour:
   m_ObjectHideFlags: 0

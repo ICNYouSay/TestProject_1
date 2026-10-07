@@ -18,6 +18,9 @@ public class PlayerController : NetworkBehaviour
 
     // カイルのスキル判定用
     public SkillHitbox gungnirHitbox;
+
+    // キー入力判定用フラグ
+    private bool _GungnirPressed;
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -28,6 +31,14 @@ public class PlayerController : NetworkBehaviour
     {
         // このオブジェクトの子オブジェクトとして存在するモデルPrefabからNetworkCharacterControllerを取得
         _ncc = GetComponentInChildren<NetworkCharacterController>();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            _GungnirPressed = true;
+        }
     }
 
     public override void FixedUpdateNetwork()
@@ -53,10 +64,8 @@ public class PlayerController : NetworkBehaviour
         {
             // 回転処理
             Quaternion targetRotation = Quaternion.LookRotation(inputDir);
-            Quaternion offsetRotation = Quaternion.Euler(0, modelRotationOffset, 0);
 
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation * offsetRotation, turnSpeed * Runner.DeltaTime);
-
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Runner.DeltaTime);
             // 移動速度をセット
             moveVelocity = inputDir * moveSpeed;
 
@@ -85,26 +94,27 @@ public class PlayerController : NetworkBehaviour
             }
         }
 
-        if ((Input.GetKeyDown(KeyCode.E)) & (anim.GetInteger("Gungnir") == 0))
+        // if ((Input.GetKeyDown(KeyCode.E)) & (anim.GetInteger("Gungnir") == 0))
+        if (_GungnirPressed)
         {
-            if (anim != null) anim.SetInteger("Gungnir", 1);
-            Debug.Log("Gungnir=1");
-
-            // 攻撃開始
-            if (gungnirHitbox != null) gungnirHitbox.EnableHitbox();
-
-        }
-
-        // 攻撃判定のOFF
-        if (anim.GetInteger("Gungnir") == 1)
-        {
-            AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
-            // アニメーションが1周完了したら判定をOFFにする
-            if (stateInfo.normalizedTime >= 1.0f)
+            if (anim.GetInteger("Gungnir") == 0)
             {
-                anim.SetInteger("Gungnir", 0); // 待機状態に戻す
-                if (gungnirHitbox != null) gungnirHitbox.DisableHitbox(); // OFFにする
-                Debug.Log("Gungnir終了");
+                anim.SetInteger("Gungnir", 1);
+                // 攻撃開始
+                if (gungnirHitbox != null) gungnirHitbox.EnableHitbox();
+            }
+
+            // 攻撃判定のOFF
+            if (anim.GetInteger("Gungnir") == 2)
+            {
+                AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+                // アニメーションが1周完了したら判定をOFFにする
+                if (stateInfo.normalizedTime >= 1.0f)
+                {
+                    if (gungnirHitbox != null) gungnirHitbox.DisableHitbox(); // OFFにする
+                    Debug.Log("Gungnir終了");
+                    _GungnirPressed = false;
+                }
             }
         }
 
