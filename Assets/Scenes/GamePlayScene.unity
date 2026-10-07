@@ -187,6 +187,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2291817732103794190, guid: c66fdfaeac444cb4da048e24aa443194, type: 3}
+      propertyPath: enemyPrefab
+      value: 
+      objectReference: {fileID: 7672473388129497341, guid: 43c93fedc49af53408e92f932529b665, type: 3}
     - target: {fileID: 2336162449048451005, guid: c66fdfaeac444cb4da048e24aa443194, type: 3}
       propertyPath: m_Name
       value: PortalPrefab_B
@@ -499,6 +503,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2291817732103794190, guid: c66fdfaeac444cb4da048e24aa443194, type: 3}
+      propertyPath: enemyPrefab
+      value: 
+      objectReference: {fileID: 7672473388129497341, guid: 43c93fedc49af53408e92f932529b665, type: 3}
     - target: {fileID: 2336162449048451005, guid: c66fdfaeac444cb4da048e24aa443194, type: 3}
       propertyPath: m_Name
       value: PortalPrefab_D
@@ -682,6 +690,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2291817732103794190, guid: c66fdfaeac444cb4da048e24aa443194, type: 3}
+      propertyPath: enemyPrefab
+      value: 
+      objectReference: {fileID: 7672473388129497341, guid: 43c93fedc49af53408e92f932529b665, type: 3}
     - target: {fileID: 2336162449048451005, guid: c66fdfaeac444cb4da048e24aa443194, type: 3}
       propertyPath: m_Name
       value: PortalPrefab_E
@@ -894,6 +906,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2291817732103794190, guid: c66fdfaeac444cb4da048e24aa443194, type: 3}
+      propertyPath: enemyPrefab
+      value: 
+      objectReference: {fileID: 7672473388129497341, guid: 43c93fedc49af53408e92f932529b665, type: 3}
     - target: {fileID: 2336162449048451005, guid: c66fdfaeac444cb4da048e24aa443194, type: 3}
       propertyPath: m_Name
       value: PortalPrefab_A
@@ -996,6 +1012,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2291817732103794190, guid: c66fdfaeac444cb4da048e24aa443194, type: 3}
+      propertyPath: enemyPrefab
+      value: 
+      objectReference: {fileID: 7672473388129497341, guid: 43c93fedc49af53408e92f932529b665, type: 3}
     - target: {fileID: 2336162449048451005, guid: c66fdfaeac444cb4da048e24aa443194, type: 3}
       propertyPath: m_Name
       value: PortalPrefab_C
