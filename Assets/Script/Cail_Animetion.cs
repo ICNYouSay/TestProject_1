@@ -8,7 +8,7 @@ public class Cail_Animetion : MonoBehaviour
     private NetworkCharacterController _ncc;
 
     // キー入力判定用フラグ
-    private bool _GungnirPressed;
+    public bool _GungnirPressed;
 
     void Start()
     {
@@ -19,11 +19,17 @@ public class Cail_Animetion : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) & _GungnirPressed == false)
         {
             _GungnirPressed = true;
+            if (anim.GetInteger("Gungnir") == 0)
+            {
+                anim.SetInteger("Gungnir", 1);
+                Debug.Log("Gungnir=1");
+            }
         }
     }
+
 
     public void GungnirJumped()
     {

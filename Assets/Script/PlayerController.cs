@@ -32,11 +32,8 @@ public class PlayerController : NetworkBehaviour
     {
     }
 
-    public override void FixedUpdateNetwork()
+    public void PlayerWalk()
     {
-        // “ü—ÍŒ ŒÀ‚ª‚È‚¢ê‡‚Íˆ—‚µ‚È‚¢
-        if (!Object.HasInputAuthority) return;
-
         // WASD“ü—Í
         float moveX = Input.GetAxis("Horizontal");
         float moveZ = Input.GetAxis("Vertical");
@@ -67,6 +64,18 @@ public class PlayerController : NetworkBehaviour
             if (anim != null) anim.SetBool("isWalking", false);
         }
 
+        // NetworkCharacterController‚ÌMove‚ğg‚¤
+        _ncc.Move(moveVelocity * Runner.DeltaTime);
+    }
+
+    public override void FixedUpdateNetwork()
+    {
+        // “ü—ÍŒ ŒÀ‚ª‚È‚¢ê‡‚Íˆ—‚µ‚È‚¢
+        if (!Object.HasInputAuthority) return;
+
+        PlayerWalk();
+
+
         //’ÊíUŒ‚
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -86,7 +95,5 @@ public class PlayerController : NetworkBehaviour
         }
 
 
-        // NetworkCharacterController‚ÌMove‚ğg‚¤
-        _ncc.Move(moveVelocity * Runner.DeltaTime);
     }
 }
