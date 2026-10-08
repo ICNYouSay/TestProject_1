@@ -83,6 +83,7 @@ public class PortalSystem : MonoBehaviour
         isPurified = true;
 
         // 念のため、nullチェックを強化
+        /*
         if (purplePortalObj != null)
         {
             purplePortalObj.SetActive(false);
@@ -92,6 +93,7 @@ public class PortalSystem : MonoBehaviour
         {
             Debug.LogError("紫のモデルがセットされてないよ！");
         }
+         */
 
         if (bluePortalObj != null)
         {
