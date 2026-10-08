@@ -1,5 +1,9 @@
-using UnityEngine;
+using Effekseer;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Timeline;
+using UnityEngine.UIElements;
+using static UnityEditor.PlayerSettings;
 
 public class PortalSystem : MonoBehaviour
 {
@@ -15,6 +19,10 @@ public class PortalSystem : MonoBehaviour
 
     private List<GameObject> activeEnemies = new List<GameObject>(); // 現在出現中の敵リスト
     private bool isPurified = false; // 今浄化されている状態かどうかのフラグ
+
+    [Header("浄化プレハブ")]
+    [SerializeField]
+    private EffekseerEmitter PurificationPrefab;
 
     void Start()
     {
@@ -83,6 +91,7 @@ public class PortalSystem : MonoBehaviour
         isPurified = true;
 
         // 念のため、nullチェックを強化
+        /*
         if (purplePortalObj != null)
         {
             purplePortalObj.SetActive(false);
@@ -92,11 +101,26 @@ public class PortalSystem : MonoBehaviour
         {
             Debug.LogError("紫のモデルがセットされてないよ！");
         }
+         */
 
+        //水色のモデルを出す
         if (bluePortalObj != null)
         {
             bluePortalObj.SetActive(true);
             Debug.Log("水色を出した");
+
+            // エフェクトの生成位置を計算
+            Vector3 pos =
+                transform.position - transform.forward + Vector3.up;
+
+            // エフェクトを生成して再生
+            EffekseerEmitter effect = Instantiate(
+                PurificationPrefab,
+                pos,
+                transform.rotation);
+
+            //エフェクトを再生
+            effect.Play();
         }
 
         Invoke("ResetPortal", respawnTime);

@@ -7,6 +7,9 @@ public class Cail_Animetion : MonoBehaviour
     private Animator anim;
     private NetworkCharacterController _ncc;
 
+
+    // キー入力判定用フラグ
+    public bool _GungnirPressed;
     void Start()
     {
         controller = GetComponentInParent<CharacterController>();
@@ -14,10 +17,20 @@ public class Cail_Animetion : MonoBehaviour
         _ncc = GetComponentInParent<NetworkCharacterController>();
     }
 
-    void Update()
+    private void Update()
     {
-
     }
+
+    public void GungnirPressed()
+    {
+        if (anim.GetInteger("Gungnir") == 0)
+        {
+            anim.SetInteger("Gungnir", 1);
+            Debug.Log("Gungnir=1");
+            _GungnirPressed = true;
+        }
+    }
+
     public void GungnirJumped()
     {
         if (anim.GetInteger("Gungnir") == 1)
@@ -34,6 +47,7 @@ public class Cail_Animetion : MonoBehaviour
         {
             anim.SetInteger("Gungnir", 0);
             Debug.Log("Gungnir=0");
+            _GungnirPressed = false;
         }
     }
 }
