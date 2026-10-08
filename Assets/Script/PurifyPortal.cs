@@ -28,6 +28,10 @@ public class PortalSystem : MonoBehaviour
     [SerializeField]
     private EffekseerEmitter PurificationPrefab;
 
+    [Header("敵出現エフェクトプレハブ")]
+    [SerializeField]
+    private EffekseerEmitter EnemySpawnPrefab;
+
     [Header("エフェクト設定")]
     public float effectPlayTime = 0f;   // フェード開始から何秒後に再生するか
 
@@ -158,6 +162,17 @@ public class PortalSystem : MonoBehaviour
                     enemyPrefab,
                     spawnPoint.position + offset,
                     spawnPoint.rotation);
+
+            // 敵出現エフェクトを再生
+            if (EnemySpawnPrefab != null)
+            {
+                EffekseerEmitter effect =
+                    Instantiate(
+                        EnemySpawnPrefab,
+                        newEnemy.transform.position,
+                        newEnemy.transform.rotation);
+                effect.Play();
+            }
 
             // リストへ追加
             activeEnemies.Add(newEnemy);

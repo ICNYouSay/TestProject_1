@@ -192,6 +192,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7672473388129497341, guid: 43c93fedc49af53408e92f932529b665, type: 3}
     - target: {fileID: 2291817732103794190, guid: c66fdfaeac444cb4da048e24aa443194, type: 3}
+      propertyPath: EnemySpawnPrefab
+      value: 
+      objectReference: {fileID: 6211397597478736764, guid: 8ac6ce16c1cf731438b5a0d6df7f4148, type: 3}
+    - target: {fileID: 2291817732103794190, guid: c66fdfaeac444cb4da048e24aa443194, type: 3}
       propertyPath: PurificationPrefab
       value: 
       objectReference: {fileID: 7741095846781861670, guid: a17efe498400ddf4fbd5e3ddbd211d3a, type: 3}
@@ -512,6 +516,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7672473388129497341, guid: 43c93fedc49af53408e92f932529b665, type: 3}
     - target: {fileID: 2291817732103794190, guid: c66fdfaeac444cb4da048e24aa443194, type: 3}
+      propertyPath: EnemySpawnPrefab
+      value: 
+      objectReference: {fileID: 6211397597478736764, guid: 8ac6ce16c1cf731438b5a0d6df7f4148, type: 3}
+    - target: {fileID: 2291817732103794190, guid: c66fdfaeac444cb4da048e24aa443194, type: 3}
       propertyPath: PurificationPrefab
       value: 
       objectReference: {fileID: 7741095846781861670, guid: a17efe498400ddf4fbd5e3ddbd211d3a, type: 3}
@@ -702,6 +710,10 @@ PrefabInstance:
       propertyPath: enemyPrefab
       value: 
       objectReference: {fileID: 7672473388129497341, guid: 43c93fedc49af53408e92f932529b665, type: 3}
+    - target: {fileID: 2291817732103794190, guid: c66fdfaeac444cb4da048e24aa443194, type: 3}
+      propertyPath: EnemySpawnPrefab
+      value: 
+      objectReference: {fileID: 6211397597478736764, guid: 8ac6ce16c1cf731438b5a0d6df7f4148, type: 3}
     - target: {fileID: 2291817732103794190, guid: c66fdfaeac444cb4da048e24aa443194, type: 3}
       propertyPath: PurificationPrefab
       value: 
@@ -927,6 +939,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7672473388129497341, guid: 43c93fedc49af53408e92f932529b665, type: 3}
     - target: {fileID: 2291817732103794190, guid: c66fdfaeac444cb4da048e24aa443194, type: 3}
+      propertyPath: EnemySpawnPrefab
+      value: 
+      objectReference: {fileID: 6211397597478736764, guid: 8ac6ce16c1cf731438b5a0d6df7f4148, type: 3}
+    - target: {fileID: 2291817732103794190, guid: c66fdfaeac444cb4da048e24aa443194, type: 3}
       propertyPath: PurificationPrefab
       value: 
       objectReference: {fileID: 7741095846781861670, guid: a17efe498400ddf4fbd5e3ddbd211d3a, type: 3}
@@ -1084,6 +1100,10 @@ PrefabInstance:
       propertyPath: enemyPrefab
       value: 
       objectReference: {fileID: 7672473388129497341, guid: 43c93fedc49af53408e92f932529b665, type: 3}
+    - target: {fileID: 2291817732103794190, guid: c66fdfaeac444cb4da048e24aa443194, type: 3}
+      propertyPath: EnemySpawnPrefab
+      value: 
+      objectReference: {fileID: 6211397597478736764, guid: 8ac6ce16c1cf731438b5a0d6df7f4148, type: 3}
     - target: {fileID: 2291817732103794190, guid: c66fdfaeac444cb4da048e24aa443194, type: 3}
       propertyPath: PurificationPrefab
       value: 
