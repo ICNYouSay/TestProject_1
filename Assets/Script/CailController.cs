@@ -11,6 +11,8 @@ public class CailController : PlayerController
     // カイルのスキル判定用
     [Header("固有スキル用HitBox")]
     public SkillHitbox gungnirHitbox;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -27,6 +29,11 @@ public class CailController : PlayerController
     // Update is called once per frame
     void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.E) & cailAnim._GungnirPressed == false)
+        {
+            cailAnim.GungnirPressed();
+        }
     }
 
 
