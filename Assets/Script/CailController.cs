@@ -29,6 +29,8 @@ public class CailController : PlayerController
     // Update is called once per frame
     void Update()
     {
+        // “ü—ÍŒ ŒÀ‚ª‚È‚¢ê‡‚Íˆ—‚µ‚È‚¢
+        if (!Object.HasInputAuthority) return;
 
         if (Input.GetKeyDown(KeyCode.E) & cailAnim._GungnirPressed == false)
         {

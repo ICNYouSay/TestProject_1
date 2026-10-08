@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 2781576142622538108}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -33.19847, y: 0, z: 1.07815}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -96,7 +96,6 @@ MonoBehaviour:
   moveSpeed: 10
   turnSpeed: 5
   modelRotationOffset: 0
-  gungnirHitbox: {fileID: 0}
 --- !u!114 &2851591835344119872
 MonoBehaviour:
   m_ObjectHideFlags: 0
