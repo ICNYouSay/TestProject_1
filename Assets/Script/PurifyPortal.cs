@@ -41,6 +41,10 @@ public class PortalSystem : MonoBehaviour
     // 青ポータルのRenderer
     private Renderer[] blueRenderer;
 
+    //敵出現エフェクト初回防止用
+    private int SpwanCount = 0;
+    private int nowSpwan = 5;
+
     //=========================
     // 初期化
     //=========================
@@ -171,7 +175,16 @@ public class PortalSystem : MonoBehaviour
                         EnemySpawnPrefab,
                         newEnemy.transform.position,
                         newEnemy.transform.rotation);
-                effect.Play();
+
+                //エフェクト再生
+                if (SpwanCount >= nowSpwan)
+                {
+                    effect.Play();
+                }
+                else
+                {
+                    SpwanCount++;
+                }
             }
 
             // リストへ追加
