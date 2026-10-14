@@ -201,8 +201,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 436784186}
   m_HandleRect: {fileID: 436784185}
   m_Direction: 2
-  m_Value: 0.9999798
-  m_Size: 0.99588597
+  m_Value: 1
+  m_Size: 0.99588585
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -751,9 +751,9 @@ GameObject:
   m_Component:
   - component: {fileID: 590356813}
   - component: {fileID: 590356812}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CharacterSelectManager
-  m_TagString: Untagged
+  m_TagString: PlayerModel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -771,10 +771,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterSelectManager
   characterPrefabs:
-  - {fileID: 919132149155446097, guid: ea14c988c8e1fef45bec8f001f6b712b, type: 3}
+  - {fileID: 919132149155446097, guid: 63cd6a96e8af8624bbfab724b6b64850, type: 3}
   - {fileID: 919132149155446097, guid: 39867b19d83f73e4da9188544a02619d, type: 3}
   - {fileID: 919132149155446097, guid: 31407ba93af0db04a96f0d3d7646adb6, type: 3}
-  - {fileID: 919132149155446097, guid: b194c667a8cf61e4cb6205c2048021aa, type: 3}
+  - {fileID: 919132149155446097, guid: 06b8e9d0e203a5d4393b24a78037f34e, type: 3}
   spawnPoint: {fileID: 871387260}
 --- !u!4 &590356813
 Transform:
