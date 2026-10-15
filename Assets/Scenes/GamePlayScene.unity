@@ -1326,7 +1326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8a13e26fd5ab934fbe546bb5df6c587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraController
-  mouseSensitivity: 20
+  mouseSensitivity: 50
   distance: 7
   height: 0
   followSpeed: 10

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d8c9afdab7e985c478624bf0ddd3ace7, type: 3}
-  m_Name: GoldenLittleMac
+  m_Name: Stora
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
-  characterName: GoldenLittleMac
-  modelPrefab: {fileID: 919132149155446097, guid: cbf526b12401907458d558071b5b011b, type: 3}
+  characterName: Stora
+  modelPrefab: {fileID: 919132149155446097, guid: 255c9505006cbed4fade7c3819fefb96, type: 3}
   rotateoffset: 0
   maxCost: 0
   atk: 0
