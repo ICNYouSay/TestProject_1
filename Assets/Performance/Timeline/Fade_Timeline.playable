@@ -183,7 +183,7 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: Fadeout
   - m_Version: 1
-    m_Start: 4.133333333333334
+    m_Start: 4.133333333333336
     m_ClipIn: 0
     m_Asset: {fileID: 5762325675255787216}
     m_Duration: 1.8833333333333329
@@ -314,3 +314,19 @@ MonoBehaviour:
   m_Name: Fadeout
   m_EditorClassIdentifier: Assembly-CSharp::Timeline.Fadeout
   type: 1
+--- !u!114 &8784146609187408596
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
+  m_Name: "\u30B7\u30B0\u30CA\u30EB\u30A8\u30DF\u30C3\u30BF\u30FC"
+  m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.SignalEmitter
+  m_Time: 0
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 0}
