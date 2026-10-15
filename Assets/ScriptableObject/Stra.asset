@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8c9afdab7e985c478624bf0ddd3ace7, type: 3}
   m_Name: Stra
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
-  characterName: Stora
+  characterName: Stra
   modelPrefab: {fileID: 919132149155446097, guid: 255c9505006cbed4fade7c3819fefb96, type: 3}
   rotateoffset: 0
   maxCost: 0
