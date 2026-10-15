@@ -1,66 +1,69 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class CharacterSelectManager : MonoBehaviour
 {
-    public GameObject[] characterPrefabs; // プレハブを入れる箱
-    public Transform spawnPoint;          // 出現場所を入れる箱
+    [Header("全キャラクターのデータ(ScriptableObject)")]
+    public CharacterData[] allCharacterData;
 
-    private GameObject currentModel;      // 今出ているキャラを入れる箱
+    [Header("3Dモデル生成場所")]
+    public Transform spawnPoint;
 
-    // OKボタンを登録する枠
     [Header("UI設定")]
     public GameObject okButton;
+    public TextMeshProUGUI nameText;        // 名前テキスト
+    public TextMeshProUGUI statusText;      // ステータス表示テキスト
 
-    // 現在選択中のインデックスを保持
-    private int currentSelectedIndex = 0;
+    private GameObject currentModel;
 
     void Start()
     {
-        // ゲーム開始時はOKボタンを非表示にしておく
-        if (okButton != null)
-        {
-            okButton.SetActive(false);
-        }
+        if (okButton != null) okButton.SetActive(false);
+        ClearUI();
+    }
+
+    void ClearUI()
+    {
+        if (nameText != null) nameText.text = "";
+        if (statusText != null) statusText.text = "";
     }
 
     public void SelectCharacter(int index)
     {
-        // キャラのインデックスの譲渡
+        if (allCharacterData == null || index >= allCharacterData.Length) return;
+
+        // 保管庫に選んだ番号をセット
         GameData.SelectedCharacterIndex = index;
 
-        // もし今キャラがいたら消す
+        // データからキャラ情報を取り出す
+        CharacterData data = allCharacterData[index];
+
+        // 3Dモデルの生成
         if (currentModel != null) Destroy(currentModel);
+        currentModel = Instantiate(data.modelPrefab, spawnPoint.position, spawnPoint.rotation, spawnPoint);
+        currentModel.transform.localPosition = Vector3.zero;
 
-        // 新しいキャラを生成する
-        currentModel = Instantiate(characterPrefabs[index], spawnPoint.position, spawnPoint.rotation, spawnPoint);
+        // 設定した向きの補正
+        currentModel.transform.localRotation = Quaternion.Euler(0, data.rotateoffset, 0);
 
-        // さらに生成されたキャラの回転をリセットする
-        currentModel.transform.localPosition = Vector3.zero;        // 原点に配置
-        currentModel.transform.localRotation = Quaternion.identity; // 角度をリセット
-
-        // --- ここで攻撃用スクリプトを止める ---
+        // キャラセレ画面で勝手に動かないように操作スクリプトをオフにする
         var controller = currentModel.GetComponent<PlayerController>();
         if (controller != null) controller.enabled = false;
-        // ---------------------------------
 
-        // ここで保存
-        //GameData.SelectedCharacterIndex = index;
+        // OKボタンを表示
+        if (okButton != null) okButton.SetActive(true);
 
-        Debug.Log("キャラを召喚しました: " + index);
-
-        // キャラが選ばれたのでOKボタンを表示する
-        if (okButton != null)
+        // UIに名前とステータスを表示する！
+        if (nameText != null) nameText.text = data.characterName;
+        if (statusText != null)
         {
-            okButton.SetActive(true);
+            statusText.text = $"COST : {data.maxCost}\nATK  : {data.atk}\nDEF  : {data.def}";
         }
-
     }
-    // OKボタンを押した時に呼ぶ関数
+
     public void OnClickOKButton()
     {
-        // GamePlaySceneに切り替える
         SceneManager.LoadScene("GamePlayScene");
     }
-
 }
