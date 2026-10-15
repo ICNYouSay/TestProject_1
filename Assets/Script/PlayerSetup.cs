@@ -14,6 +14,12 @@ public class PlayerSetup : NetworkBehaviour
     [Networked] public int SelectedCharacterID { get; set; }
     public override void Spawned()
     {
+        // 自分が操作するプレイヤーならGameDataから選んだ番号を入れる
+        if (Object.HasInputAuthority)
+        {
+            SelectedCharacterID = GameData.SelectedCharacterIndex;
+        }
+
         // 部屋に入った瞬間（またはIDが決まった瞬間）に見た目を生成
         CharacterData data = allCharacterData[SelectedCharacterID];
 
