@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CharacterSelectManager : MonoBehaviour
 {
@@ -7,8 +8,27 @@ public class CharacterSelectManager : MonoBehaviour
 
     private GameObject currentModel;      // 今出ているキャラを入れる箱
 
+    // OKボタンを登録する枠
+    [Header("UI設定")]
+    public GameObject okButton;
+
+    // 現在選択中のインデックスを保持
+    private int currentSelectedIndex = 0;
+
+    void Start()
+    {
+        // ゲーム開始時はOKボタンを非表示にしておく
+        if (okButton != null)
+        {
+            okButton.SetActive(false);
+        }
+    }
+
     public void SelectCharacter(int index)
     {
+        // キャラのインデックスの譲渡
+        GameData.SelectedCharacterIndex = index;
+
         // もし今キャラがいたら消す
         if (currentModel != null) Destroy(currentModel);
 
@@ -28,5 +48,19 @@ public class CharacterSelectManager : MonoBehaviour
         //GameData.SelectedCharacterIndex = index;
 
         Debug.Log("キャラを召喚しました: " + index);
+
+        // キャラが選ばれたのでOKボタンを表示する
+        if (okButton != null)
+        {
+            okButton.SetActive(true);
+        }
+
     }
+    // OKボタンを押した時に呼ぶ関数
+    public void OnClickOKButton()
+    {
+        // GamePlaySceneに切り替える
+        SceneManager.LoadScene("GamePlayScene");
+    }
+
 }
