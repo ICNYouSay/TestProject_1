@@ -10,4 +10,6 @@ public class CharacterData : ScriptableObject
     public int maxCost;           // コスト制限
     public int atk;               // 攻撃力
     public int def;               // 防御力
+
+    public string description;         // キャラの説明
 }
