@@ -14,7 +14,7 @@ public class CharacterSelectManager : MonoBehaviour
     public GameObject okButton;
     public TextMeshProUGUI nameText;        // 名前テキスト
     public TextMeshProUGUI statusText;      // ステータス表示テキスト
-
+    public TextMeshProUGUI descriptionText; // キャラ説明テキスト
     private GameObject currentModel;
 
     void Start()
@@ -27,6 +27,7 @@ public class CharacterSelectManager : MonoBehaviour
     {
         if (nameText != null) nameText.text = "";
         if (statusText != null) statusText.text = "";
+        if (descriptionText != null) descriptionText.text = ""; 
     }
 
     public void SelectCharacter(int index)
@@ -60,6 +61,11 @@ public class CharacterSelectManager : MonoBehaviour
         {
             statusText.text = $"COST : {data.maxCost}\nATK  : {data.atk}\nDEF  : {data.def}";
         }
+        if (descriptionText != null)
+        {
+            descriptionText.text = data.description;
+        }
+
     }
 
     public void OnClickOKButton()
