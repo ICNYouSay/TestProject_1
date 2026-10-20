@@ -7,7 +7,7 @@ public class CharacterData : ScriptableObject
     public GameObject modelPrefab;// モデル
     public float rotateoffset;     // モデルの回転オフセット
 
-    public int maxCost;           // コスト制限
+    public int hp;           // HP
     public int atk;               // 攻撃力
     public int def;               // 防御力
 
