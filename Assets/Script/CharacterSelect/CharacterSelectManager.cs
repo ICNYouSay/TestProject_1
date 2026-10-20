@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using TMPro;
 
 public class CharacterSelectManager : MonoBehaviour
@@ -11,15 +12,22 @@ public class CharacterSelectManager : MonoBehaviour
     public Transform spawnPoint;
 
     [Header("UI設定")]
-    public GameObject okButton;
+    public GameObject okButton;             // OKボタン
+    public GameObject statusPanel;          // ステータスパネル
     public TextMeshProUGUI nameText;        // 名前テキスト
     public TextMeshProUGUI statusText;      // ステータス表示テキスト
     public TextMeshProUGUI descriptionText; // キャラ説明テキスト
     private GameObject currentModel;
 
+    [Header("ステータスゲージ")]
+    public Slider hpSlider;
+    public Slider atkSlider;
+    public Slider defSlider;
+
     void Start()
     {
         if (okButton != null) okButton.SetActive(false);
+        if (statusPanel != null) statusPanel.SetActive(false);
         ClearUI();
     }
 
@@ -27,7 +35,7 @@ public class CharacterSelectManager : MonoBehaviour
     {
         if (nameText != null) nameText.text = "";
         if (statusText != null) statusText.text = "";
-        if (descriptionText != null) descriptionText.text = ""; 
+        if (descriptionText != null) descriptionText.text = "";
     }
 
     public void SelectCharacter(int index)
@@ -55,16 +63,24 @@ public class CharacterSelectManager : MonoBehaviour
         // OKボタンを表示
         if (okButton != null) okButton.SetActive(true);
 
+        // ステータスパネルを表示
+        if (statusPanel != null) statusPanel.SetActive(true);
+
         // UIに名前とステータスを表示する！
         if (nameText != null) nameText.text = data.characterName;
         if (statusText != null)
         {
-            statusText.text = $"COST : {data.maxCost}\nATK  : {data.atk}\nDEF  : {data.def}";
+            statusText.text = $"HP　: {data.hp:F2}\nATK  : {data.atk:F2}\nDEF  : {data.def:F2}";
         }
         if (descriptionText != null)
         {
             descriptionText.text = data.description;
         }
+
+        // スライダーゲージの長さを反映
+        if (hpSlider != null) hpSlider.value = data.hp;
+        if (atkSlider != null) atkSlider.value = data.atk;
+        if (defSlider != null) defSlider.value = data.def;
 
     }
 
