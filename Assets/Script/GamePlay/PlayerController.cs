@@ -126,9 +126,17 @@ public class PlayerController : NetworkBehaviour
 		// “ü—ÍŒ ŒÀ‚ª‚È‚¢ê‡‚Íˆ—‚µ‚È‚¢
 		if (!Object.HasInputAuthority) return;
 
-		ControllerMove();
 
-        PlayerWalk();
+		gamepad = Gamepad.current;
+		if (gamepad == null)
+		{
+			PlayerWalk();
+		}
+		else
+		{
+			ControllerMove();
+		}
+
 		/*
 
 
