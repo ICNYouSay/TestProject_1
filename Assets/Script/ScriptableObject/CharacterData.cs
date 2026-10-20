@@ -7,9 +7,9 @@ public class CharacterData : ScriptableObject
     public GameObject modelPrefab;// ƒ‚ƒfƒ‹
     public float rotateoffset;     // ƒ‚ƒfƒ‹‚Ì‰ñ“]ƒIƒtƒZƒbƒg
 
-    public int hp;           // HP
-    public int atk;               // UŒ‚—Í
-    public int def;               // –hŒä—Í
+    public float hp;                // HP
+    public float atk;               // UŒ‚—Í
+    public float def;               // –hŒä—Í
 
     public string description;         // ƒLƒƒƒ‰‚Ìà–¾
 }
