@@ -15,7 +15,7 @@ MonoBehaviour:
   characterName: "\u30AB\u30A4\u30EB"
   modelPrefab: {fileID: 1513334056372939434, guid: a53aa2f65290a2741b6511f393555dd9, type: 3}
   rotateoffset: 0
-  maxCost: 0
-  atk: 0
-  def: 0
+  hp: 0.9
+  atk: 1.3
+  def: 0.85
   description: "\u81EA\u8A8D\u7ADC\u9A0E\u58EB"
