@@ -59,7 +59,7 @@ public class CharacterSelectManager : MonoBehaviour
         if (nameText != null) nameText.text = data.characterName;
         if (statusText != null)
         {
-            statusText.text = $"COST : {data.maxCost}\nATK  : {data.atk}\nDEF  : {data.def}";
+            statusText.text = $"HP : {data.hp}\nATK  : {data.atk}\nDEF  : {data.def}";
         }
         if (descriptionText != null)
         {
