@@ -112,8 +112,8 @@ public class PlayerController : NetworkBehaviour
 		// “ü—ÍŒ ŒÀ‚ª‚È‚¢ê‡‚Íˆ—‚µ‚È‚¢
 		if (!Object.HasInputAuthority) return;
 
+		PlayerWalk();
 
-			PlayerWalk();
 
 		/*
 
