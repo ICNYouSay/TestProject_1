@@ -19,34 +19,61 @@ public class PlayerController : NetworkBehaviour
 	private NetworkCharacterController _ncc;
 	private ICharacterLogic _currentLogic; // 現在のキャラロジック
 
-	[Networked] public int SelectedCharacterID { get; set; }
+	private bool uniqueSkillAInput = false;
+	private bool uniqueSkillBInput = false;
+
+    [Networked] public int SelectedCharacterID { get; set; }
 
 	private Gamepad gamepad;
 
 	void Start()
 	{
-		controller = GetComponent<CharacterController>();
-		anim = GetComponentInChildren<Animator>();
 	}
 
 	public override void Spawned()
 	{
+		controller = GetComponent<CharacterController>();
+		anim = GetComponentInChildren<Animator>();
 		_ncc = GetComponent<NetworkCharacterController>();
 
 		// キャラIDに応じてロジッククラスを生成してセットする（AddComponentはしない！）
 		switch (SelectedCharacterID)
 		{
-			case 0: _currentLogic = new CailLogic(); break;
+			case 0: 
+				_currentLogic = new CailLogic();
+                _currentLogic.Initialize(GetComponentInChildren<Cail_Animation>());
+                break;
 			//case 1: _currentLogic = new MichaelLogic(); break;
 		}
 
 		// 見た目のモデルを Instantiate して子に配置
-		_currentLogic.Initialize();
 	}
 
 	private void Update()
-	{
-	}
+    {
+        if (gamepad != null)
+        {
+            if (gamepad.buttonSouth.wasPressedThisFrame)
+            {
+				uniqueSkillAInput = true;
+            }
+            else if (gamepad.buttonEast.wasPressedThisFrame)
+            {
+				uniqueSkillBInput = true;
+            }
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+				uniqueSkillAInput = true;
+            }
+            else if (Input.GetKeyDown(KeyCode.Q))
+            {
+				uniqueSkillBInput = true;
+            }
+        }
+    }
 
 	public void PlayerWalk()
     {
@@ -112,29 +139,19 @@ public class PlayerController : NetworkBehaviour
 		// 入力権限がない場合は処理しない
 		if (!Object.HasInputAuthority) return;
 
+
+		if (uniqueSkillAInput)
+		{
+			_currentLogic?.UniqueSkillA();
+			uniqueSkillAInput = false; // 入力フラグをリセット
+        }
+
+		if (uniqueSkillBInput)
+		{
+			_currentLogic?.UniqueSkillB();
+			uniqueSkillBInput = false; // 入力フラグをリセット
+        }
+
 		PlayerWalk();
-
-
-		/*
-
-		//通常攻撃
-		if (Input.GetKeyDown(KeyCode.Space))
-		{
-			if (anim != null) anim.SetBool("isAttacking", true);
-			Debug.Log("isAttacking=true");
-		}
-		else if (anim.GetBool("isAttacking"))
-		{
-			// 現在のAnimatorのステート情報を取得（0はベースレイヤー）
-			AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
-			// normalizedTime が 1.0 以上なら、再生が1周（100%）完了している
-			if (stateInfo.normalizedTime >= 1.0f)
-			{
-				anim.SetBool("isAttacking", false);
-				Debug.Log("isAttacking=false");
-			}
-		}
-		*/
-
-	}
+    }
 }

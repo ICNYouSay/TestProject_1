@@ -4,42 +4,28 @@ using UnityEngine.InputSystem;
 
 public class CailLogic : ICharacterLogic
 {
-	private Cail_Animetion cailAnim;
+	private Cail_Animation cailAnim;
 
 	public SkillHitbox gungnirHitbox;
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
-	public void Initialize()
+	public void Initialize(CharacterAnimation anim)
 	{
-		GameObject cailModelPrefab = Resources.Load<GameObject>("Prefab/Cail");
-		GameObject cailModelInstance = GameObject.Instantiate(cailModelPrefab);
-		cailAnim = cailModelInstance.GetComponent<Cail_Animetion>();
-	}
+		cailAnim = anim as Cail_Animation;
+    }
 
 	// Update is called once per frame
-	public void Update()
+	public void UniqueSkillA()
 	{
-		if (GungnirKeyCheck())
-		{
-			cailAnim.GungnirPressed();
-		}
+		cailAnim.GungnirPressed();
 	}
 
-	bool GungnirKeyCheck()
+	public void UniqueSkillB()
 	{
-		if (cailAnim._GungnirPressed == false) return false;
+        // Implement unique skill B logic here
+    }
 
-		if (Input.GetKeyDown(KeyCode.E) & cailAnim._GungnirPressed == false)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-
-	public void Move(NetworkCharacterController ncc, Vector3 inputVector)
+    public void Move(NetworkCharacterController ncc, Vector3 inputVector)
 	{
 		ncc.Move(inputVector);
 	}
