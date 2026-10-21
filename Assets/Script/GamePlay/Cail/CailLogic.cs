@@ -13,8 +13,8 @@ public class CailLogic : ICharacterLogic
 	[Header("固有スキル用HitBox")]
 	public SkillHitbox gungnirHitbox;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public void Initialize()
+	// Start is called once before the first execution of Update after the MonoBehaviour is created
+	public void Initialize()
 	{
 		//controller = GetComponent<CharacterController>();
 		// このオブジェクトの子オブジェクトとして存在するモデルPrefabからNetworkCharacterControllerを取得
@@ -22,8 +22,8 @@ public class CailLogic : ICharacterLogic
 		//cailAnim = GetComponentInChildren<Cail_Animetion>();
 	}
 
-    // Update is called once per frame
-    public void Update()
+	// Update is called once per frame
+	public void Update()
 	{
 		// 入力権限がない場合は処理しない
 		//if (!Object.HasInputAuthority) return;
@@ -37,11 +37,11 @@ public class CailLogic : ICharacterLogic
 	public void Move(NetworkCharacterController ncc, Vector3 inputVector)
 	{
 		ncc.Move(inputVector);
-    }
+	}
 
 	public void Destroy()
 	{
 		// キャラクターの破棄処理をここに記述
 		//Destroy(gameObject);
-    }
+	}
 }
