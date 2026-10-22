@@ -4,7 +4,7 @@ using UnityEngine.UI;
 [AddComponentMenu("UI/Effects/UI Skew")]
 public class UISkew : BaseMeshEffect
 {
-    [SerializeField, Range(-100f, 100f)]
+    [SerializeField, Range(-200f, 200f)]
     private float skewX = -20f; // ‰¡•ûŒü‚ÌŒX‚«‹ï‡
 
     public float SkewX
