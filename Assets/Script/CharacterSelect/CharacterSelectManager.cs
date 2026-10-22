@@ -70,7 +70,7 @@ public class CharacterSelectManager : MonoBehaviour
         if (nameText != null) nameText.text = data.characterName;
         if (statusText != null)
         {
-            statusText.text = $"HPÅ@: {data.hp:F2}\nATK  : {data.atk:F2}\nDEF  : {data.def:F2}";
+            statusText.text = $"HPÅ@ : {data.hp:F2}\nATK  : {data.atk:F2}\nDEF  : {data.def:F2}";
         }
         if (descriptionText != null)
         {
