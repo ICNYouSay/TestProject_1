@@ -36,6 +36,19 @@ public class SoldierTransition : IEnemyTransition
             }
         }
 
+        //-----------------------------
+        // Dying
+        //-----------------------------
+        //Dyingó‘Ô‚Å‚È‚¢‚Æ‚«
+        if (currentState is IdleState)
+        {
+            //‘Ì—Í‚ª0ˆÈ‰º‚É‚È‚Á‚½‚çDyingState‚É‘JˆÚ‚·‚é
+            if (soldier.IsDead())
+            {
+                return soldier.DyingState;
+            }
+        }
+
         return null;
     }
 }
