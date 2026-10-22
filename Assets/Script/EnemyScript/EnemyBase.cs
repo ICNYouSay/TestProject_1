@@ -129,7 +129,7 @@ public abstract class EnemyBase : MonoBehaviour
     public virtual void Die()
     {
         //€–Sˆ—
-        Debug.Log($"{name} is dead.");
+        //Debug.Log($"{name} is dead.");
 
         //ã¸‚³‚¹‚é
         transform.Translate(Vector3.up * 2f);
@@ -145,7 +145,7 @@ public abstract class EnemyBase : MonoBehaviour
     public virtual void StopMove()
     {
         //ˆÚ“®’â~‚Ìˆ—
-        Debug.Log("ˆÚ“®’â~");
+        //Debug.Log("ˆÚ“®’â~");
 
         transform.Translate(Vector3.zero);
     }

@@ -12,6 +12,11 @@ public class PlayerSetup : NetworkBehaviour
 
     // どのキャラを選んだかを同期する変数
     [Networked] public int SelectedCharacterID { get; set; }
+
+    //プレイヤーステータス
+    [SerializeField]
+    private PlayerStatus playerStatus;
+
     public override void Spawned()
     {
         // 自分が操作するプレイヤーならGameDataから選んだ番号を入れる
@@ -22,6 +27,9 @@ public class PlayerSetup : NetworkBehaviour
 
         // 部屋に入った瞬間（またはIDが決まった瞬間）に見た目を生成
         CharacterData data = allCharacterData[SelectedCharacterID];
+
+        //プレイヤーステータスを設定
+        playerStatus.Initialize(data);
 
         // 元々ある見た目を消して、新しい見た目モデルを子要素として生成
         Instantiate(data.modelPrefab, modelContainer);

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2851591835344119872}
   - component: {fileID: 5196148582981620815}
   - component: {fileID: -9083500331430149628}
+  - component: {fileID: -945846137626508812}
   m_Layer: 0
   m_Name: PlayerData
   m_TagString: Player
@@ -55,6 +56,7 @@ MonoBehaviour:
   modelContainer: {fileID: 3726127093229725856}
   playerController: {fileID: 866457387225006319}
   _SelectedCharacterID: 0
+  playerStatus: {fileID: -945846137626508812}
 --- !u!143 &333589777318679443
 CharacterController:
   m_ObjectHideFlags: 0
@@ -95,6 +97,7 @@ MonoBehaviour:
   moveSpeed: 10
   turnSpeed: 5
   modelRotationOffset: 0
+  _SelectedCharacterID: 0
 --- !u!114 &2851591835344119872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,3 +155,16 @@ MonoBehaviour:
   backOffset: 0.25
   heightOffset: 0.1
   spawnDistance: 0.5
+--- !u!114 &-945846137626508812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2781576142622538108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e473be62f4c8a24b8e00e9f25c6f1f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStatus
+  characterData: {fileID: 0}
