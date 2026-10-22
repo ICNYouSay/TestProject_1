@@ -63,6 +63,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 82fa0b92d8aa169498b16977f4e0af4d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6225473543976486733}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 82fa0b92d8aa169498b16977f4e0af4d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4600192201704921496}
   m_SourcePrefab: {fileID: 100100000, guid: 82fa0b92d8aa169498b16977f4e0af4d, type: 3}
 --- !u!1 &7672473388129497341 stripped
 GameObject:
@@ -83,3 +86,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SoldierEnemy
   canSeePlayer: 0
   attackFinished: 0
+--- !u!114 &4600192201704921496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7672473388129497341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fdbe233ab5bb84418ccaa3637eb8de0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyStatus
+  maxHP: 500
+  currentHP: 0
+  defence: 10
+  attackPower: 20
+  givePower: 5
+  experience: 50

@@ -16,8 +16,6 @@ public class IdleState : EnemyState
     // –ˆƒtƒŒ[ƒ€
     public override void Update(EnemyBase enemy)
     {
-        // üˆÍ‚ğŒ©“n‚·
-        enemy.LookAround();
     }
 
     // StateI—¹

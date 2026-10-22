@@ -4,10 +4,12 @@ using UnityEngine;
 public class SoldierEnemy : EnemyBase
 {
     //プレイヤーを見つけたかどうか
+    [Header("プレイヤーを見つけたかどうか")]
     [SerializeField]
     private bool canSeePlayer= true;
 
     //攻撃が終了したかどうか
+    [Header("攻撃が終了したかどうか")]
     [SerializeField]
     private bool attackFinished = true;
 
@@ -20,6 +22,14 @@ public class SoldierEnemy : EnemyBase
 
         // 雑魚敵専用Transition
         transition = new SoldierTransition();
+    }
+
+    //------------------------
+    //更新
+    //------------------------
+    protected override void Update()
+    {
+        base.Update();
     }
 
     //------------------------
@@ -39,17 +49,4 @@ public class SoldierEnemy : EnemyBase
 
         attackFinished = false;
     }
-
-    public override void Chase()
-    {
-    }
-
-    public override void StopMove()
-    {
-        //移動停止の処理
-        Debug.Log("移動停止");
-
-        transform.Translate(Vector3.zero);
-    }
-
 }
