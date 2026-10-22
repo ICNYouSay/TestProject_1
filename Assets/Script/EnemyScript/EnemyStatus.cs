@@ -5,30 +5,30 @@ public class EnemyStatus : MonoBehaviour
 {
     [Header("最大HP")]
     [SerializeField]
-    private int maxHP = 1000;
+    private float maxHP = 1000;
 
     [Header("現在HP")]
     [SerializeField]
-    private int currentHP;
+    private float currentHP;
 
     [Header("防御力")]
     [SerializeField]
-    private int defence = 10;
+    private float defence = 10;
 
     [Header("攻撃力")]
     [SerializeField]
-    private int attackPower = 20;
+    private float attackPower = 20;
 
     [Header("譲渡パワー量")]
     [SerializeField]
-    private int givePower = 5;
+    private float givePower = 5;
 
     [Header("経験値")]
     [SerializeField]
-    private int experience = 50;
+    private float experience = 50;
 
 
-    public event System.Action<int> OnDamage;
+    public event System.Action<float> OnDamage;
 
     //--------------------
     //初期化処理
@@ -42,11 +42,14 @@ public class EnemyStatus : MonoBehaviour
     //--------------------
     // HPを減らす処理
     //--------------------
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
-        currentHP -= (damage - defence);
+        // 最低0ダメージ
+        float finalDamage = Mathf.Max(0, damage - defence);
 
-        Debug.Log("現在の体力 = " + currentHP);
+        currentHP -= finalDamage;
+
+        //Debug.Log("現在の体力 = " + currentHP);
 
         if (currentHP <= 0)
         {
@@ -57,7 +60,7 @@ public class EnemyStatus : MonoBehaviour
     //--------------------
     // HPを回復する処理
     //--------------------
-    public void Heal(int healAmount)
+    public void Heal(float healAmount)
     {
         currentHP += healAmount;
 
@@ -79,17 +82,17 @@ public class EnemyStatus : MonoBehaviour
     //--------------------
     //Getter
     //--------------------
-    public int CurrentHP => currentHP;// 現在のHPを取得するプロパティ
+    public float CurrentHP => currentHP;// 現在のHPを取得するプロパティ
 
-    public int MaxHP => maxHP;// 最大HPを取得するプロパティ
+    public float MaxHP => maxHP;// 最大HPを取得するプロパティ
 
-    public int Defence => defence;// 防御力を取得するプロパティ
+    public float Defence => defence;// 防御力を取得するプロパティ
 
-    public int AttackPower => attackPower;// 攻撃力を取得するプロパティ
+    public float AttackPower => attackPower;// 攻撃力を取得するプロパティ
 
-    public int GivePower => givePower;// 譲渡パワー量を取得するプロパティ
+    public float GivePower => givePower;// 譲渡パワー量を取得するプロパティ
 
-    public int Experience => experience;// 経験値を取得するプロパティ
+    public float Experience => experience;// 経験値を取得するプロパティ
 
 
 }
