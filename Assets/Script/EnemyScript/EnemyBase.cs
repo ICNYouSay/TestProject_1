@@ -73,7 +73,8 @@ public abstract class EnemyBase : MonoBehaviour
     {
         stateMachine.Update(this);
 
-        TakeDamage(11);
+        //ƒeƒXƒg
+        //TakeDamage(11);
     }
 
     //----------------------------

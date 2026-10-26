@@ -9,6 +9,10 @@ public class PlayerStatus : MonoBehaviour
     [SerializeField]
     private CharacterData characterData;
 
+    [Header("バフマネージャー")]
+    [SerializeField]
+    private BuffManager buffManager;
+
     //=================================
     //ネットワーク同期するステータス
     //=================================
@@ -22,11 +26,25 @@ public class PlayerStatus : MonoBehaviour
 
     //攻撃力
     [Networked]
-    public float attack { get; private set; }
+    public float baseAttack { get; private set; }
+    public float Attack
+    {
+        get
+        {
+            return baseAttack + buffManager.GetAttackBuff();
+        }
+    }
 
     // 防御力
     [Networked]
-    public float defence { get; private set; }
+    public float baseDefence { get; private set; }
+    public float Defence
+    {
+        get
+        {
+            return baseDefence + buffManager.GetDefenceBuff();
+        }
+    }
 
 
     //========================
@@ -42,13 +60,13 @@ public class PlayerStatus : MonoBehaviour
         currentHP = maxHP;
 
         //攻撃力/防御力をデータから取得
-        attack = data.atk;
-        defence = data.def;
+        baseAttack = data.atk;
+        baseDefence = data.def;
 
         Debug.Log(data.name + "の最大体力は" + maxHP);
         Debug.Log(data.name + "の現在体力は" + currentHP);
-        Debug.Log(data.name + "の攻撃力は" + attack);
-        Debug.Log(data.name + "の防御力は" + defence);
+        Debug.Log(data.name + "の攻撃力は" + baseAttack);
+        Debug.Log(data.name + "の防御力は" + baseDefence);
 
     }
 
@@ -58,7 +76,7 @@ public class PlayerStatus : MonoBehaviour
     public void TakeDamage(float damage)
     {
         // 最低1ダメージ保証
-        float finalDamage = Mathf.Max(1, damage - defence);
+        float finalDamage = Mathf.Max(1, damage - Defence);
 
         currentHP -= finalDamage;
 

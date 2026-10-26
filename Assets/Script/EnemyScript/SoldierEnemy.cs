@@ -30,6 +30,22 @@ public class SoldierEnemy : EnemyBase
     protected override void Update()
     {
         base.Update();
+
+        //テスト
+        //もしBキーを押したら
+        //バフ
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            Buff buff = new Buff();
+
+            buff.attack = 30;
+            buff.duration = 30;
+
+            //バフの追加
+            enemyStatus.buffManager.AddBuff(buff);
+        }
+
+
     }
 
     //------------------------
