@@ -12,7 +12,7 @@ public class CailLogic : ICharacterLogic
 	public void Initialize(CharacterAnimation anim)
 	{
 		cailAnim = anim as Cail_Animation;
-    }
+	}
 
 	// Update is called once per frame
 	public void UniqueSkillA()
@@ -22,10 +22,10 @@ public class CailLogic : ICharacterLogic
 
 	public void UniqueSkillB()
 	{
-        // Implement unique skill B logic here
-    }
+		cailAnim.YburnPressed();
+	}
 
-    public void Move(NetworkCharacterController ncc, Vector3 inputVector)
+	public void Move(NetworkCharacterController ncc, Vector3 inputVector)
 	{
 		ncc.Move(inputVector);
 	}

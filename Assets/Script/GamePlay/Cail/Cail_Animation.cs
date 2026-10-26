@@ -10,7 +10,9 @@ public class Cail_Animation : CharacterAnimation
 
 	// キー入力判定用フラグ
 	public bool _GungnirPressed;
-	void Start()
+	public bool _YburnPressed;
+
+    void Start()
 	{
 		controller = GetComponentInParent<CharacterController>();
 		anim = GetComponent<Animator>();
@@ -44,4 +46,14 @@ public class Cail_Animation : CharacterAnimation
 		Debug.Log("Gungnir=0");
 		_GungnirPressed = false;
 	}
+
+	public void YburnPressed()
+	{ 		
+		if (anim.GetInteger("Yburn") == 0)
+		{
+			anim.SetInteger("Yburn", 1);
+			Debug.Log("Yburn=1");
+			_YburnPressed = true;
+        }
+    }
 }
