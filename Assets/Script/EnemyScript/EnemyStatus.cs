@@ -11,13 +11,13 @@ public class EnemyStatus : MonoBehaviour
     [SerializeField]
     private float currentHP;
 
-    [Header("防御力")]
+    [Header("基礎防御力")]
     [SerializeField]
-    private float defence = 10;
+    private float baseDefence = 10;
 
-    [Header("攻撃力")]
+    [Header("基礎攻撃力")]
     [SerializeField]
-    private float attackPower = 20;
+    private float baseAttack = 20;
 
     [Header("譲渡パワー量")]
     [SerializeField]
@@ -27,38 +27,68 @@ public class EnemyStatus : MonoBehaviour
     [SerializeField]
     private float experience = 50;
 
+    [Header("バフマネージャー")]
+    [SerializeField]
+    public BuffManager buffManager;
 
     public event System.Action<float> OnDamage;
 
-    //--------------------
-    //初期化処理
-    //--------------------
-    private void Awake()
+    //========================
+    // バフ込みの攻撃力
+    //========================
+    public float AttackPower
     {
-        // 最大HPを現在HPに設定
-        currentHP = maxHP;
+        get
+        {
+            if (buffManager == null)
+                return baseAttack;
+
+            return baseAttack + buffManager.GetAttackBuff();
+        }
     }
 
-    //--------------------
-    // HPを減らす処理
-    //--------------------
-    public void TakeDamage(float damage)
+    //========================
+    // バフ込みの防御力
+    //========================
+    public float Defence
     {
-        // 最低0ダメージ
-        float finalDamage = Mathf.Max(0, damage - defence);
-
-        currentHP -= finalDamage;
-
-        //Debug.Log("現在の体力 = " + currentHP);
-
-        if (currentHP <= 0)
+        get
         {
-            currentHP = 0;
+            if (buffManager == null)
+                return baseDefence;
+
+            return baseDefence + buffManager.GetDefenceBuff();
         }
     }
 
     //--------------------
-    // HPを回復する処理
+    // 初期化
+    //--------------------
+    private void Awake()
+    {
+        currentHP = maxHP;
+    }
+
+    //--------------------
+    // ダメージ処理
+    //--------------------
+    public void TakeDamage(float damage)
+    {
+        // バフ込み防御力を使用
+        float finalDamage = Mathf.Max(0, damage - Defence);
+
+        currentHP -= finalDamage;
+
+        if (currentHP < 0)
+        {
+            currentHP = 0;
+        }
+
+        OnDamage?.Invoke(finalDamage);
+    }
+
+    //--------------------
+    // 回復
     //--------------------
     public void Heal(float healAmount)
     {
@@ -71,28 +101,21 @@ public class EnemyStatus : MonoBehaviour
     }
 
     //--------------------
-    //死亡判定
+    // 死亡判定
     //--------------------
-    public bool IsDead()       
+    public bool IsDead()
     {
-        // 現在のHPが0以下の場合、死亡と判定
         return currentHP <= 0;
     }
 
     //--------------------
-    //Getter
+    // Getter
     //--------------------
-    public float CurrentHP => currentHP;// 現在のHPを取得するプロパティ
+    public float CurrentHP => currentHP;
 
-    public float MaxHP => maxHP;// 最大HPを取得するプロパティ
+    public float MaxHP => maxHP;
 
-    public float Defence => defence;// 防御力を取得するプロパティ
+    public float GivePower => givePower;
 
-    public float AttackPower => attackPower;// 攻撃力を取得するプロパティ
-
-    public float GivePower => givePower;// 譲渡パワー量を取得するプロパティ
-
-    public float Experience => experience;// 経験値を取得するプロパティ
-
-
+    public float Experience => experience;
 }
