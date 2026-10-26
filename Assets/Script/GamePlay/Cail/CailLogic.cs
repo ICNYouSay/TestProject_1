@@ -15,12 +15,13 @@ public class CailLogic : ICharacterLogic
 	}
 
 	// Update is called once per frame
-	public void UniqueSkillA()
+	public void UniqueSkillA(NetworkCharacterController ncc)
 	{
 		cailAnim.GungnirPressed();
-	}
+		ncc.Move(new Vector3(0, 0, 0));
+    }
 
-	public void UniqueSkillB()
+	public void UniqueSkillB(NetworkCharacterController ncc)
 	{
 		cailAnim.YburnPressed();
 	}

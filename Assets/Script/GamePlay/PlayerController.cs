@@ -142,13 +142,13 @@ public class PlayerController : NetworkBehaviour
 
 		if (uniqueSkillAInput)
 		{
-			_currentLogic?.UniqueSkillA();
+			_currentLogic?.UniqueSkillA(_ncc);
 			uniqueSkillAInput = false; // 入力フラグをリセット
         }
 
 		if (uniqueSkillBInput)
 		{
-			_currentLogic?.UniqueSkillB();
+			_currentLogic?.UniqueSkillB(_ncc);
 			uniqueSkillBInput = false; // 入力フラグをリセット
         }
 
