@@ -6,6 +6,8 @@ TagManager:
   tags:
   - PlayerModel
   - Enemy
+  - CharacterList
+  - AbilityList
   layers:
   - Default
   - TransparentFX
