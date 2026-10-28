@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 4097421609944189255}
   - component: {fileID: 4525799506177880500}
   m_Layer: 7
-  m_Name: Cail_Skill_Hitbox
+  m_Name: Skill_Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -180,6 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 092da6455d4863c4984f0df1dba50a44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillHitbox
+  attackDamage: 30
 --- !u!65 &4525799506177880500
 BoxCollider:
   m_ObjectHideFlags: 0

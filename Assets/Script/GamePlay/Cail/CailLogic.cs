@@ -12,13 +12,31 @@ public class CailLogic : ICharacterLogic
 	public void Initialize(CharacterAnimation anim)
 	{
 		cailAnim = anim as Cail_Animation;
-	}
+
+        // アニメーションがついているモデルの子供からSkillHitboxを自動取得する
+        if (anim != null)
+        {
+            gungnirHitbox = anim.GetComponentInChildren<SkillHitbox>();
+            if (gungnirHitbox == null)
+            {
+                gungnirHitbox = anim.transform.root.GetComponentInChildren<SkillHitbox>();
+            }
+        }
+
+    }
 
 	// Update is called once per frame
 	public void UniqueSkillA(NetworkCharacterController ncc)
 	{
-		cailAnim.GungnirPressed();
-		ncc.Move(new Vector3(0, 0, 0));
+        cailAnim.GungnirPressed();
+        ncc.Move(new Vector3(0, 0, 0));
+
+        // TriggerHitboxを呼び出す
+        if (gungnirHitbox != null)
+        {
+            gungnirHitbox.TriggerHitbox();
+        }
+
     }
 
 	public void UniqueSkillB(NetworkCharacterController ncc)
