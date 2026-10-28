@@ -7,7 +7,7 @@ public class SkillHitbox : MonoBehaviour
 
     [Header("攻撃タイミング設定（秒）")]
     [Tooltip("ボタンを押してから判定が出るまでの待ち時間（前隙）")]
-    [SerializeField] private float startDelay;    // 槍を突き出す瞬間の秒数
+    [SerializeField] private float startDelay;    // 攻撃を突き出す瞬間の秒数
 
     [Tooltip("判定が出ている持続時間")]
     [SerializeField] private float activeDuration; // 判定を残す秒数
@@ -35,6 +35,17 @@ public class SkillHitbox : MonoBehaviour
 
         // その後さらにactiveDuration秒後に判定をOFFにする
         Invoke(nameof(DisableHitbox), startDelay + activeDuration);
+    }
+
+    // 引数で「ダメージ」「待ち時間」「持続時間」をその都度指定できる便利バージョン
+    public void TriggerHitbox(int damage, float delay, float duration)
+    {
+        attackDamage = damage;
+        startDelay = delay;
+        activeDuration = duration;
+
+        // 通常の起動処理を呼ぶ
+        TriggerHitbox();
     }
 
     private void ActivateHitbox()
