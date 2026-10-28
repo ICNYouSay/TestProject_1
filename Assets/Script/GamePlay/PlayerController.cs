@@ -161,6 +161,12 @@ public class PlayerController : NetworkBehaviour
 			uniqueSkillBInput = false; // 入力フラグをリセット
         }
 
-		PlayerWalk();
+        if (normalAttackInput)
+        {
+            _currentLogic?.NormalAttack(_ncc);
+            normalAttackInput = false; // 入力フラグをリセット
+        }
+
+        PlayerWalk();
     }
 }
