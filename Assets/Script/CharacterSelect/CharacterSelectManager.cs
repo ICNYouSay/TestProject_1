@@ -41,7 +41,9 @@ public class CharacterSelectManager : MonoBehaviour
 	}
 	private MenuState currentMenu = MenuState.CharacterSelect; // 初期値はキャラ選択メニュー
 
-	void Start()
+	private int EquipAbilityIndex = 0; // 選択中のアビリティスロットを管理する変数
+
+    void Start()
 	{
 		ClearUI();
 		SelectCharacter(0);
@@ -157,21 +159,31 @@ public class CharacterSelectManager : MonoBehaviour
 		if (atkSlider != null) atkSlider.value = data.atk;
 		if (defSlider != null) defSlider.value = data.def;
 
-	}
+		characterChangeButton.GetComponentInChildren<TextMeshProUGUI>().text = data.characterName;
+    }
 
-	public void OnClickOKButton()
+	public void SelectAbility(int index)
+	{
+		// 選択中のアビリティスロットに装備するアビリティを設定する
+		GameData.EquippedAbilities[EquipAbilityIndex] = index;
+		// アビリティ選択メニューを閉じる
+		currentMenu = MenuState.None;
+		okButton.GetComponentInChildren<TextMeshProUGUI>().text = "GO!MOOOOOVE!!";
+    }
+
+    public void OnClickOKButton()
 	{
 		if (currentMenu == MenuState.CharacterSelect)
 		{
 			// キャラ選択メニューを閉じる
 			currentMenu = MenuState.None;
-			okButton.GetComponentInChildren<TextMeshProUGUI>().text = "出撃";
+			okButton.GetComponentInChildren<TextMeshProUGUI>().text = "GO!MOOOOOVE!!";
 		}
 		else if (currentMenu == MenuState.AbilitySelect)
 		{
 			// アビリティ選択メニューを閉じる
 			currentMenu = MenuState.None;
-			okButton.GetComponentInChildren<TextMeshProUGUI>().text = "出撃";
+			okButton.GetComponentInChildren<TextMeshProUGUI>().text = "GO!MOOOOOVE!!";
 		}
 		else if (currentMenu == MenuState.None)
 		{
@@ -187,9 +199,10 @@ public class CharacterSelectManager : MonoBehaviour
 		okButton.GetComponentInChildren<TextMeshProUGUI>().text = "OK";
 	}
 
-	public void OnClickAbilityChangeButton()
+	public void OnClickAbilityChangeButton(int index)
 	{
 		currentMenu = MenuState.AbilitySelect;
 		okButton.GetComponentInChildren<TextMeshProUGUI>().text = "OK";
-	}
+		EquipAbilityIndex = index;
+    }
 }
