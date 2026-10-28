@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - CharacterList
   - AbilityList
+  - CharacterChangeButton
+  - AbilityChangeButton
   layers:
   - Default
   - TransparentFX
