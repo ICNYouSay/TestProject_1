@@ -17,7 +17,8 @@ public class CharacterSelectManager : MonoBehaviour
 	public GameObject characterChangeButton;// キャラチェンボタン
 	public GameObject abilityChangeButton;  // アビチェンボタン
 	public GameObject statusPanel;          // ステータスパネル
-	public GameObject characterList;          // キャラリスト
+    public GameObject abilityPanel;          // アビリティパネル
+    public GameObject characterList;          // キャラリスト
 	public GameObject abilityList;          // アビリスト
 	public TextMeshProUGUI nameText;        // 名前テキスト
 	public TextMeshProUGUI statusText;      // ステータス表示テキスト
@@ -166,9 +167,8 @@ public class CharacterSelectManager : MonoBehaviour
 	{
 		// 選択中のアビリティスロットに装備するアビリティを設定する
 		GameData.EquippedAbilities[EquipAbilityIndex] = index;
-		// アビリティ選択メニューを閉じる
-		currentMenu = MenuState.None;
-		okButton.GetComponentInChildren<TextMeshProUGUI>().text = "GO!MOOOOOVE!!";
+
+
     }
 
     public void OnClickOKButton()
