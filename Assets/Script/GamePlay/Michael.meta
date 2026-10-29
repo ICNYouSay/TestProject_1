@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Performance/EffectSound.meta
+guid: cc13e34d6cf3bca4c9b90416a5815adc
+========
 guid: 7de6db3528f6f724196322d6776fa465
+>>>>>>>> 3ea1e72c2421f6f41c63bf2d32082a19f1ca46d5:Assets/Script/GamePlay/Michael.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

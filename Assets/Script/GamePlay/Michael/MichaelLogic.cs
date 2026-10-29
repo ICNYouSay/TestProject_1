@@ -14,8 +14,13 @@ public class MichaelLogic : ICharacterLogic
 		cailAnim = anim as Michael_Animation;
 	}
 
-	// Update is called once per frame
-	public void UniqueSkillA(NetworkCharacterController ncc)
+    public void NormalAttack(NetworkCharacterController ncc)
+    {
+        
+    }
+
+    // Update is called once per frame
+    public void UniqueSkillA(NetworkCharacterController ncc)
 	{
 		cailAnim.GungnirPressed();
 		ncc.Move(new Vector3(0, 0, 0));
