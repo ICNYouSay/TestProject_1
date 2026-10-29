@@ -349,6 +349,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a1911e98b3d01264782ca12eeea3ea3d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 9185023027382090430}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a1911e98b3d01264782ca12eeea3ea3d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 491961648756407355}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a1911e98b3d01264782ca12eeea3ea3d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2793317331056741457}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a1911e98b3d01264782ca12eeea3ea3d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6418465991923783982}
   m_SourcePrefab: {fileID: 100100000, guid: a1911e98b3d01264782ca12eeea3ea3d, type: 3}
 --- !u!4 &3697652148676656296 stripped
 Transform:
@@ -409,9 +418,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EffectEvent
   effect_1: {fileID: 9185023027382090430}
-  effect_2: {fileID: 0}
-  effect_3: {fileID: 0}
-  effect_4: {fileID: 0}
+  effect_2: {fileID: 491961648756407355}
+  effect_3: {fileID: 2793317331056741457}
+  effect_4: {fileID: 6418465991923783982}
 --- !u!114 &9185023027382090430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,5 +437,59 @@ MonoBehaviour:
   EmitterScale: 0
   TimeScale: 0
   effectAsset: {fileID: 11400000, guid: 58c4f0e60f2e8944f81fdd7f6481d3a5, type: 2}
+  playOnStart: 0
+  isLooping: 0
+--- !u!114 &491961648756407355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4042934652198233618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35d396bcb8480c24eb784eebe6096a99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Effekseer::Effekseer.EffekseerEmitter
+  TimingOfUpdate: 0
+  EmitterScale: 0
+  TimeScale: 0
+  effectAsset: {fileID: 11400000, guid: c987855830f1af842b07a2dc5000f352, type: 2}
+  playOnStart: 0
+  isLooping: 0
+--- !u!114 &2793317331056741457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4042934652198233618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35d396bcb8480c24eb784eebe6096a99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Effekseer::Effekseer.EffekseerEmitter
+  TimingOfUpdate: 0
+  EmitterScale: 0
+  TimeScale: 0
+  effectAsset: {fileID: 11400000, guid: c2553d790377b8a4cb73ebe3aab2b678, type: 2}
+  playOnStart: 0
+  isLooping: 0
+--- !u!114 &6418465991923783982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4042934652198233618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35d396bcb8480c24eb784eebe6096a99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Effekseer::Effekseer.EffekseerEmitter
+  TimingOfUpdate: 0
+  EmitterScale: 0
+  TimeScale: 0
+  effectAsset: {fileID: 11400000, guid: 45a31603308ed6844a82d82dc4bf5a46, type: 2}
   playOnStart: 0
   isLooping: 0
