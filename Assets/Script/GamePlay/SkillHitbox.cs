@@ -58,7 +58,7 @@ public class SkillHitbox : MonoBehaviour
         if (_col != null) _col.enabled = false; // ”»’èOFF
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         BoxCollider col = GetComponent<BoxCollider>();
         if (col == null) return;
