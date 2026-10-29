@@ -19,6 +19,7 @@ public class PlayerController : NetworkBehaviour
 	private NetworkCharacterController _ncc;
 	private ICharacterLogic _currentLogic; // 現在のキャラロジック
 
+    private bool normalAttackInput = false;
 	private bool uniqueSkillAInput = false;
 	private bool uniqueSkillBInput = false;
 
@@ -61,6 +62,10 @@ public class PlayerController : NetworkBehaviour
             {
 				uniqueSkillBInput = true;
             }
+            else if (gamepad.buttonWest.wasPressedThisFrame)
+            {
+                normalAttackInput = true;
+            }
         }
         else
         {
@@ -71,6 +76,10 @@ public class PlayerController : NetworkBehaviour
             else if (Input.GetKeyDown(KeyCode.Q))
             {
 				uniqueSkillBInput = true;
+            }
+            if (Input.GetMouseButtonDown(0))
+            {
+                normalAttackInput = true;
             }
         }
     }
@@ -142,16 +151,22 @@ public class PlayerController : NetworkBehaviour
 
 		if (uniqueSkillAInput)
 		{
-			_currentLogic?.UniqueSkillA();
+			_currentLogic?.UniqueSkillA(_ncc);
 			uniqueSkillAInput = false; // 入力フラグをリセット
         }
 
 		if (uniqueSkillBInput)
 		{
-			_currentLogic?.UniqueSkillB();
+			_currentLogic?.UniqueSkillB(_ncc);
 			uniqueSkillBInput = false; // 入力フラグをリセット
         }
 
-		PlayerWalk();
+        if (normalAttackInput)
+        {
+            _currentLogic?.NormalAttack(_ncc);
+            normalAttackInput = false; // 入力フラグをリセット
+        }
+
+        PlayerWalk();
     }
 }
