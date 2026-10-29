@@ -1929,7 +1929,7 @@ MonoBehaviour:
   characterChangeButton: {fileID: 995245210}
   abilityChangeButton: {fileID: 1395238018}
   statusPanel: {fileID: 705260959}
-  abilityPanel: {fileID: 0}
+  abilityPanel: {fileID: 82703124}
   characterList: {fileID: 335602097}
   abilityList: {fileID: 806232149}
   nameText: {fileID: 2025237605}
@@ -3237,7 +3237,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 617862645}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9999471
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3397,7 +3397,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000278822}
+  m_AnchoredPosition: {x: 0, y: 0.00030755936}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &954307329

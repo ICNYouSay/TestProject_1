@@ -9,7 +9,10 @@ public class CharacterSelectManager : MonoBehaviour
 	[Header("全キャラクターのデータ(ScriptableObject)")]
 	public CharacterData[] allCharacterData;
 
-	[Header("3Dモデル生成場所")]
+    [Header("全アビリティのデータ(ScriptableObject)")]
+    public CharacterData[] allAbilityData;
+
+    [Header("3Dモデル生成場所")]
 	public Transform spawnPoint;
 
 	[Header("UI設定")]
