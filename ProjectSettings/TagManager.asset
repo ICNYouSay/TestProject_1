@@ -10,6 +10,7 @@ TagManager:
   - AbilityList
   - CharacterChangeButton
   - AbilityChangeButton
+  - HPBarFill
   layers:
   - Default
   - TransparentFX

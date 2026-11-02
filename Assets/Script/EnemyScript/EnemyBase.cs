@@ -1,6 +1,5 @@
-using NanoSockets;
-using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
+using UnityEngine.UI;
 
 //敵キャラクターの基本的な機能を提供する抽象クラス
 public abstract class EnemyBase : MonoBehaviour
@@ -36,6 +35,9 @@ public abstract class EnemyBase : MonoBehaviour
     //死亡状態を取得するプロパティ
     public DyingState DyingState => dyingState;
 
+    public GameObject HPBar; // HPバーのGameObjectを保持する変数
+    // HPバーのImageコンポーネントを持つ2Dオブジェクトを保持する変数 
+    public Image HPBar_Fill;
 
     //----------------------------
     // 初期化
@@ -63,6 +65,12 @@ public abstract class EnemyBase : MonoBehaviour
     {
         // 初期State
         ChangeState(idleState);
+
+        // HPバーを非表示にする
+        if (HPBar != null)
+        {
+            HPBar.SetActive(false); // HPバーを非表示にする
+        }
     }
 
     //----------------------------
@@ -72,6 +80,8 @@ public abstract class EnemyBase : MonoBehaviour
     protected virtual void Update()
     {
         stateMachine.Update(this);
+
+        HPBar.transform.LookAt(GameObject.FindGameObjectWithTag("MainCamera").transform);
 
         //テスト
         //TakeDamage(11);
@@ -111,6 +121,8 @@ public abstract class EnemyBase : MonoBehaviour
     {
         //ダメージを受けたときの処理
         enemyStatus.TakeDamage(damage);
+        HPBar.SetActive(true); // HPバーを表示する
+        HPBar_Fill.fillAmount = (float)enemyStatus.CurrentHP / enemyStatus.MaxHP; // HPバーの割合を更新
 
         if (enemyStatus.IsDead())
         {
