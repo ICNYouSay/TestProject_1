@@ -99,21 +99,33 @@ public class PortalSystem : MonoBehaviour
         //-------------------------
         // デバッグ用
         //-------------------------
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            foreach (GameObject enemy in activeEnemies)
-            {
-                if (enemy != null)
-                {
-                    Destroy(enemy);
-                }
-            }
-        }
+        //if (Input.GetKeyDown(KeyCode.P))
+        //{
+        //    foreach (GameObject enemy in activeEnemies)
+        //    {
+        //        if (enemy != null)
+        //        {
+        //            Destroy(enemy);
+        //        }
+        //    }
+        //}
 
         //-------------------------
         // リストの掃除
         //-------------------------
-        activeEnemies.RemoveAll(enemy => enemy == null);
+        activeEnemies.RemoveAll(enemy =>
+        {
+            if (enemy == null) return true; // すでに消滅した敵
+
+            // 敵がEnemyBaseを持っていてすでに死んでいるならリストから外す
+            EnemyBase eb = enemy.GetComponent<EnemyBase>();
+            if (eb != null && eb.IsDead())
+            {
+                return true;
+            }
+
+            return false;
+        });
 
         //-------------------------
         // 敵が全滅したら浄化
