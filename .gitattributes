@@ -1,0 +1,23 @@
+# Gitの改行コード自動変換を無効化（Unityのデータ破損を防ぐ）
+* text=auto eol=lf
+
+# Unityのシリアライズファイルはテキスト（YAML）として扱う
+*.meta text
+*.unity text
+*.asset text
+*.prefab text
+*.mat text
+*.controller text
+*.anim text
+
+# Effekseerファイルや画像・音声・3Dモデルはバイナリ（書き換え禁止）として扱う
+*.efkefc binary
+*.efkproj binary
+*.png binary
+*.jpg binary
+*.tga binary
+*.fbx binary
+*.obj binary
+*.mp3 binary
+*.wav binary
+*.ttf binary
