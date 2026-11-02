@@ -8,6 +8,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 919132149155446097, guid: 82fa0b92d8aa169498b16977f4e0af4d, type: 3}
+      propertyPath: m_Name
+      value: AxeGoblinPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 82fa0b92d8aa169498b16977f4e0af4d, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d6a60498fda4b224b971fb9d9e28905c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 28.03969
@@ -54,84 +62,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 82fa0b92d8aa169498b16977f4e0af4d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 14634660770164910}
+    m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d6a60498fda4b224b971fb9d9e28905c, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 82fa0b92d8aa169498b16977f4e0af4d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -5908565436305107937}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d6a60498fda4b224b971fb9d9e28905c, type: 3}
+      addedObject: {fileID: 7821446993364141768}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 82fa0b92d8aa169498b16977f4e0af4d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7928137936823647032}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d6a60498fda4b224b971fb9d9e28905c, type: 3}
+      addedObject: {fileID: 5407858104967855070}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 82fa0b92d8aa169498b16977f4e0af4d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 833544656212593378}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d6a60498fda4b224b971fb9d9e28905c, type: 3}
+      addedObject: {fileID: 4328636471253343573}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 82fa0b92d8aa169498b16977f4e0af4d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6130271834413595446}
+      addedObject: {fileID: 3252090283269493728}
   m_SourcePrefab: {fileID: 100100000, guid: 82fa0b92d8aa169498b16977f4e0af4d, type: 3}
 --- !u!1 &7672473388129497341 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d6a60498fda4b224b971fb9d9e28905c, type: 3}
-  m_PrefabInstance: {fileID: 4137348962620015235}
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 82fa0b92d8aa169498b16977f4e0af4d, type: 3}
+  m_PrefabInstance: {fileID: 7402633783370157484}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &-5908565436305107937
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3867388269712981970}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18065d9b521de834fa5a4493c7604dc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SoldierEnemy
-  HPBar: {fileID: 7551237887409687752}
-  HPBar_Fill: {fileID: 24993901365753614}
-  canSeePlayer: 0
-  attackFinished: 0
---- !u!114 &7928137936823647032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3867388269712981970}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fdbe233ab5bb84418ccaa3637eb8de0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyStatus
-  maxHP: 500
-  currentHP: 0
-  baseDefence: 10
-  baseAttack: 20
-  givePower: 5
-  experience: 50
-  buffManager: {fileID: 7372755554301121279, guid: 43c93fedc49af53408e92f932529b665, type: 3}
---- !u!114 &833544656212593378
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3867388269712981970}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 619a47368b2b78346a0034e8ddeefab5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BuffManager
-  buffs: []
---- !u!136 &-1513189180787886739
+--- !u!136 &7821446993364141768
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3867388269712981970}
+  m_GameObject: {fileID: 7672473388129497341}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -144,11 +101,27 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.2
+  m_Radius: 0.5
   m_Height: 3
   m_Direction: 1
-  m_Center: {x: 0, y: 1.5, z: 0}
---- !u!114 &8368971296951779876
+  m_Center: {x: 0, y: 1.5, z: -0.1}
+--- !u!114 &5407858104967855070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7672473388129497341}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18065d9b521de834fa5a4493c7604dc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SoldierEnemy
+  HPBar: {fileID: 0}
+  HPBar_Fill: {fileID: 0}
+  canSeePlayer: 1
+  attackFinished: 1
+--- !u!114 &4328636471253343573
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -157,10 +130,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 7672473388129497341}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18065d9b521de834fa5a4493c7604dc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 7fdbe233ab5bb84418ccaa3637eb8de0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SoldierEnemy
-  HPBar: {fileID: 140249555442323818, guid: e9c46f17e34444e41859755f197dc909, type: 3}
-  HPBar_Fill: {fileID: 0}
-  canSeePlayer: 0
-  attackFinished: 0
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyStatus
+  maxHP: 1000
+  currentHP: 0
+  baseDefence: 10
+  baseAttack: 20
+  givePower: 5
+  experience: 50
+  buffManager: {fileID: 0}
+--- !u!114 &3252090283269493728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7672473388129497341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 619a47368b2b78346a0034e8ddeefab5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuffManager
+  buffs: []
