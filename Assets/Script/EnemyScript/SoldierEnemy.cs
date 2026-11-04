@@ -61,6 +61,9 @@ public class SoldierEnemy : EnemyBase
     //------------------------
     public override void Attack()
     {
+        // まだ前の攻撃が終わっていないなら新しい攻撃を開始しない
+        if (!attackFinished) return;
+
         Debug.Log("攻撃開始");
 
         attackFinished = false;
