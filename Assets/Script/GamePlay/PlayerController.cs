@@ -62,7 +62,7 @@ public class PlayerController : NetworkBehaviour
             {
 				uniqueSkillBInput = true;
             }
-            else if (gamepad.rightShoulder.wasPressedThisFrame)
+            else if (gamepad.buttonWest.wasPressedThisFrame)
             {
                 normalAttackInput = true;
             }

@@ -121,13 +121,50 @@ public abstract class EnemyBase : MonoBehaviour
     {
         //ダメージを受けたときの処理
         enemyStatus.TakeDamage(damage);
-        HPBar.SetActive(true); // HPバーを表示する
-        HPBar_Fill.fillAmount = (float)enemyStatus.CurrentHP / enemyStatus.MaxHP; // HPバーの割合を更新
 
+        if (HPBar != null)
+        {
+            HPBar.SetActive(true); // HPバーを表示する
+        }
+
+        if (HPBar_Fill != null)
+        {
+            HPBar_Fill.fillAmount = (float)enemyStatus.CurrentHP / enemyStatus.MaxHP; // HPバーの割合を更新
+        }
+
+        // HPが0以下になったら
         if (enemyStatus.IsDead())
         {
-            //死亡処理(仮置き)
-            ChangeState(dyingState); // 状態を解除
+            ChangeState(dyingState); // 死亡状態へ
+
+            // 当たり判定を即座に消す
+            Collider[] colliders = GetComponentsInChildren<Collider>();
+            foreach (var col in colliders)
+            {
+                col.enabled = false;
+            }
+
+            // 見た目を即座に非表示にして完全に消す
+            Renderer[] renderers = GetComponentsInChildren<Renderer>();
+            foreach (var ren in renderers)
+            {
+                ren.enabled = false;
+            }
+
+            // 本体を消滅させる（Photon Fusion対応）
+            // もしFusionのNetworkObjectがついている場合
+            var netObj = GetComponentInParent<Fusion.NetworkObject>();
+            if (netObj != null && netObj.Runner != null)
+            {
+                netObj.Runner.Despawn(netObj);
+            }
+            else
+            {
+                // 通常のUnityオブジェクトならこれで完全に消える
+                Destroy(this.gameObject);
+            }
+
+            Debug.Log($"【完全消滅】{gameObject.name} を消去しました！");
         }
 
     }

@@ -55,12 +55,5 @@ public class Cail_Animation : CharacterAnimation
 			Debug.Log("Yburn=1");
 			_YburnPressed = true;
         }
-		YburnAttacked();
-    }
-    public void YburnAttacked()
-    {
-        anim.SetInteger("Yburn", 0);
-        Debug.Log("Yburn=0");
-        _YburnPressed = false;
     }
 }
