@@ -1,6 +1,7 @@
-using NanoSockets;
-using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
+using UnityEngine.UI;
+
+
 
 //敵キャラクターの基本的な機能を提供する抽象クラス
 public abstract class EnemyBase : MonoBehaviour
