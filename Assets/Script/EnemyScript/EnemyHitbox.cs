@@ -53,8 +53,12 @@ public class EnemyHitbox : MonoBehaviour
         if (col == null) return;
 
         bool isActive = col.enabled;
-        // 敵はオレンジ〜赤
-        Gizmos.color = isActive ? Color.red : new Color(1, 0.5f, 0, 0.2f);
+
+        // コライダーがOFFのときはGizmosを描画せずにここで終わる
+        if (!isActive) return;
+
+        // 赤のコライダー
+        Gizmos.color = Color.red;
 
         Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, transform.lossyScale);
         Gizmos.DrawWireCube(col.center, col.size);

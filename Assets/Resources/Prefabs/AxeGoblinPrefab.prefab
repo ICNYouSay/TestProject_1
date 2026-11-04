@@ -483,6 +483,8 @@ MonoBehaviour:
   HPBar_Fill: {fileID: 6940720755339213464}
   canSeePlayer: 1
   attackFinished: 1
+  attackRange: 3
+  enemyHitbox: {fileID: 5090952250858328360}
 --- !u!114 &4328636471253343573
 MonoBehaviour:
   m_ObjectHideFlags: 0
