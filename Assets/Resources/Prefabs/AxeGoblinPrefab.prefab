@@ -86,8 +86,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18065d9b521de834fa5a4493c7604dc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoldierEnemy
-  HPBar: {fileID: 7551237887409687752}
-  HPBar_Fill: {fileID: 24993901365753614}
   canSeePlayer: 0
   attackFinished: 0
 --- !u!114 &7928137936823647032
@@ -145,19 +143,3 @@ CapsuleCollider:
   m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: 1.5, z: 0}
---- !u!114 &8368971296951779876
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7672473388129497341}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18065d9b521de834fa5a4493c7604dc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SoldierEnemy
-  HPBar: {fileID: 140249555442323818, guid: e9c46f17e34444e41859755f197dc909, type: 3}
-  HPBar_Fill: {fileID: 0}
-  canSeePlayer: 0
-  attackFinished: 0
