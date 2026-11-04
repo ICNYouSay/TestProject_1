@@ -72,7 +72,7 @@ MonoBehaviour:
   m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_FillOrigin: 1
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!1 &5542073616448068254
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_FillOrigin: 1
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!1 &9023647505411376124
@@ -379,7 +379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18065d9b521de834fa5a4493c7604dc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoldierEnemy
-  HPBar: {fileID: 5542073616448068254}
+  HPBar: {fileID: 9023647505411376124}
   HPBar_Fill: {fileID: 6940720755339213464}
   canSeePlayer: 1
   attackFinished: 1
