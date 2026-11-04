@@ -1,5 +1,6 @@
+using NanoSockets;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
-using UnityEngine.UI;
 
 //敵キャラクターの基本的な機能を提供する抽象クラス
 public abstract class EnemyBase : MonoBehaviour
@@ -76,12 +77,19 @@ public abstract class EnemyBase : MonoBehaviour
     //----------------------------
     // 更新
     //----------------------------
-
     protected virtual void Update()
     {
         stateMachine.Update(this);
 
-        HPBar.transform.LookAt(GameObject.FindGameObjectWithTag("MainCamera").transform);
+        // HPBarがある時だけカメラを向くようにガード
+        if (HPBar != null)
+        {
+            var mainCam = GameObject.FindGameObjectWithTag("MainCamera");
+            if (mainCam != null)
+            {
+                HPBar.transform.LookAt(mainCam.transform);
+            }
+        }
 
         //テスト
         //TakeDamage(11);
