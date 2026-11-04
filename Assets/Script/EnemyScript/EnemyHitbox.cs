@@ -80,7 +80,7 @@ public class EnemyHitbox : MonoBehaviour
             if (player != null)
             {
                 // TakeDamegeを呼ぶ
-                // player.TakeDamage(attackDamage);
+                player.TakeDamage(attackDamage);
                 Debug.Log($"【被弾】プレイヤーに {attackDamage} ダメージ！");
             }
         }

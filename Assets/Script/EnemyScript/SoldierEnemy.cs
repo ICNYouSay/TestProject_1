@@ -81,8 +81,6 @@ public class SoldierEnemy : EnemyBase
             return;
         }
 
-        Debug.Log("攻撃開始");
-
         attackFinished = false;
 
         // 実際の当たり判定を動かす
@@ -90,6 +88,8 @@ public class SoldierEnemy : EnemyBase
         {
             enemyHitbox.TriggerAttack();
         }
+
+        Debug.Log("攻撃開始");
     }
 
 
