@@ -85,7 +85,7 @@ public class CailLogic : ICharacterLogic
         // TriggerHitbox‚ğŒÄ‚Ño‚·
         if (gungnirHitbox != null)
         {
-            gungnirHitbox.TriggerHitbox();
+            gungnirHitbox.TriggerHitbox(1200, 3.0f, 0.3f);
         }
 
     }
