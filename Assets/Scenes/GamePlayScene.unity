@@ -190,7 +190,7 @@ PrefabInstance:
     - target: {fileID: 2291817732103794190, guid: c66fdfaeac444cb4da048e24aa443194, type: 3}
       propertyPath: enemyPrefab
       value: 
-      objectReference: {fileID: 7672473388129497341, guid: 43c93fedc49af53408e92f932529b665, type: 3}
+      objectReference: {fileID: 1318467816567731192, guid: d955ec28f6ba6c44ab60d10d7b411394, type: 3}
     - target: {fileID: 2291817732103794190, guid: c66fdfaeac444cb4da048e24aa443194, type: 3}
       propertyPath: EnemySpawnPrefab
       value: 
@@ -311,7 +311,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &193850227
 MonoBehaviour:
@@ -326,7 +326,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.053097367}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -514,7 +514,7 @@ PrefabInstance:
     - target: {fileID: 2291817732103794190, guid: c66fdfaeac444cb4da048e24aa443194, type: 3}
       propertyPath: enemyPrefab
       value: 
-      objectReference: {fileID: 7672473388129497341, guid: 43c93fedc49af53408e92f932529b665, type: 3}
+      objectReference: {fileID: 1318467816567731192, guid: d955ec28f6ba6c44ab60d10d7b411394, type: 3}
     - target: {fileID: 2291817732103794190, guid: c66fdfaeac444cb4da048e24aa443194, type: 3}
       propertyPath: EnemySpawnPrefab
       value: 
@@ -709,7 +709,7 @@ PrefabInstance:
     - target: {fileID: 2291817732103794190, guid: c66fdfaeac444cb4da048e24aa443194, type: 3}
       propertyPath: enemyPrefab
       value: 
-      objectReference: {fileID: 7672473388129497341, guid: 43c93fedc49af53408e92f932529b665, type: 3}
+      objectReference: {fileID: 1318467816567731192, guid: d955ec28f6ba6c44ab60d10d7b411394, type: 3}
     - target: {fileID: 2291817732103794190, guid: c66fdfaeac444cb4da048e24aa443194, type: 3}
       propertyPath: EnemySpawnPrefab
       value: 
@@ -937,7 +937,7 @@ PrefabInstance:
     - target: {fileID: 2291817732103794190, guid: c66fdfaeac444cb4da048e24aa443194, type: 3}
       propertyPath: enemyPrefab
       value: 
-      objectReference: {fileID: 7672473388129497341, guid: 43c93fedc49af53408e92f932529b665, type: 3}
+      objectReference: {fileID: 1318467816567731192, guid: d955ec28f6ba6c44ab60d10d7b411394, type: 3}
     - target: {fileID: 2291817732103794190, guid: c66fdfaeac444cb4da048e24aa443194, type: 3}
       propertyPath: EnemySpawnPrefab
       value: 
@@ -1099,7 +1099,7 @@ PrefabInstance:
     - target: {fileID: 2291817732103794190, guid: c66fdfaeac444cb4da048e24aa443194, type: 3}
       propertyPath: enemyPrefab
       value: 
-      objectReference: {fileID: 7672473388129497341, guid: 43c93fedc49af53408e92f932529b665, type: 3}
+      objectReference: {fileID: 1318467816567731192, guid: d955ec28f6ba6c44ab60d10d7b411394, type: 3}
     - target: {fileID: 2291817732103794190, guid: c66fdfaeac444cb4da048e24aa443194, type: 3}
       propertyPath: EnemySpawnPrefab
       value: 
