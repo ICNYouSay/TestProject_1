@@ -1,6 +1,7 @@
 using NanoSockets;
 using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
+using UnityEngine.UI;
 
 //敵キャラクターの基本的な機能を提供する抽象クラス
 public abstract class EnemyBase : MonoBehaviour
@@ -35,7 +36,10 @@ public abstract class EnemyBase : MonoBehaviour
 
     //死亡状態を取得するプロパティ
     public DyingState DyingState => dyingState;
-
+    // HPバーのGameObjectを保持する変数
+    public GameObject HPBar; 
+    // HPバーのImageコンポーネントを持つ2Dオブジェクトを保持する変数 
+    public Image HPBar_Fill;
 
     //----------------------------
     // 初期化
@@ -63,15 +67,30 @@ public abstract class EnemyBase : MonoBehaviour
     {
         // 初期State
         ChangeState(idleState);
+
+        // HPバーを非表示にする
+        if (HPBar != null)
+        {
+            HPBar.SetActive(false); // HPバーを非表示にする
+        }
     }
 
     //----------------------------
     // 更新
     //----------------------------
-
     protected virtual void Update()
     {
         stateMachine.Update(this);
+
+        // HPBarがある時だけカメラを向くようにガード
+        if (HPBar != null)
+        {
+            var mainCam = GameObject.FindGameObjectWithTag("MainCamera");
+            if (mainCam != null)
+            {
+                HPBar.transform.LookAt(mainCam.transform);
+            }
+        }
 
         //テスト
         //TakeDamage(11);
@@ -112,10 +131,49 @@ public abstract class EnemyBase : MonoBehaviour
         //ダメージを受けたときの処理
         enemyStatus.TakeDamage(damage);
 
+        if (HPBar != null)
+        {
+            HPBar.SetActive(true); // HPバーを表示する
+        }
+
+        if (HPBar_Fill != null)
+        {
+            HPBar_Fill.fillAmount = (float)enemyStatus.CurrentHP / enemyStatus.MaxHP; // HPバーの割合を更新
+        }
+
+        // HPが0以下になったら
         if (enemyStatus.IsDead())
         {
-            //死亡処理(仮置き)
-            ChangeState(dyingState); // 状態を解除
+            ChangeState(dyingState); // 死亡状態へ
+
+            // 当たり判定を即座に消す
+            Collider[] colliders = GetComponentsInChildren<Collider>();
+            foreach (var col in colliders)
+            {
+                col.enabled = false;
+            }
+
+            // 見た目を即座に非表示にして完全に消す
+            Renderer[] renderers = GetComponentsInChildren<Renderer>();
+            foreach (var ren in renderers)
+            {
+                ren.enabled = false;
+            }
+
+            // 本体を消滅させる（Photon Fusion対応）
+            // もしFusionのNetworkObjectがついている場合
+            var netObj = GetComponentInParent<Fusion.NetworkObject>();
+            if (netObj != null && netObj.Runner != null)
+            {
+                netObj.Runner.Despawn(netObj);
+            }
+            else
+            {
+                // 通常のUnityオブジェクトならこれで完全に消える
+                Destroy(this.gameObject);
+            }
+
+            Debug.Log($"【完全消滅】{gameObject.name} を消去しました！");
         }
 
     }
