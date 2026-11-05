@@ -167,6 +167,9 @@ public class PlayerController : NetworkBehaviour
             normalAttackInput = false; // 入力フラグをリセット
         }
 
-        PlayerWalk();
+        if(anim.GetBool("CanWalk") == true)
+        {
+			PlayerWalk();
+		}
     }
 }
