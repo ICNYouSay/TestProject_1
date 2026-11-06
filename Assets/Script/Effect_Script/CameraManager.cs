@@ -11,6 +11,10 @@ public class CameraManager : MonoBehaviour
     [SerializeField]
     private CinemachineVirtualCamera virtualCameraPrefab;
 
+    [Header("ゲームプレイスタート用演出カメラ")]
+    [SerializeField]
+    private CinemachineVirtualCamera startCamera;
+
     //現在使用するVirtualCamera
     private CinemachineVirtualCamera currentCamera;
 
@@ -71,6 +75,33 @@ public class CameraManager : MonoBehaviour
             controller.SetTarget(cameraTarget);
         }
 
+    }
+
+    //VirtualCameraの切り替え
+    public void SwitchToEventCamera(CinemachineVirtualCamera eventCamera)
+    {
+        if (currentCamera != null)
+        {
+            currentCamera.Priority = 0;
+        }
+
+        eventCamera.Priority = 100;
+
+        Camera.main.GetComponent<CameraController>()
+                   .EnablePlayerControl(false);
+    }
+
+    public void ReturnPlayerCamera(CinemachineVirtualCamera eventCamera)
+    {
+        eventCamera.Priority = 0;
+
+        if (currentCamera != null)
+        {
+            currentCamera.Priority = 100;
+        }
+
+        Camera.main.GetComponent<CameraController>()
+                   .EnablePlayerControl(true);
     }
 
 }
