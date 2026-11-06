@@ -36,6 +36,10 @@ public class CameraController : MonoBehaviour
     // カメラの左右回転角度
     private float yaw = 0f;
 
+    // カメラがプレイヤーのカメラかどうかを判定するフラグ
+    private bool isPlayerCamera = true;
+
+
     private void Start()
     {
         // マウスカーソルを画面中央に固定
@@ -47,6 +51,9 @@ public class CameraController : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (!isPlayerCamera)
+            return;
+
         // ターゲットまたはVirtualCameraが設定されていなければ何もしない
         if (target == null || virtualCamera == null)
             return;
@@ -98,5 +105,11 @@ public class CameraController : MonoBehaviour
     public void SetVirtualCamera(CinemachineVirtualCamera cam)
     {
         virtualCamera = cam;
+    }
+
+    /// プレイヤーのカメラかどうかを設定
+    public void EnablePlayerControl(bool enable)
+    {
+        isPlayerCamera = enable;
     }
 }
