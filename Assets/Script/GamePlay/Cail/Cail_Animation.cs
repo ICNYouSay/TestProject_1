@@ -12,7 +12,7 @@ public class Cail_Animation : CharacterAnimation
 	public bool _GungnirPressed;
 	public bool _YburnPressed;
 
-    void Start()
+	void Start()
 	{
 		controller = GetComponentInParent<CharacterController>();
 		anim = GetComponent<Animator>();
@@ -23,7 +23,12 @@ public class Cail_Animation : CharacterAnimation
 	{
 	}
 
-	public void GungnirPressed()
+	public void NormalAttacked()
+    {
+        anim.SetBool("CanWalk", true);
+    }
+
+    public void GungnirPressed()
 	{
 		if (anim.GetInteger("Gungnir") == 0)
 		{
@@ -37,7 +42,6 @@ public class Cail_Animation : CharacterAnimation
 	{
 		anim.SetInteger("Gungnir", 2);
 		Debug.Log("Gungnir=2");
-		_ncc.Move(new Vector3(0.0f, 0.0f, 5.0f));
 	}
 
 	public void GungnirAttacked()
@@ -54,6 +58,6 @@ public class Cail_Animation : CharacterAnimation
 			anim.SetInteger("Yburn", 1);
 			Debug.Log("Yburn=1");
 			_YburnPressed = true;
-        }
-    }
+		}
+	}
 }
