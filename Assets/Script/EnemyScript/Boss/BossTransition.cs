@@ -14,20 +14,64 @@ public class BossTransition : IEnemyTransition
             return boss.DyingState;
         }
 
-        // Idle状態
+        // 待機状態のとき
         if (currentState is IdleState)
         {
-            // プレイヤーを見つけたらAttackStateへ
+            // プレイヤーを見つけているか
             if (boss.CanSeePlayer())
             {
-                return boss.AttackState;
+                GameObject player = GameObject.FindGameObjectWithTag("Player");
+                if (player != null)
+                {
+                    float dist = Vector3.Distance(boss.transform.position, player.transform.position);
+
+                    // 攻撃範囲よりも遠ければ追いかける
+                    if (dist > boss.AttackRange)
+                    {
+                        // プレイヤーを追いかける
+                        boss.Chase();
+
+                        // ステートはIdleのまま移動を続ける
+                        return null;  
+                    }
+                    else
+                    {
+                        // 攻撃範囲内に入ったら移動を止める
+                        boss.StopMove();
+
+                        // ここでランダム分岐
+                        float randomValue = Random.value; 
+                        if (randomValue < 0.5f)
+                        {
+                            return boss.BiteState; // 50%の確率でかみつき攻撃
+                        }
+                        else
+                        {
+                            return boss.ClawState; // 50%の確率でクロー攻撃
+                        }
+                    }
+                }
+            }
+            else
+            {
+                // プレイヤーが見つからないときは移動を止める
+                boss.StopMove();
             }
         }
 
-        // Attack状態
-        if (currentState is AttackState)
+        // かみつき攻撃のとき
+        if (currentState is BiteState)
         {
-            // 攻撃が終わったらIdleに戻る
+            // 攻撃が終わったら待機状態に戻る
+            if (boss.IsAttackFinished())
+            {
+                return boss.IdleState;
+            }
+        }
+
+        // クロー攻撃が終わったとき
+        if (currentState is ClawState)
+        {
             if (boss.IsAttackFinished())
             {
                 return boss.IdleState;
