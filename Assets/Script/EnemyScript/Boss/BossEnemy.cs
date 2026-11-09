@@ -4,8 +4,13 @@ using UnityEngine;
 public class BossEnemy : EnemyBase
 {
     [Header("ボスの設定")]
-    [SerializeField] private float moveSpeed = 3.0f;   // ボスの移動速度
-    [SerializeField] private float attackRange = 4.0f; // 攻撃が届く距離
+    [SerializeField] private float moveSpeed ;   // ボスの移動速度
+    [SerializeField] private float attackRange;  // 攻撃が届く距離
+
+    private Animator anim;                       // アニメーション
+    private BiteState biteState;　　　　　　　　 // かみつき攻撃のステート
+    public BiteState BiteState => biteState;
+    public float AttackRange => attackRange;
 
     protected override void Awake()
     {
@@ -13,12 +18,17 @@ public class BossEnemy : EnemyBase
 
         // ボス専用のTransitionをここに割り当てる
         transition = new BossTransition();
+
+        // プレハブ内のGomegajiusからAnimatorを探す
+        anim = GetComponentInChildren<Animator>();
+
+        // ステートの生成
+        biteState = new BiteState();
     }
 
     protected override void Update()
     {
         base.Update();
-        // ボス特有の常時処理があればここに書く
     }
 
     // プレイヤーを見つけているか
@@ -52,12 +62,39 @@ public class BossEnemy : EnemyBase
 
         // プレイヤーに向かって移動する
         transform.position += direction * moveSpeed * Time.deltaTime;
+
+        // 動いているのでアニメーションを再生する
+        if (anim != null)
+        {
+            anim.speed = 1.0f;
+        }
+    }
+    public override void StopMove()
+    {
+        base.StopMove();
+
+        // 止まったのでアニメーションを止める
+        if (anim != null)
+        {
+            anim.speed = 0.0f;
+        }
     }
 
-    // 攻撃の処理
-    public override void Attack()
+    public void BiteAttack()
     {
-        // ここにボスの攻撃処理を入れていく
-        Debug.Log("ボスの攻撃！");
+        // かみつき処理
+        Debug.Log("ボスの「かみつき」処理実行！");
+
+        // ここにヒットボックスを出す処理などを書く
+
     }
+
+    public override bool IsAttackFinished()
+    {
+        // 攻撃が終了したかどうかの判定
+
+        // ひとまず即座に終了する設定
+        return true; 
+    }
+
 }
