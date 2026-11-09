@@ -10,7 +10,7 @@ public class CharacterSelectManager : MonoBehaviour
 	public CharacterData[] allCharacterData;
 
     [Header("全アビリティのデータ(ScriptableObject)")]
-    public CharacterData[] allAbilityData;
+    public AbilityData[] allAbilityData;
 
     [Header("3Dモデル生成場所")]
 	public Transform spawnPoint;
@@ -23,18 +23,26 @@ public class CharacterSelectManager : MonoBehaviour
     public GameObject abilityPanel;          // アビリティパネル
     public GameObject characterList;          // キャラリスト
 	public GameObject abilityList;          // アビリスト
-	public TextMeshProUGUI nameText;        // 名前テキスト
-	public TextMeshProUGUI statusText;      // ステータス表示テキスト
-	public TextMeshProUGUI descriptionText; // キャラ説明テキスト
 	private GameObject currentModel;
-
-    [Header("メインカメラ")]
-	public Camera mainCamera;
-
-    [Header("ステータスゲージ")]
+	
+    [Header("キャラのステータス表示UI")]
 	public Slider hpSlider;
 	public Slider atkSlider;
 	public Slider defSlider;
+	public TextMeshProUGUI nameText;        // 名前テキスト
+	public TextMeshProUGUI statusText;      // ステータス表示テキスト
+	public TextMeshProUGUI descriptionText; // キャラ説明テキスト
+
+    [Header("アビリティのステータス表示UI")]
+    public Slider hpSlider_abi;
+    public Slider atkSlider_abi;
+    public Slider defSlider_abi;
+    public TextMeshProUGUI nameText_abi;        // 名前テキスト
+    public TextMeshProUGUI statusText_abi;      // ステータス表示テキスト
+    public TextMeshProUGUI descriptionText_abi; // キャラ説明テキスト
+
+    [Header("メインカメラ")]
+	public Camera mainCamera;
 
 	// キャラ選択、アビリティ選択それぞれのメニューを開いているかどうかを管理するフラグ
 	enum MenuState
@@ -170,7 +178,21 @@ public class CharacterSelectManager : MonoBehaviour
 	{
 		// 選択中のアビリティスロットに装備するアビリティを設定する
 		GameData.EquippedAbilities[EquipAbilityIndex] = index;
+        abilityChangeButton.GetComponent<EquipAbilityManager>().SetEquipAbility(EquipAbilityIndex, allAbilityData[index].abilityIcon);
 
+		AbilityData data = allAbilityData[index];
+
+		if (data != null)
+		{
+			if (nameText_abi != null) nameText_abi.text = data.abilityName;
+			if (statusText_abi != null) statusText_abi.text = $"HP　 : {data.hp:F2}\nATK  : {data.atk:F2}\nDEF  : {data.def:F2}";
+            if (descriptionText_abi != null) descriptionText_abi.text = data.description;
+
+            // スライダーゲージの長さを反映
+            if (hpSlider_abi != null) hpSlider_abi.value = data.hp;
+            if (atkSlider_abi != null) atkSlider_abi.value = data.atk;
+            if (defSlider_abi != null) defSlider_abi.value = data.def;
+        }
 
     }
 

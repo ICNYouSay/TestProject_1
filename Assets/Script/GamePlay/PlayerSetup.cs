@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerSetup : NetworkBehaviour
 {
     [SerializeField] private CharacterData[] allCharacterData; // 全キャラのデータを入れておく
+    [SerializeField] private AbilityData[] allAbilityData; // 全アビのデータを入れておく
     [SerializeField] private Transform modelContainer;        // 見た目モデルを配置する親オブジェクト
 
     [Header("プレイヤーコントローラー")]
@@ -12,6 +13,7 @@ public class PlayerSetup : NetworkBehaviour
 
     // どのキャラを選んだかを同期する変数
     [Networked] public int SelectedCharacterID { get; set; }
+    [Networked] public int[] SelectedAbilityID { get; set; }
 
     //プレイヤーステータス
     [SerializeField]
@@ -23,6 +25,7 @@ public class PlayerSetup : NetworkBehaviour
         if (Object.HasInputAuthority)
         {
             SelectedCharacterID = GameData.SelectedCharacterIndex;
+            SelectedAbilityID = GameData.EquippedAbilities;
         }
 
         // 部屋に入った瞬間（またはIDが決まった瞬間）に見た目を生成
@@ -49,5 +52,7 @@ public class PlayerSetup : NetworkBehaviour
         }
 
         playerController.transform.position = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f));
+
+
     }
 }
