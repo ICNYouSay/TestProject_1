@@ -7,10 +7,16 @@ public class BossEnemy : EnemyBase
     [SerializeField] private float moveSpeed ;        // ボスの移動速度
     [SerializeField] private float attackRange;       // 攻撃が届く距離
     [SerializeField] private EnemyHitbox biteHitbox;  // かみつき攻撃の当たり判定
+    [SerializeField] private EnemyHitbox clawHitbox;  // クロー攻撃の当たり判定
+    [SerializeField] private float attackDuration;    // 1回の攻撃にかかる時間（秒）
 
+    private float attackTimer = 0.0f;
     private Animator anim;                            // アニメーション
-    private BiteState biteState;　　　　　　　　      // かみつき攻撃のステート
+    private BiteState biteState;                      // かみつき攻撃のステート
+    private ClawState clawState;                      // クロー攻撃のステート
+
     public BiteState BiteState => biteState;
+    public ClawState ClawState => clawState;
     public float AttackRange => attackRange;
 
     protected override void Awake()
@@ -25,6 +31,7 @@ public class BossEnemy : EnemyBase
 
         // ステートの生成
         biteState = new BiteState();
+        clawState = new ClawState();
     }
 
     protected override void Update()
@@ -80,13 +87,12 @@ public class BossEnemy : EnemyBase
             anim.speed = 0.0f;
         }
     }
-
     public void BiteAttack()
     {
         // かみつき処理
         Debug.Log("ボスの「かみつき」処理実行！");
 
-        // ここにヒットボックスを出す処理などを書く
+        // 当たり判定の処理
         if (biteHitbox != null)
         {
             biteHitbox.TriggerAttack();
@@ -94,12 +100,36 @@ public class BossEnemy : EnemyBase
 
     }
 
+    public void ClawAttack()
+    {
+        Debug.Log("ボスの「クロー」処理実行！");
+
+        // 当たり判定の処理
+        if (clawHitbox != null)
+        {
+            clawHitbox.TriggerAttack(); 
+        }
+    }
+
+    // 攻撃の終了判定
     public override bool IsAttackFinished()
     {
-        // 攻撃が終了したかどうかの判定
+        // 経過時間を進める
+        attackTimer += Time.deltaTime;
 
-        // ひとまず即座に終了する設定
-        return true; 
+        // 指定した秒数が経過するまでは攻撃中にする
+        if (attackTimer >= attackDuration)
+        {
+            return true; // 攻撃終了
+        }
+
+        return false; 
+    }
+
+    // 攻撃のステートに入ったときにタイマーをリセットする用
+    public void ResetAttackTimer()
+    {
+        attackTimer = 0f;
     }
 
 }
