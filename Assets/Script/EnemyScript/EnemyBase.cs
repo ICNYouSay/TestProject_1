@@ -15,16 +15,12 @@ public abstract class EnemyBase : MonoBehaviour
     //敵のステータスを管理するクラス
     protected EnemyStatus enemyStatus;
 
-    //----------------------------
     // Stateインスタンス
-    //----------------------------
     protected IdleState idleState;
     protected AttackState attackState;
     protected DyingState dyingState;
 
-    //----------------------------
     // プロパティ
-    //----------------------------
     //状態遷移を管理するインターフェースを取得するプロパティ
     public IEnemyTransition Transition => transition;
 
@@ -41,10 +37,7 @@ public abstract class EnemyBase : MonoBehaviour
     // HPバーのImageコンポーネントを持つ2Dオブジェクトを保持する変数 
     public Image HPBar_Fill;
 
-    //----------------------------
     // 初期化
-    //----------------------------
-
     protected virtual void Awake()
     {
         // StateMachine生成
@@ -59,10 +52,7 @@ public abstract class EnemyBase : MonoBehaviour
         dyingState = new DyingState();//死亡状態
     }
 
-    //----------------------------
     // 開始
-    //----------------------------
-
     protected virtual void Start()
     {
         // 初期State
@@ -75,9 +65,7 @@ public abstract class EnemyBase : MonoBehaviour
         }
     }
 
-    //----------------------------
     // 更新
-    //----------------------------
     protected virtual void Update()
     {
         stateMachine.Update(this);
@@ -96,18 +84,14 @@ public abstract class EnemyBase : MonoBehaviour
         //TakeDamage(11);
     }
 
-    //----------------------------
     // FixedUpdate
-    //----------------------------
 
     protected virtual void FixedUpdate()
     {
         stateMachine.FixedUpdate(this);
     }
 
-    //----------------------------
     // State変更
-    //----------------------------
     public void ChangeState(EnemyState nextState)
     {
         stateMachine.ChangeState(this, nextState);
@@ -115,16 +99,6 @@ public abstract class EnemyBase : MonoBehaviour
 
 
 
-    //----------------------------
-    // 共通関数
-    //----------------------------
-    //体力・移動・攻撃・アニメーション
-    //---------------------------
-
-
-    //=====================================
-    //体力
-    //=====================================
     //体力の減少処理
     public virtual void TakeDamage(int damage)
     {
@@ -195,12 +169,8 @@ public abstract class EnemyBase : MonoBehaviour
 
     }
 
-    //====================================
 
-    //=====================================
     //移動    
-    //=====================================
-    //移動停止
     public virtual void StopMove()
     {
         //移動停止の処理
@@ -213,12 +183,8 @@ public abstract class EnemyBase : MonoBehaviour
     public virtual void Chase()
     {
     }
-    //=====================================
 
-    //=====================================
     //攻撃  
-    //=====================================
-    //攻撃開始
     public virtual void Attack()
     {
 
