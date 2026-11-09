@@ -1163,8 +1163,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossEnemy
   HPBar: {fileID: 2016154663}
   HPBar_Fill: {fileID: 654573856}
-  moveSpeed: 12
-  attackRange: 8
+  moveSpeed: 6
+  attackRange: 4
 --- !u!4 &824589198
 Transform:
   m_ObjectHideFlags: 0

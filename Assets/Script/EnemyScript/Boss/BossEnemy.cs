@@ -4,11 +4,12 @@ using UnityEngine;
 public class BossEnemy : EnemyBase
 {
     [Header("ボスの設定")]
-    [SerializeField] private float moveSpeed ;   // ボスの移動速度
-    [SerializeField] private float attackRange;  // 攻撃が届く距離
+    [SerializeField] private float moveSpeed ;        // ボスの移動速度
+    [SerializeField] private float attackRange;       // 攻撃が届く距離
+    [SerializeField] private EnemyHitbox biteHitbox;  // かみつき攻撃の当たり判定
 
-    private Animator anim;                       // アニメーション
-    private BiteState biteState;　　　　　　　　 // かみつき攻撃のステート
+    private Animator anim;                            // アニメーション
+    private BiteState biteState;　　　　　　　　      // かみつき攻撃のステート
     public BiteState BiteState => biteState;
     public float AttackRange => attackRange;
 
@@ -86,6 +87,10 @@ public class BossEnemy : EnemyBase
         Debug.Log("ボスの「かみつき」処理実行！");
 
         // ここにヒットボックスを出す処理などを書く
+        if (biteHitbox != null)
+        {
+            biteHitbox.TriggerAttack();
+        }
 
     }
 
