@@ -720,6 +720,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
+--- !u!114 &516991600 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 725342039843654828, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
+  m_PrefabInstance: {fileID: 445409382}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a0fcc1e2147f074ebbe504efedf829c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHitbox
 --- !u!1001 &594228950
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1142,10 +1153,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fdbe233ab5bb84418ccaa3637eb8de0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStatus
-  maxHP: 1000
+  maxHP: 100000
   currentHP: 0
-  baseDefence: 10
-  baseAttack: 20
+  baseDefence: 20
+  baseAttack: 50
   givePower: 5
   experience: 50
   buffManager: {fileID: 0}
@@ -1165,6 +1176,7 @@ MonoBehaviour:
   HPBar_Fill: {fileID: 654573856}
   moveSpeed: 6
   attackRange: 4
+  biteHitbox: {fileID: 516991600}
 --- !u!4 &824589198
 Transform:
   m_ObjectHideFlags: 0
