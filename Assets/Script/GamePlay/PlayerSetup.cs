@@ -12,8 +12,8 @@ public class PlayerSetup : NetworkBehaviour
     private PlayerController playerController;
 
     // どのキャラを選んだかを同期する変数
-    public int SelectedCharacterID { get; set; }
-    public int[] SelectedAbilityID { get; set; }
+    public int SelectedCharacterID;
+    public int[] SelectedAbilityID;
 
     //プレイヤーステータス
     [SerializeField]
