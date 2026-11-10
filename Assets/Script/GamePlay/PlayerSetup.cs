@@ -1,9 +1,11 @@
 using Fusion;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerSetup : NetworkBehaviour
 {
     [SerializeField] private CharacterData[] allCharacterData; // 全キャラのデータを入れておく
+    [SerializeField] private AbilityData[] allAbilityData; // 全アビのデータを入れておく
     [SerializeField] private Transform modelContainer;        // 見た目モデルを配置する親オブジェクト
 
     [Header("プレイヤーコントローラー")]
@@ -12,6 +14,8 @@ public class PlayerSetup : NetworkBehaviour
 
     // どのキャラを選んだかを同期する変数
     [Networked] public int SelectedCharacterID { get; set; }
+
+    public Button EquippedAbilities;
 
     //プレイヤーステータス
     [SerializeField]
@@ -23,6 +27,12 @@ public class PlayerSetup : NetworkBehaviour
         if (Object.HasInputAuthority)
         {
             SelectedCharacterID = GameData.SelectedCharacterIndex;
+
+            EquippedAbility0 = GameData.EquippedAbilities[0];
+            EquippedAbility1 = GameData.EquippedAbilities[1];
+            EquippedAbility2 = GameData.EquippedAbilities[2];
+            EquippedAbility3 = GameData.EquippedAbilities[3];
+            EquippedAbility4 = GameData.EquippedAbilities[4];
         }
 
         // 部屋に入った瞬間（またはIDが決まった瞬間）に見た目を生成
