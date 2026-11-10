@@ -17,7 +17,7 @@ public class BossTransition : IEnemyTransition
         // 待機状態のとき
         if (currentState is IdleState)
         {
-            // プレイヤーを見つけているか
+            // プレイヤーを見つけているか？
             if (boss.CanSeePlayer())
             {
                 GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -36,19 +36,9 @@ public class BossTransition : IEnemyTransition
                     }
                     else
                     {
-                        // 攻撃範囲内に入ったら移動を止める
+                        // 攻撃範囲内に入ったら移動を止めてかみつき攻撃に移行
                         boss.StopMove();
-
-                        // ここでランダム分岐
-                        float randomValue = Random.value; 
-                        if (randomValue < 0.5f)
-                        {
-                            return boss.BiteState; // 50%の確率でかみつき攻撃
-                        }
-                        else
-                        {
-                            return boss.ClawState; // 50%の確率でクロー攻撃
-                        }
+                        return boss.BiteState;
                     }
                 }
             }
@@ -63,15 +53,6 @@ public class BossTransition : IEnemyTransition
         if (currentState is BiteState)
         {
             // 攻撃が終わったら待機状態に戻る
-            if (boss.IsAttackFinished())
-            {
-                return boss.IdleState;
-            }
-        }
-
-        // クロー攻撃が終わったとき
-        if (currentState is ClawState)
-        {
             if (boss.IsAttackFinished())
             {
                 return boss.IdleState;

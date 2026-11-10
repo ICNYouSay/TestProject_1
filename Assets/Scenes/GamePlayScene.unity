@@ -653,14 +653,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 824589198}
     m_Modifications:
-    - target: {fileID: 163271223948456100, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
-      propertyPath: m_Size.x
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 163271223948456100, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
-      propertyPath: m_Size.z
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 4524145987589312268, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
       propertyPath: moveSpeed
       value: 12
@@ -668,14 +660,6 @@ PrefabInstance:
     - target: {fileID: 4524145987589312268, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
       propertyPath: attackRange
       value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4567658962691402097, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.02164
-      objectReference: {fileID: 0}
-    - target: {fileID: 4567658962691402097, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.01045
       objectReference: {fileID: 0}
     - target: {fileID: 4818617912237638832, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
       propertyPath: m_LocalScale.x
@@ -733,10 +717,7 @@ PrefabInstance:
     - {fileID: 4524145987589312268, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
     - {fileID: 8529680359295633230, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 4818617912237638832, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1024002890}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
 --- !u!114 &516991600 stripped
@@ -1196,8 +1177,6 @@ MonoBehaviour:
   moveSpeed: 6
   attackRange: 4
   biteHitbox: {fileID: 516991600}
-  clawHitbox: {fileID: 1024002887}
-  attackDuration: 1.5
 --- !u!4 &824589198
 Transform:
   m_ObjectHideFlags: 0
@@ -1550,103 +1529,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c66fdfaeac444cb4da048e24aa443194, type: 3}
---- !u!1 &1024002886
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1024002890}
-  - component: {fileID: 1024002889}
-  - component: {fileID: 1024002887}
-  - component: {fileID: 1024002888}
-  m_Layer: 0
-  m_Name: Boss_Claw_Hitbox
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1024002887
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1024002886}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a0fcc1e2147f074ebbe504efedf829c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyHitbox
-  attackDamage: 200
-  startDelay: 0.5
-  activeDuration: 0.5
---- !u!54 &1024002888
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1024002886}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!65 &1024002889
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1024002886}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 10, y: 0, z: 5}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!4 &1024002890
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1024002886}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.21814407, y: -0.21814407, z: -0.67261666, w: 0.67261666}
-  m_LocalPosition: {x: -0.01925, y: -0.00018, z: 0.00712}
-  m_LocalScale: {x: 0.0027391652, y: 0.0027391652, z: 0.0027391652}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 327804795}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1050147520
 GameObject:
   m_ObjectHideFlags: 0
