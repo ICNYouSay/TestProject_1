@@ -30,6 +30,8 @@ public class GameLauncher : MonoBehaviour
                 Destroy(data[i]); 
 			}
 
+            var runner = gameObject.AddComponent<NetworkRunner>();
+			runner.Shutdown();
             // リザルトシーンへ遷移(デバッグ用)
             UnityEngine.SceneManagement.SceneManager.LoadScene("ResultScene");
 		}
