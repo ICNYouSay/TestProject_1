@@ -8,17 +8,20 @@ public class BossEnemy : EnemyBase
     [SerializeField] private float attackRange;       // UŒ‚‚ª“Í‚­‹——£
     [SerializeField] private EnemyHitbox biteHitbox;  // ‚©‚İ‚Â‚«UŒ‚‚Ì“–‚½‚è”»’è
     [SerializeField] private EnemyHitbox clawHitbox;  // ƒNƒ[UŒ‚‚Ì“–‚½‚è”»’è
+    [SerializeField] private EnemyHitbox tailHitbox; // ‚µ‚Á‚Û—p‚Ì‰~Œ`ƒqƒbƒgƒ{ƒbƒNƒX
 
     private Animator anim;                            // ƒAƒjƒ[ƒVƒ‡ƒ“
     private BiteState biteState;                      // ‚©‚İ‚Â‚«UŒ‚‚ÌƒXƒe[ƒg
     private ClawState clawState;                      // ƒNƒ[UŒ‚‚ÌƒXƒe[ƒg
+    private TailState tailstate;                      // ‚µ‚Á‚Û‰ñ“]UŒ‚‚ÌƒXƒe[ƒg
 
     public BiteState BiteState => biteState;
     public ClawState ClawState => clawState;
+    public TailState TailState => tailstate;
     public float AttackRange => attackRange;
 
-    private float attackTimer = 0f;                   // UŒ‚‚Ìd’¼—pƒ^ƒCƒ}[
-
+    private float attackTimer;                   // UŒ‚‚Ìd’¼—pƒ^ƒCƒ}[
+  
     protected override void Awake()
     {
         base.Awake();
@@ -32,6 +35,7 @@ public class BossEnemy : EnemyBase
         // ƒXƒe[ƒg‚Ì¶¬
         biteState = new BiteState();
         clawState = new ClawState();
+        tailstate = new TailState();
     }
 
     protected override void Update()
@@ -106,13 +110,20 @@ public class BossEnemy : EnemyBase
             clawHitbox.TriggerAttack();
         }
     }
-
+    public void TailAttack()
+    {
+        Debug.Log("ƒ{ƒX‚Ìu‚µ‚Á‚Û‰ñ“]vˆ—ÀsI");
+        if (tailHitbox != null)
+        {
+            tailHitbox.TriggerAttack();
+        }
+    }
     public override bool IsAttackFinished()
     {
         attackTimer += Time.deltaTime;
 
-        // 1•bŠÔ‚ÍUŒ‚’†‚Æ‚µ‚Ä‘Ò‹@‚É–ß‚³‚È‚¢
-        if (attackTimer >= 1.0f)
+        // 2•bŠÔ‚ÍUŒ‚’†‚Æ‚µ‚Ä‘Ò‹@‚É–ß‚³‚È‚¢
+        if (attackTimer >= 2.0f)
         {
             return true;
         }

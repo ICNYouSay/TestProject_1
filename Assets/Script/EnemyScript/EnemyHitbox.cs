@@ -4,7 +4,7 @@ public class EnemyHitbox : MonoBehaviour
 {
     [Header("攻撃設定")]
     // プレイヤーに与えるダメージ
-    [SerializeField] private float attackDamage; 
+    [SerializeField] private float attackDamage;
 
     [Header("攻撃タイミング設定（秒）")]
     [Tooltip("攻撃開始から判定が出るまでの待ち時間（前隙）")]
@@ -14,22 +14,27 @@ public class EnemyHitbox : MonoBehaviour
     [SerializeField] private float activeDuration;
 
     private BoxCollider _col;
+    private SphereCollider _sphereCol;
 
     void Awake()
     {
         _col = GetComponent<BoxCollider>();
+        _sphereCol = GetComponent<SphereCollider>();
 
         // 最初はOFF
-        if (_col != null) _col.enabled = false; 
+        if (_col != null) _col.enabled = false;
+        if (_sphereCol != null) _sphereCol.enabled = false; 
     }
 
     // 敵が攻撃する時に呼ぶ関数
     public void TriggerAttack()
     {
-        if (_col == null) return;
+        // どちらもなければ終了
+        if (_col == null && _sphereCol == null) return; 
 
         CancelInvoke();
-        _col.enabled = false;
+        if (_col != null) _col.enabled = false;
+        if (_sphereCol != null) _sphereCol.enabled = false; 
 
         Invoke(nameof(ActivateHitbox), startDelay);
         Invoke(nameof(DisableHitbox), startDelay + activeDuration);
@@ -38,30 +43,50 @@ public class EnemyHitbox : MonoBehaviour
     private void ActivateHitbox()
     {
         // 判定ON
-        if (_col != null) _col.enabled = true; 
+        if (_col != null) _col.enabled = true;
+        if (_sphereCol != null) _sphereCol.enabled = true; 
     }
 
     public void DisableHitbox()
     {
         // 判定OFF
-        if (_col != null) _col.enabled = false; 
+        if (_col != null) _col.enabled = false;
+        if (_sphereCol != null) _sphereCol.enabled = false; 
     }
 
     private void OnDrawGizmos()
     {
-        BoxCollider col = GetComponent<BoxCollider>();
-        if (col == null) return;
+        // まずBoxColliderがあるか探す
+        BoxCollider boxCol = GetComponent<BoxCollider>();
+        if (boxCol != null)
+        {
+            bool isActive = boxCol.enabled;
 
-        bool isActive = col.enabled;
+            // OFFなら描画しない
+            if (!isActive) return; 
 
-        // コライダーがOFFのときはGizmosを描画せずにここで終わる
-        if (!isActive) return;
+            Gizmos.color = Color.red;
+            Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, transform.lossyScale);
+            // 描画
+            Gizmos.DrawWireCube(boxCol.center, boxCol.size);
+            return;
+        }
 
-        // 赤のコライダー
-        Gizmos.color = Color.red;
+        // SphereColliderがあるか探す
+        SphereCollider sphereCol = GetComponent<SphereCollider>();
+        if (sphereCol != null)
+        {
+            bool isActive = sphereCol.enabled;
 
-        Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, transform.lossyScale);
-        Gizmos.DrawWireCube(col.center, col.size);
+            // OFFなら描画しない
+            if (!isActive) return; 
+
+            Gizmos.color = Color.red;
+            Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, transform.lossyScale);
+            // 描画
+            Gizmos.DrawWireSphere(sphereCol.center, sphereCol.radius);
+            return;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
