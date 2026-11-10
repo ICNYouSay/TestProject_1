@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -36,8 +37,19 @@ public class CharacterSelectManager : MonoBehaviour
 	public Slider atkSlider;
 	public Slider defSlider;
 
-	// キャラ選択、アビリティ選択それぞれのメニューを開いているかどうかを管理するフラグ
-	enum MenuState
+    // フェードアウト用Timeline
+    [SerializeField]
+    private PlayableDirector fadeOutDirector;
+
+    // 二重実行防止
+    private bool isStarting = false;
+
+	[Header("フェード用Image")]
+	[SerializeField]
+	public Image fadeImage; // フェード用のImageコンポーネント
+
+    // キャラ選択、アビリティ選択それぞれのメニューを開いているかどうかを管理するフラグ
+    enum MenuState
 	{
 		None = 0,
 		CharacterSelect,
@@ -51,9 +63,19 @@ public class CharacterSelectManager : MonoBehaviour
 	{
 		ClearUI();
 		SelectCharacter(0);
-	}
 
-	private void Update()
+		fadeImage.transform.SetAsFirstSibling(); // フェード用Imageを最前面に移動
+
+        // Timeline終了時に呼ばれるイベントを登録
+        fadeOutDirector.stopped += OnFadeFinished;
+    }
+
+    private void OnDestroy()
+    {
+        fadeOutDirector.stopped -= OnFadeFinished;
+    }
+
+    private void Update()
 	{
 		// 開いているメニューの状態に合わせて各種UIの位置を調整する
 		if (currentMenu == MenuState.CharacterSelect)
@@ -188,12 +210,18 @@ public class CharacterSelectManager : MonoBehaviour
 			currentMenu = MenuState.None;
 			okButton.GetComponentInChildren<TextMeshProUGUI>().text = "GO!MOOOOOVE!!";
 		}
-		else if (currentMenu == MenuState.None)
+		else if (currentMenu == MenuState.None && !isStarting)
 		{
-			// 何もメニューを開いていない状態(ボタンのテキストが出撃になっている状態)ならゲームシーンに遷移する
-			SceneManager.LoadScene("GamePlayScene");
+
+			isStarting = true;
+
+			fadeImage.transform.SetAsLastSibling(); // フェード用Imageを最前面に移動
+
+			// フェードアウト開始
+			fadeOutDirector.Play();
+
 		}
-	}
+    }
 
 
 	public void OnClickCharacterChangeButton()
@@ -207,5 +235,13 @@ public class CharacterSelectManager : MonoBehaviour
 		currentMenu = MenuState.AbilitySelect;
 		okButton.GetComponentInChildren<TextMeshProUGUI>().text = "OK";
 		EquipAbilityIndex = index;
+    }
+
+    // Timeline終了後に呼ばれる
+    private void OnFadeFinished(PlayableDirector director)
+    {
+        // 何もメニューを開いていない状態(ボタンのテキストが出撃になっている状態)ならゲームシーンに遷移する
+        SceneManager.LoadScene("GamePlayScene");
+
     }
 }
