@@ -10,9 +10,6 @@ public class BiteState : EnemyState
         {
             boss.StopMove();
 
-            // 攻撃タイマーリセット
-            boss.ResetAttackTimer(); 
-
             // 実際の噛みつき攻撃の処理やログ
             Debug.Log("ボスの「かみつき」攻撃！");
 
