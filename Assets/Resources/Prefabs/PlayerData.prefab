@@ -53,10 +53,15 @@ MonoBehaviour:
   allCharacterData:
   - {fileID: 11400000, guid: 9d60bc0d33f24c343a8546e24626f6bc, type: 2}
   - {fileID: 11400000, guid: 298f6f7a4a0f5ad4982761e4623cbb02, type: 2}
+  allAbilityData: []
   modelContainer: {fileID: 3726127093229725856}
   playerController: {fileID: 866457387225006319}
-  _SelectedCharacterID: 0
   playerStatus: {fileID: -945846137626508812}
+  _SelectedCharacterID: 0
+  _SelectedAbility0: 0
+  _SelectedAbility1: 0
+  _SelectedAbility2: 0
+  _SelectedAbility3: 0
 --- !u!143 &333589777318679443
 CharacterController:
   m_ObjectHideFlags: 0
@@ -119,6 +124,7 @@ MonoBehaviour:
   - {fileID: 5196148582981620815}
   - {fileID: 2402871098239192711}
   - {fileID: 866457387225006319}
+  - {fileID: -945846137626508812}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &5196148582981620815
 MonoBehaviour:
@@ -168,3 +174,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStatus
   characterData: {fileID: 0}
+  buffManager: {fileID: 0}
+  _maxHP: 0
+  _currentHP: 0
+  _baseAttack: 0
+  _baseDefence: 0
