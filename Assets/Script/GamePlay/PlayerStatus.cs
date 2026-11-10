@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Rendering.VirtualTexturing;
 
 //プレイヤーのステータスを管理するクラス
-public class PlayerStatus : NetworkBehaviour
+public class PlayerStatus : MonoBehaviour
 {
     [Header("キャラクターデータ")]
     [SerializeField]
@@ -17,10 +17,12 @@ public class PlayerStatus : NetworkBehaviour
     //ネットワーク同期するステータス
     //=================================
     //最大HP
-    [Networked] public float maxHP { get; private set; }
+    [Networked]
+    public float maxHP { get; private set; }
 
     //現在HP
-    [Networked] public float currentHP { get; private set; }
+    [Networked]
+    public float currentHP { get; private set; }
 
     //攻撃力
     [Networked]

@@ -400,11 +400,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!4 &327804795 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4818617912237638832, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
-  m_PrefabInstance: {fileID: 445409382}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &333110111
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -651,35 +646,19 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 824589198}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4524145987589312268, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
-      propertyPath: moveSpeed
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 4524145987589312268, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
-      propertyPath: attackRange
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4818617912237638832, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 365.07468
-      objectReference: {fileID: 0}
-    - target: {fileID: 4818617912237638832, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 365.07468
-      objectReference: {fileID: 0}
     - target: {fileID: 4818617912237638832, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.39969063
+      value: -22.094728
       objectReference: {fileID: 0}
     - target: {fileID: 4818617912237638832, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.49
       objectReference: {fileID: 0}
     - target: {fileID: 4818617912237638832, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.010528564
+      value: 33.49
       objectReference: {fileID: 0}
     - target: {fileID: 4818617912237638832, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
       propertyPath: m_LocalRotation.w
@@ -713,24 +692,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gomegajius
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4524145987589312268, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
-    - {fileID: 8529680359295633230, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
---- !u!114 &516991600 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 725342039843654828, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
-  m_PrefabInstance: {fileID: 445409382}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a0fcc1e2147f074ebbe504efedf829c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyHitbox
 --- !u!1001 &594228950
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -928,17 +894,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &654573856 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8041918054669699858, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
-  m_PrefabInstance: {fileID: 445409382}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1 &671014383
 GameObject:
   m_ObjectHideFlags: 0
@@ -1123,76 +1078,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 192748346}
   m_SourcePrefab: {fileID: 100100000, guid: 6909387124f767f4e9bf09939356ffc3, type: 3}
---- !u!1 &824589195
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 824589198}
-  - component: {fileID: 824589197}
-  - component: {fileID: 824589196}
-  m_Layer: 0
-  m_Name: BossRoot
-  m_TagString: Enemy
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &824589196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 824589195}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fdbe233ab5bb84418ccaa3637eb8de0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyStatus
-  maxHP: 100000
-  currentHP: 0
-  baseDefence: 20
-  baseAttack: 50
-  givePower: 5
-  experience: 50
-  buffManager: {fileID: 0}
---- !u!114 &824589197
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 824589195}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31256c092687d5f45b6100bd5385311d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BossEnemy
-  HPBar: {fileID: 2016154663}
-  HPBar_Fill: {fileID: 654573856}
-  moveSpeed: 6
-  attackRange: 4
-  biteHitbox: {fileID: 516991600}
---- !u!4 &824589198
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 824589195}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20.13969, y: 1.49, z: 33.50053}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 327804795}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &870706080
 GameObject:
   m_ObjectHideFlags: 0
@@ -3135,11 +3020,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 368095450}
   m_SourcePrefab: {fileID: 100100000, guid: 3a3fb57f6d463bc45be9b0622eae4377, type: 3}
---- !u!1 &2016154663 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1427405241198261983, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
-  m_PrefabInstance: {fileID: 445409382}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2097616748
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3322,4 +3202,4 @@ SceneRoots:
   - {fileID: 1203693948}
   - {fileID: 671014385}
   - {fileID: 1961641464}
-  - {fileID: 824589198}
+  - {fileID: 445409382}

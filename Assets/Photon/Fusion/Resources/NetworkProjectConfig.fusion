@@ -18,7 +18,6 @@
     "AllowMasterClientReassignRequest": false,
     "MasterClientRequestReassignThreshold": 2.0,
     "ClientsRecordFrameAndPacketTimingTraces": false,
-    "ClientsOnlyRollbackUpdatedObjects": false,
     "Simulation": {
         "InputDataWordCount": 0,
         "ReplicationFeatures": 0,
@@ -63,9 +62,7 @@
     "Network": {
         "ConnectionTimeout": 10.0,
         "ConnectionShutdownTime": 1.0,
-        "ReliableDataTransferModes": 3,
-        "GameChannelSendCount": 2,
-        "GameReliableChannelSendCount": 1
+        "ReliableDataTransferModes": 3
     },
     "HostMigration": {
         "EnableAutoUpdate": false,

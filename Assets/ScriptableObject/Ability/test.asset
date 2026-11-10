@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cb04c322f480d24798770598e7c760e, type: 3}
   m_Name: test
   m_EditorClassIdentifier: Assembly-CSharp::AbilityData
-  abilityIcon: {fileID: 21300000, guid: 28f2d791bb2a6f14a87ea11f906f4151, type: 3}
+  abilityIcon: {fileID: 21300000, guid: 9e4c5e0a251aed848bd288ac227571ea, type: 3}
   abilityName: "\u30B8\u30CF\u30FC\u30C9"
   hp: 200
   atk: 32000
