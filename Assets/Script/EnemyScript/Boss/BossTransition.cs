@@ -11,7 +11,7 @@ public class BossTransition : IEnemyTransition
         // €–Só‘Ô‚È‚ç‰½‚à‚µ‚È‚¢
         if (boss.IsDead())
         {
-            return boss.DyingState;
+            return boss.BossDyingState; 
         }
 
         // ‘Ò‹@ó‘Ô‚Ì‚Æ‚«

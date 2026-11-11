@@ -14,14 +14,16 @@ public class BossEnemy : EnemyBase
     private BiteState biteState;                      // かみつき攻撃のステート
     private ClawState clawState;                      // クロー攻撃のステート
     private TailState tailstate;                      // しっぽ回転攻撃のステート
+    private BossDyingState bossDyingState;            // ボス死亡時のステート
+
+    private float attackTimer;                   // 攻撃の硬直用タイマー
 
     public BiteState BiteState => biteState;
     public ClawState ClawState => clawState;
     public TailState TailState => tailstate;
     public float AttackRange => attackRange;
+    public BossDyingState BossDyingState => bossDyingState;
 
-    private float attackTimer;                   // 攻撃の硬直用タイマー
-  
     protected override void Awake()
     {
         base.Awake();
@@ -36,6 +38,7 @@ public class BossEnemy : EnemyBase
         biteState = new BiteState();
         clawState = new ClawState();
         tailstate = new TailState();
+        bossDyingState = new BossDyingState();
     }
 
     protected override void Update()
