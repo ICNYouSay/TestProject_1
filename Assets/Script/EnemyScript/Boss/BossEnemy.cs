@@ -22,6 +22,7 @@ public class BossEnemy : EnemyBase
     public BiteState BiteState => biteState;
     public ClawState ClawState => clawState;
     public TailState TailState => tailstate;
+    public BossDyingState BossDyingState => bossDyingState;
     public float AttackRange => attackRange;
 
     [Header("ƒ{ƒXŒ‚”j—p‚ÌTimeLine")]
