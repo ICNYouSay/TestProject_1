@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Performance/Effect/Tail.efkefc.meta
+guid: 4a42d8aef2408a34c955c7fc67ccb4bb
+DefaultImporter:
+========
 guid: 175fb196495001348ac752b51c7d4006
 NativeFormatImporter:
+>>>>>>>> 06f16f26b4ef39209a8101520d270046c03a774e:Assets/Animation/Boss/Armature_Gomegajius_move.anim.meta
   externalObjects: {}
   mainObjectFileID: 7400000
   userData: 
