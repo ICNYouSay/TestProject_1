@@ -9,12 +9,14 @@ public class BossEnemy : EnemyBase
     [SerializeField] private float attackRange;       // 攻撃が届く距離
     [SerializeField] private EnemyHitbox biteHitbox;  // かみつき攻撃の当たり判定
     [SerializeField] private EnemyHitbox clawHitbox;  // クロー攻撃の当たり判定
-    [SerializeField] private EnemyHitbox tailHitbox;  // しっぽ用の円形ヒットボックス
+    [SerializeField] private EnemyHitbox tailHitbox;  // しっぽ攻撃の当たり判定
+    [SerializeField] private EnemyHitbox breathHitbox;// ブレスの当たり判定
 
     private Animator anim;                            // アニメーション
     private BiteState biteState;                      // かみつき攻撃のステート
     private ClawState clawState;                      // クロー攻撃のステート
-    private TailState tailstate;                      // しっぽ回転攻撃のステート
+    private TailState tailstate;                      // しっぽ攻撃のステート
+    private BreathState breathState;                  // ブレス攻撃のステート
     private BossDyingState bossDyingState;            // ボス死亡時のステート
 
     private float attackTimer;                        // 攻撃の硬直用タイマー
@@ -22,6 +24,7 @@ public class BossEnemy : EnemyBase
     public BiteState BiteState => biteState;
     public ClawState ClawState => clawState;
     public TailState TailState => tailstate;
+    public BreathState BreathState => breathState;
     public BossDyingState BossDyingState => bossDyingState;
     public float AttackRange => attackRange;
 
@@ -46,6 +49,7 @@ public class BossEnemy : EnemyBase
         biteState = new BiteState();
         clawState = new ClawState();
         tailstate = new TailState();
+        breathState = new BreathState();
         bossDyingState = new BossDyingState();
     }
 
@@ -135,12 +139,22 @@ public class BossEnemy : EnemyBase
             clawHitbox.TriggerAttack();
         }
     }
+    // しっぽ攻撃の処理
     public void TailAttack()
     {
         Debug.Log("ボスの「しっぽ回転」処理実行！");
         if (tailHitbox != null)
         {
             tailHitbox.TriggerAttack();
+        }
+    }
+    // ブレス攻撃の処理
+    public void BreathAttack()
+    {
+        Debug.Log("ボスの「ブレス」処理実行！");
+        if (breathHitbox != null)
+        {
+            breathHitbox.TriggerAttack();
         }
     }
     public override bool IsAttackFinished()

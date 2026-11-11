@@ -38,17 +38,21 @@ public class BossTransition : IEnemyTransition
                         // 確率で攻撃を変更
                         float randomValue = Random.value;
 
-                        if (randomValue < 0.33f)
+                        if (randomValue < 0.25f)
                         {
-                            return boss.BiteState; // 約33% かみつき
+                            return boss.BiteState;   // 約25% かみつき
                         }
-                        else if (randomValue < 0.66f)
+                        else if (randomValue < 0.50f)
                         {
-                            return boss.ClawState; // 約33% クロー
+                            return boss.ClawState;   // 約25% クロー
+                        }
+                        else if (randomValue < 0.75f)
+                        {
+                            return boss.BreathState; // 約25% クロー
                         }
                         else
                         {
-                            return boss.TailState; // 残り約34% しっぽ回転
+                            return boss.TailState;   // 残り約25% しっぽ
                         }
                     }
                 }
@@ -67,7 +71,6 @@ public class BossTransition : IEnemyTransition
                 return boss.IdleState;
             }
         }
-
         // クロー攻撃が終わったとき
         if (currentState is ClawState)
         {
@@ -76,9 +79,16 @@ public class BossTransition : IEnemyTransition
                 return boss.IdleState;
             }
         }
-
         // しっぽ回転攻撃が終わったとき
         if (currentState is TailState)
+        {
+            if (boss.IsAttackFinished())
+            {
+                return boss.IdleState;
+            }
+        }
+        // ブレス攻撃が終わったとき
+        if (currentState is BreathState)
         {
             if (boss.IsAttackFinished())
             {
