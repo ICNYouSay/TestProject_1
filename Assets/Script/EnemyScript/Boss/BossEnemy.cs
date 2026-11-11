@@ -9,13 +9,16 @@ public class BossEnemy : EnemyBase
     [SerializeField] private float attackRange;       // 攻撃が届く距離
     [SerializeField] private EnemyHitbox biteHitbox;  // かみつき攻撃の当たり判定
     [SerializeField] private EnemyHitbox clawHitbox;  // クロー攻撃の当たり判定
+    [SerializeField] private EnemyHitbox tailHitbox; // しっぽ用の円形ヒットボックス
 
     private Animator anim;                            // アニメーション
     private BiteState biteState;                      // かみつき攻撃のステート
     private ClawState clawState;                      // クロー攻撃のステート
+    private TailState tailstate;                      // しっぽ回転攻撃のステート
 
     public BiteState BiteState => biteState;
     public ClawState ClawState => clawState;
+    public TailState TailState => tailstate;
     public float AttackRange => attackRange;
 
     private float attackTimer = 0f;                   // 攻撃の硬直用タイマー
@@ -40,6 +43,7 @@ public class BossEnemy : EnemyBase
         // ステートの生成
         biteState = new BiteState();
         clawState = new ClawState();
+        tailstate = new TailState();
     }
 
     protected override void Update()
@@ -123,13 +127,20 @@ public class BossEnemy : EnemyBase
             clawHitbox.TriggerAttack();
         }
     }
-
+    public void TailAttack()
+    {
+        Debug.Log("ボスの「しっぽ回転」処理実行！");
+        if (tailHitbox != null)
+        {
+            tailHitbox.TriggerAttack();
+        }
+    }
     public override bool IsAttackFinished()
     {
         attackTimer += Time.deltaTime;
 
-        // 1秒間は攻撃中として待機に戻さない
-        if (attackTimer >= 1.0f)
+        // 2秒間は攻撃中として待機に戻さない
+        if (attackTimer >= 2.0f)
         {
             return true;
         }

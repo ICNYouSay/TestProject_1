@@ -728,6 +728,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4818617912237638832, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
       insertIndex: -1
       addedObject: {fileID: 540623055}
+    - targetCorrespondingSourceObject: {fileID: 4818617912237638832, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1310783535}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
 --- !u!1 &540623051
@@ -741,7 +744,6 @@ GameObject:
   - component: {fileID: 540623055}
   - component: {fileID: 540623054}
   - component: {fileID: 540623052}
-  - component: {fileID: 540623053}
   m_Layer: 0
   m_Name: ClawHitbox
   m_TagString: Untagged
@@ -761,36 +763,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a0fcc1e2147f074ebbe504efedf829c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHitbox
-  attackDamage: 100
+  attackDamage: 200
   startDelay: 0.5
   activeDuration: 0.5
---- !u!54 &540623053
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 540623051}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &540623054
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2111,7 +2086,6 @@ GameObject:
   - component: {fileID: 1292303976}
   - component: {fileID: 1292303975}
   - component: {fileID: 1292303973}
-  - component: {fileID: 1292303974}
   m_Layer: 0
   m_Name: BiteHitbox
   m_TagString: Untagged
@@ -2134,33 +2108,6 @@ MonoBehaviour:
   attackDamage: 100
   startDelay: 0.5
   activeDuration: 0.5
---- !u!54 &1292303974
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1292303972}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &1292303975
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2197,6 +2144,75 @@ Transform:
   m_Children: []
   m_Father: {fileID: 345244363}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1310783534
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1310783535}
+  - component: {fileID: 1310783537}
+  - component: {fileID: 1310783536}
+  m_Layer: 0
+  m_Name: TailHitbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1310783535
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1310783534}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.21814407, y: -0.21814407, z: -0.67261666, w: 0.67261666}
+  m_LocalPosition: {x: -0.009, y: -0.0001, z: -0.002}
+  m_LocalScale: {x: 0.0027391652, y: 0.0027391654, z: 0.0027391654}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 345244363}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1310783536
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1310783534}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 12
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1310783537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1310783534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a0fcc1e2147f074ebbe504efedf829c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHitbox
+  attackDamage: 150
+  startDelay: 0.5
+  activeDuration: 0.5
 --- !u!1 &1390906829
 GameObject:
   m_ObjectHideFlags: 0
@@ -3238,10 +3254,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fdbe233ab5bb84418ccaa3637eb8de0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStatus
-  maxHP: 1000
+  maxHP: 100000
   currentHP: 0
-  baseDefence: 10
-  baseAttack: 20
+  baseDefence: 20
+  baseAttack: 50
   givePower: 5
   experience: 50
   buffManager: {fileID: 0}

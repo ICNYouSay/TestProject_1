@@ -32,17 +32,23 @@ public class BossTransition : IEnemyTransition
                     }
                     else
                     {
-                        // 攻撃範囲内に入ったら移動を止め、50%の確率でかみつきかクローに移行
+                        // 攻撃範囲内に入ったら移動を止める
                         boss.StopMove();
 
+                        // 確率で攻撃を変更
                         float randomValue = Random.value;
-                        if (randomValue < 0.5f)
+
+                        if (randomValue < 0.33f)
                         {
-                            return boss.BiteState;
+                            return boss.BiteState; // 約33% かみつき
+                        }
+                        else if (randomValue < 0.66f)
+                        {
+                            return boss.ClawState; // 約33% クロー
                         }
                         else
                         {
-                            return boss.ClawState;
+                            return boss.TailState; // 残り約34% しっぽ回転
                         }
                     }
                 }
@@ -64,6 +70,15 @@ public class BossTransition : IEnemyTransition
 
         // クロー攻撃が終わったとき
         if (currentState is ClawState)
+        {
+            if (boss.IsAttackFinished())
+            {
+                return boss.IdleState;
+            }
+        }
+
+        // しっぽ回転攻撃が終わったとき
+        if (currentState is TailState)
         {
             if (boss.IsAttackFinished())
             {
