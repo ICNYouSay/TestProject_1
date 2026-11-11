@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Playables;
 
 // ボス敵のベースクラス
 public class BossEnemy : EnemyBase
@@ -19,6 +20,13 @@ public class BossEnemy : EnemyBase
 
     private float attackTimer = 0f;                   // 攻撃の硬直用タイマー
 
+    [Header("ボス撃破用のTimeLine")]
+    [SerializeField]
+    public PlayableDirector BossDefeatedTimeLine; // ボス撃破時のTimeLineをInspectorで割り当てる
+
+    // 二重実行防止
+    private bool isStarting = false;
+
     protected override void Awake()
     {
         base.Awake();
@@ -37,6 +45,15 @@ public class BossEnemy : EnemyBase
     protected override void Update()
     {
         base.Update();
+
+        // デバッグ用 ボス撃破演出(カメラワーク)
+        if (Input.GetKeyDown(KeyCode.P) && !isStarting)
+        {
+            isStarting = true;
+            // ボス撃破カメラワーク開始
+            BossDefeatedTimeLine.Play();
+        }
+
     }
 
     // プレイヤーを見つけているか
