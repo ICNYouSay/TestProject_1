@@ -179,8 +179,8 @@ public class BossEnemy : EnemyBase
     {
         attackTimer += Time.deltaTime;
 
-        // 2•bŠÔ‚ÍUŒ‚’†‚Æ‚µ‚Ä‘Ò‹@‚É–ß‚³‚È‚¢
-        if (attackTimer >= 2.0f)
+        // 4•bŠÔ‚ÍUŒ‚’†‚Æ‚µ‚Ä‘Ò‹@‚É–ß‚³‚È‚¢
+        if (attackTimer >= 4.0f)
         {
             return true;
         }
