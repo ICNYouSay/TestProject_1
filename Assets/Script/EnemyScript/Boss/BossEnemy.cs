@@ -56,7 +56,12 @@ public class BossEnemy : EnemyBase
         // デバッグ用 ボス撃破演出(カメラワーク)
         if (Input.GetKeyDown(KeyCode.P) && !isStarting)
         {
+            // 演出を開始する
             isStarting = true;
+
+            // ボスの状態を死亡ステートに切り替える
+            ChangeState(bossDyingState);
+
             // ボス撃破カメラワーク開始
             BossDefeatedTimeLine.Play();
         }
