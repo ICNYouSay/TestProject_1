@@ -10,6 +10,10 @@ public class BiteState : EnemyState
         {
             boss.StopMove();
             boss.ResetAttackTimer();
+
+            // アニメーション
+            boss.PlayAnimation("Bite");
+
             Debug.Log("ボスの「かみつき」攻撃！");
             boss.BiteAttack();
         }

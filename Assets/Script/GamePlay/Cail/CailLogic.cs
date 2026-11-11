@@ -82,7 +82,7 @@ public class CailLogic : ICharacterLogic
 	public void UniqueSkillA(NetworkCharacterController ncc)
 	{
 		cailAnim.GungnirPressed();
-		ncc.Move(new Vector3(0, 0, 50));
+		ncc.Move(new Vector3(0, 0, 500));
 
 		// TriggerHitbox‚ğŒÄ‚Ño‚·
 		if (gungnirHitbox != null)

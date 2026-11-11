@@ -38,18 +38,27 @@ public class BossTransition : IEnemyTransition
                         // 確率で攻撃を変更
                         float randomValue = Random.value;
 
-                        if (randomValue < 0.33f)
+                        if (randomValue < 0.2f)
                         {
-                            return boss.BiteState; // 約33% かみつき
+                            return boss.BiteState;   // 約20% かみつき
                         }
-                        else if (randomValue < 0.66f)
+                        else if (randomValue < 0.4f)
                         {
-                            return boss.ClawState; // 約33% クロー
+                            return boss.ClawState;   // 約20% クロー
+                        }
+                        else if (randomValue < 0.6f)
+                        {
+                            return boss.TailState;   // 約20% しっぽ
+                        }
+                        else if (randomValue < 0.8f)
+                        {
+                            return boss.BreathState; // 約20% ブレス攻撃
                         }
                         else
                         {
-                            return boss.TailState; // 残り約34% しっぽ回転
+                            return boss.RushState;   // 20% 突進攻撃
                         }
+
                     }
                 }
             }
@@ -67,7 +76,6 @@ public class BossTransition : IEnemyTransition
                 return boss.IdleState;
             }
         }
-
         // クロー攻撃が終わったとき
         if (currentState is ClawState)
         {
@@ -76,7 +84,6 @@ public class BossTransition : IEnemyTransition
                 return boss.IdleState;
             }
         }
-
         // しっぽ回転攻撃が終わったとき
         if (currentState is TailState)
         {
@@ -85,7 +92,22 @@ public class BossTransition : IEnemyTransition
                 return boss.IdleState;
             }
         }
-
+        // ブレス攻撃が終わったとき
+        if (currentState is BreathState)
+        {
+            if (boss.IsAttackFinished())
+            {
+                return boss.IdleState;
+            }
+        }
+        // 突進攻撃が終わったとき
+        if (currentState is RushState)
+        {
+            if (boss.IsAttackFinished())
+            {
+                return boss.IdleState;
+            }
+        }
         return null;
     }
 }

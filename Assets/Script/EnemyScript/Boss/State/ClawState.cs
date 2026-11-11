@@ -10,6 +10,10 @@ public class ClawState : EnemyState
         {
             boss.StopMove();
             boss.ResetAttackTimer();
+
+            // アニメーション
+            boss.PlayAnimation("Claw");
+
             Debug.Log("ボスの爪攻撃！");
             boss.ClawAttack();
         }

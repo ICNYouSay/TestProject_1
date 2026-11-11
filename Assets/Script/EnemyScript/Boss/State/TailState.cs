@@ -10,6 +10,10 @@ public class TailState : EnemyState
         {
             boss.StopMove();
             boss.ResetAttackTimer();
+
+            // アニメーション
+            boss.PlayAnimation("Tail");
+
             Debug.Log("ボスの「しっぽ回転」攻撃！");
             boss.TailAttack();
         }
