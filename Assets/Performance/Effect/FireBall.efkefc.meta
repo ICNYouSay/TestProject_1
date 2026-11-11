@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Performance/Effect/FireBall.efkefc.meta
 guid: 610f4c0018c3de4469d873543933375b
 DefaultImporter:
+========
+guid: e3e1b760a4fc1a34da58394c1fc0e223
+NativeFormatImporter:
+>>>>>>>> 06f16f26b4ef39209a8101520d270046c03a774e:Assets/Animation/Boss/Armature_Gomegajius_claw.anim.meta
   externalObjects: {}
+  mainObjectFileID: 7400000
   userData: 
   assetBundleName: 
   assetBundleVariant: 

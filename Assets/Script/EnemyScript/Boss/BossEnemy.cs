@@ -105,6 +105,9 @@ public class BossEnemy : EnemyBase
 
         transform.position += direction * moveSpeed * Time.deltaTime;
 
+        // ƒAƒjƒ[ƒVƒ‡ƒ“
+        PlayAnimation("Move");
+
         if (anim != null)
         {
            // anim.speed = 1.0f;
@@ -176,8 +179,8 @@ public class BossEnemy : EnemyBase
     {
         attackTimer += Time.deltaTime;
 
-        // 2•bŠÔ‚ÍUŒ‚’†‚Æ‚µ‚Ä‘Ò‹@‚É–ß‚³‚È‚¢
-        if (attackTimer >= 2.0f)
+        // 4•bŠÔ‚ÍUŒ‚’†‚Æ‚µ‚Ä‘Ò‹@‚É–ß‚³‚È‚¢
+        if (attackTimer >= 4.0f)
         {
             return true;
         }

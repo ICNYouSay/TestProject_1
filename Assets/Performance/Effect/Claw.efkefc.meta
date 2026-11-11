@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Performance/Effect/Claw.efkefc.meta
 guid: 1b830ce70b77bd1409f8e98a7cd6b4bb
 DefaultImporter:
+========
+guid: cdffa949897a5fb4dadd45a05deb6a83
+NativeFormatImporter:
+>>>>>>>> 06f16f26b4ef39209a8101520d270046c03a774e:Assets/Animation/Boss/Armature_Gomegajius_breath.anim.meta
   externalObjects: {}
+  mainObjectFileID: 7400000
   userData: 
   assetBundleName: 
   assetBundleVariant: 

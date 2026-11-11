@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Performance/Effect/BiteEffect.efkefc.meta
 guid: 229e2a70b2b39ee4986fc35831b8b21a
 DefaultImporter:
+========
+guid: c8253a5593ecf6f4eb1a5872b67c7ba6
+NativeFormatImporter:
+>>>>>>>> 06f16f26b4ef39209a8101520d270046c03a774e:Assets/Animation/Boss/Armature_Gomegajius_biting.anim.meta
   externalObjects: {}
+  mainObjectFileID: 7400000
   userData: 
   assetBundleName: 
   assetBundleVariant: 
