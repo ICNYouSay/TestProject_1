@@ -8,10 +8,10 @@ public class BossTransition : IEnemyTransition
         BossEnemy boss = enemy as BossEnemy;
         if (boss == null) return null;
 
-        // €–Só‘Ô‚È‚ç‰½‚à‚µ‚È‚¢
+        // €–Só‘Ô‚È‚ç‚Ç‚ñ‚Èó‘Ô‚©‚ç‚Å‚àˆêu‚ÅBossDyingState‚ÖˆÚs‚·‚é
         if (boss.IsDead())
         {
-            return boss.BossDyingState; 
+            return boss.BossDyingState;
         }
 
         // ‘Ò‹@ó‘Ô‚Ì‚Æ‚«

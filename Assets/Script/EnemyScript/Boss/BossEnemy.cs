@@ -110,7 +110,7 @@ public class BossEnemy : EnemyBase
 
         if (anim != null)
         {
-           // anim.speed = 1.0f;
+            // anim.speed = 1.0f;
         }
     }
 
@@ -193,6 +193,37 @@ public class BossEnemy : EnemyBase
         if (anim != null)
         {
             anim.SetTrigger(triggerName);
+        }
+    }
+
+    // 死亡時のカメラ演出
+    public void PlayDeathCamera()
+    {
+        Debug.Log("ボスのカメラ演出スタート！");
+
+        if (BossDefeatedTimeLine != null)
+        {
+            BossDefeatedTimeLine.Play(); 
+        }
+
+        // 演出が終わったあとにボスを消す（例として3秒後に消滅）
+        StartCoroutine(DestroyBossAfterDelay(3.0f));
+    }
+
+    // ボスの消滅処理
+    private System.Collections.IEnumerator DestroyBossAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        // Photon Fusion対応ならDespawn、通常ならDestroy
+        var netObj = GetComponentInParent<Fusion.NetworkObject>();
+        if (netObj != null && netObj.Runner != null)
+        {
+            netObj.Runner.Despawn(netObj);
+        }
+        else
+        {
+            Destroy(this.gameObject);
         }
     }
 
