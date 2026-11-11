@@ -13,7 +13,7 @@ public class BossEnemy : EnemyBase
     [SerializeField] private EnemyHitbox breathHitbox;// ブレスの当たり判定
     [SerializeField] private EnemyHitbox rushHitbox;  // 突進の当たり判定
 
-    private Animator anim;                            // アニメーション
+    public Animator anim;                            // アニメーション
     private BiteState biteState;                      // かみつき攻撃のステート
     private ClawState clawState;                      // クロー攻撃のステート
     private TailState tailstate;                      // しっぽ攻撃のステート
@@ -38,6 +38,7 @@ public class BossEnemy : EnemyBase
     // 二重実行防止
     private bool isStarting = false;
 
+
     protected override void Awake()
     {
         base.Awake();
@@ -60,6 +61,8 @@ public class BossEnemy : EnemyBase
     protected override void Update()
     {
         base.Update();
+
+        anim.Update(Time.deltaTime);
 
         // デバッグ用 ボス撃破演出(カメラワーク)
         if (Input.GetKeyDown(KeyCode.P) && !isStarting)
@@ -107,7 +110,7 @@ public class BossEnemy : EnemyBase
 
         if (anim != null)
         {
-            anim.speed = 1.0f;
+           // anim.speed = 1.0f;
         }
     }
 
@@ -117,7 +120,7 @@ public class BossEnemy : EnemyBase
 
         if (anim != null)
         {
-            anim.speed = 0.0f;
+            //anim.speed = 0.0f;
         }
     }
 

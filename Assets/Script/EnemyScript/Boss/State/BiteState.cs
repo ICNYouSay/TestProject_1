@@ -25,5 +25,6 @@ public class BiteState : EnemyState
 
     public override void Exit(EnemyBase enemy)
     {
+        BossEnemy boss = enemy as BossEnemy;
     }
 }
