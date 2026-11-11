@@ -9,7 +9,7 @@ public class BossEnemy : EnemyBase
     [SerializeField] private float attackRange;       // 攻撃が届く距離
     [SerializeField] private EnemyHitbox biteHitbox;  // かみつき攻撃の当たり判定
     [SerializeField] private EnemyHitbox clawHitbox;  // クロー攻撃の当たり判定
-    [SerializeField] private EnemyHitbox tailHitbox; // しっぽ用の円形ヒットボックス
+    [SerializeField] private EnemyHitbox tailHitbox;  // しっぽ用の円形ヒットボックス
 
     private Animator anim;                            // アニメーション
     private BiteState biteState;                      // かみつき攻撃のステート
