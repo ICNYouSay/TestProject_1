@@ -11,12 +11,14 @@ public class BossEnemy : EnemyBase
     [SerializeField] private EnemyHitbox clawHitbox;  // クロー攻撃の当たり判定
     [SerializeField] private EnemyHitbox tailHitbox;  // しっぽ攻撃の当たり判定
     [SerializeField] private EnemyHitbox breathHitbox;// ブレスの当たり判定
+    [SerializeField] private EnemyHitbox rushHitbox;  // 突進の当たり判定
 
     private Animator anim;                            // アニメーション
     private BiteState biteState;                      // かみつき攻撃のステート
     private ClawState clawState;                      // クロー攻撃のステート
     private TailState tailstate;                      // しっぽ攻撃のステート
     private BreathState breathState;                  // ブレス攻撃のステート
+    private RushState rushState;                      // 突進攻撃のステート
     private BossDyingState bossDyingState;            // ボス死亡時のステート
 
     private float attackTimer;                        // 攻撃の硬直用タイマー
@@ -25,6 +27,7 @@ public class BossEnemy : EnemyBase
     public ClawState ClawState => clawState;
     public TailState TailState => tailstate;
     public BreathState BreathState => breathState;
+    public RushState RushState => rushState;
     public BossDyingState BossDyingState => bossDyingState;
     public float AttackRange => attackRange;
 
@@ -50,6 +53,7 @@ public class BossEnemy : EnemyBase
         clawState = new ClawState();
         tailstate = new TailState();
         breathState = new BreathState();
+        rushState = new RushState();
         bossDyingState = new BossDyingState();
     }
 
@@ -129,7 +133,6 @@ public class BossEnemy : EnemyBase
             biteHitbox.TriggerAttack();
         }
     }
-
     // クロー攻撃の処理
     public void ClawAttack()
     {
@@ -155,6 +158,15 @@ public class BossEnemy : EnemyBase
         if (breathHitbox != null)
         {
             breathHitbox.TriggerAttack();
+        }
+    }
+    // 突進攻撃の処理
+    public void RushAttack()
+    {
+        Debug.Log("ボスの「突進」処理実行！");
+        if (rushHitbox != null)
+        {
+            rushHitbox.TriggerAttack();
         }
     }
     public override bool IsAttackFinished()
