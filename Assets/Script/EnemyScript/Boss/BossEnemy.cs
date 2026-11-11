@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Playables;
 
 // ボス敵のベースクラス
 public class BossEnemy : EnemyBase
@@ -8,16 +9,34 @@ public class BossEnemy : EnemyBase
     [SerializeField] private float attackRange;       // 攻撃が届く距離
     [SerializeField] private EnemyHitbox biteHitbox;  // かみつき攻撃の当たり判定
     [SerializeField] private EnemyHitbox clawHitbox;  // クロー攻撃の当たり判定
+    [SerializeField] private EnemyHitbox tailHitbox;  // しっぽ攻撃の当たり判定
+    [SerializeField] private EnemyHitbox breathHitbox;// ブレスの当たり判定
+    [SerializeField] private EnemyHitbox rushHitbox;  // 突進の当たり判定
 
     private Animator anim;                            // アニメーション
     private BiteState biteState;                      // かみつき攻撃のステート
     private ClawState clawState;                      // クロー攻撃のステート
+    private TailState tailstate;                      // しっぽ攻撃のステート
+    private BreathState breathState;                  // ブレス攻撃のステート
+    private RushState rushState;                      // 突進攻撃のステート
+    private BossDyingState bossDyingState;            // ボス死亡時のステート
+
+    private float attackTimer;                        // 攻撃の硬直用タイマー
 
     public BiteState BiteState => biteState;
     public ClawState ClawState => clawState;
+    public TailState TailState => tailstate;
+    public BreathState BreathState => breathState;
+    public RushState RushState => rushState;
+    public BossDyingState BossDyingState => bossDyingState;
     public float AttackRange => attackRange;
 
-    private float attackTimer = 0f;                   // 攻撃の硬直用タイマー
+    [Header("ボス撃破用のTimeLine")]
+    [SerializeField]
+    public PlayableDirector BossDefeatedTimeLine;     // ボス撃破時のTimeLineをInspectorで割り当てる
+
+    // 二重実行防止
+    private bool isStarting = false;
 
     protected override void Awake()
     {
@@ -32,11 +51,29 @@ public class BossEnemy : EnemyBase
         // ステートの生成
         biteState = new BiteState();
         clawState = new ClawState();
+        tailstate = new TailState();
+        breathState = new BreathState();
+        rushState = new RushState();
+        bossDyingState = new BossDyingState();
     }
 
     protected override void Update()
     {
         base.Update();
+
+        // デバッグ用 ボス撃破演出(カメラワーク)
+        if (Input.GetKeyDown(KeyCode.P) && !isStarting)
+        {
+            // 演出を開始する
+            isStarting = true;
+
+            // ボスの状態を死亡ステートに切り替える
+            ChangeState(bossDyingState);
+
+            // ボス撃破カメラワーク開始
+            BossDefeatedTimeLine.Play();
+        }
+
     }
 
     // プレイヤーを見つけているか
@@ -96,7 +133,6 @@ public class BossEnemy : EnemyBase
             biteHitbox.TriggerAttack();
         }
     }
-
     // クロー攻撃の処理
     public void ClawAttack()
     {
@@ -106,16 +142,52 @@ public class BossEnemy : EnemyBase
             clawHitbox.TriggerAttack();
         }
     }
-
+    // しっぽ攻撃の処理
+    public void TailAttack()
+    {
+        Debug.Log("ボスの「しっぽ回転」処理実行！");
+        if (tailHitbox != null)
+        {
+            tailHitbox.TriggerAttack();
+        }
+    }
+    // ブレス攻撃の処理
+    public void BreathAttack()
+    {
+        Debug.Log("ボスの「ブレス」処理実行！");
+        if (breathHitbox != null)
+        {
+            breathHitbox.TriggerAttack();
+        }
+    }
+    // 突進攻撃の処理
+    public void RushAttack()
+    {
+        Debug.Log("ボスの「突進」処理実行！");
+        if (rushHitbox != null)
+        {
+            rushHitbox.TriggerAttack();
+        }
+    }
     public override bool IsAttackFinished()
     {
         attackTimer += Time.deltaTime;
 
-        // 1秒間は攻撃中として待機に戻さない
-        if (attackTimer >= 1.0f)
+        // 2秒間は攻撃中として待機に戻さない
+        if (attackTimer >= 2.0f)
         {
             return true;
         }
         return false;
     }
+
+    // アニメーションのトリガーを安全に引く共通関数
+    public void PlayAnimation(string triggerName)
+    {
+        if (anim != null)
+        {
+            anim.SetTrigger(triggerName);
+        }
+    }
+
 }
