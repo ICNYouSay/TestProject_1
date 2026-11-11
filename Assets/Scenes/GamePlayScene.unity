@@ -737,7 +737,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4818617912237638832, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1734781524}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5302139577693249034, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1664741572}
   m_SourcePrefab: {fileID: 100100000, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
 --- !u!1 &540623051
 GameObject:
@@ -3331,6 +3334,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1809196321}
   - component: {fileID: 1809196320}
+  - component: {fileID: 1809196322}
   m_Layer: 0
   m_Name: TimelineManeger
   m_TagString: Untagged
@@ -3372,12 +3376,30 @@ Transform:
   m_GameObject: {fileID: 1809196319}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.98456, y: 62.73542, z: 15.14114}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1809196322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809196319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35d396bcb8480c24eb784eebe6096a99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Effekseer::Effekseer.EffekseerEmitter
+  TimingOfUpdate: 0
+  EmitterScale: 0
+  TimeScale: 0
+  effectAsset: {fileID: 11400000, guid: fb78e39d15b04ef4ea5ee7acdfac023c, type: 2}
+  playOnStart: 1
+  isLooping: 1
 --- !u!1 &1874011458
 GameObject:
   m_ObjectHideFlags: 0
@@ -3453,6 +3475,7 @@ MonoBehaviour:
   tailHitbox: {fileID: 1310783537}
   breathHitbox: {fileID: 833435676}
   rushHitbox: {fileID: 1734781525}
+  anim: {fileID: 0}
   BossDefeatedTimeLine: {fileID: 2084158876}
 --- !u!1 &1916070669 stripped
 GameObject:
