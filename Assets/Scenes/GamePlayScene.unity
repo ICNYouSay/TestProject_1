@@ -731,7 +731,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4818617912237638832, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1310783535}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5302139577693249034, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1664741572}
   m_SourcePrefab: {fileID: 100100000, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
 --- !u!1 &540623051
 GameObject:
@@ -2975,6 +2978,33 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &1664741571 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5302139577693249034, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
+  m_PrefabInstance: {fileID: 445409382}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1664741572
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664741571}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5fe10b58a7c761043940f9f4a1c5e41d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1671759680
 GameObject:
   m_ObjectHideFlags: 3
@@ -3280,6 +3310,8 @@ MonoBehaviour:
   biteHitbox: {fileID: 1292303973}
   clawHitbox: {fileID: 540623052}
   tailHitbox: {fileID: 1310783537}
+  anim: {fileID: 1664741572}
+  BossDefeatedTimeLine: {fileID: 2084158876}
 --- !u!1 &1916070669 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: cbf526b12401907458d558071b5b011b, type: 3}
