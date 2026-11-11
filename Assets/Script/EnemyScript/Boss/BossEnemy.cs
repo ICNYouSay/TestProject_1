@@ -102,6 +102,9 @@ public class BossEnemy : EnemyBase
 
         transform.position += direction * moveSpeed * Time.deltaTime;
 
+        // アニメーション
+        PlayAnimation("Move");
+
         if (anim != null)
         {
             anim.speed = 1.0f;
