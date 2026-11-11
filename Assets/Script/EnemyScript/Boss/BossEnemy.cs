@@ -206,11 +206,16 @@ public class BossEnemy : EnemyBase
     // 死亡時のカメラ演出
     public void PlayDeathCamera()
     {
-        Debug.Log("ボスのカメラ演出スタート！");
+        Debug.Log("【デバッグ】PlayDeathCameraが呼ばれました！");
 
         if (BossDefeatedTimeLine != null)
         {
-            BossDefeatedTimeLine.Play(); 
+            Debug.Log("【デバッグ】Timelineが割り当てられています！再生します！");
+            BossDefeatedTimeLine.Play();
+        }
+        else
+        {
+            Debug.LogError("【エラー】Timelineが割り当てられていません！");
         }
 
         // 演出が終わったあとにボスを消す(20秒後)

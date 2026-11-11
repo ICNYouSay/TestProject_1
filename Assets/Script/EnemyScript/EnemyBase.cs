@@ -102,40 +102,33 @@ public abstract class EnemyBase : MonoBehaviour
     //体力の減少処理
     public virtual void TakeDamage(int damage)
     {
-        //ダメージを受けたときの処理
         enemyStatus.TakeDamage(damage);
 
         if (HPBar != null)
         {
-            HPBar.SetActive(true); // HPバーを表示する
-        }
-
-        if (HPBar_Fill != null)
-        {
-            HPBar_Fill.fillAmount = (float)enemyStatus.CurrentHP / enemyStatus.MaxHP; // HPバーの割合を更新
+            HPBar.SetActive(true);
+            HPBar_Fill.fillAmount = (float)enemyStatus.CurrentHP / enemyStatus.MaxHP;
         }
 
         // HPが0以下になったら
         if (enemyStatus.IsDead())
         {
-            ChangeState(dyingState); // 死亡状態へ
+            ChangeState(dyingState);
 
-            // 当たり判定を即座に消す
+            // ボスの場合は消滅処理を自分で管理させるためにスキップする
+            if (this is BossEnemy)
+            {
+                Debug.Log("ボス死亡ステートへ移行。消滅はボス側で行います。");
+                return; 
+            }
+
+            // 雑魚敵はここから下の即消滅処理を行う
             Collider[] colliders = GetComponentsInChildren<Collider>();
-            foreach (var col in colliders)
-            {
-                col.enabled = false;
-            }
+            foreach (var col in colliders) col.enabled = false;
 
-            // 見た目を即座に非表示にして完全に消す
             Renderer[] renderers = GetComponentsInChildren<Renderer>();
-            foreach (var ren in renderers)
-            {
-                ren.enabled = false;
-            }
+            foreach (var ren in renderers) ren.enabled = false;
 
-            // 本体を消滅させる（Photon Fusion対応）
-            // もしFusionのNetworkObjectがついている場合
             var netObj = GetComponentInParent<Fusion.NetworkObject>();
             if (netObj != null && netObj.Runner != null)
             {
@@ -143,13 +136,10 @@ public abstract class EnemyBase : MonoBehaviour
             }
             else
             {
-                // 通常のUnityオブジェクトならこれで完全に消える
                 Destroy(this.gameObject);
             }
-
             Debug.Log($"【完全消滅】{gameObject.name} を消去しました！");
         }
-
     }
 
     //体力が0かどうかを判定する関数
