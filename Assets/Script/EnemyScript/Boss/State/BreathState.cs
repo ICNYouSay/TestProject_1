@@ -10,8 +10,11 @@ public class BreathState : EnemyState
         {
             boss.StopMove();
             boss.ResetAttackTimer();
-            Debug.Log("ボスの「ブレス」攻撃！");
 
+            // アニメーション
+            boss.PlayAnimation("Breath");
+
+            Debug.Log("ボスの「ブレス」攻撃！");
             boss.BreathAttack();
         }
     }

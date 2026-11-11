@@ -14,6 +14,10 @@ public class RushState : EnemyState
             boss.StopMove();
             boss.ResetAttackTimer();
             rushTimer = 0f;
+
+            // アニメーション
+            //boss.PlayAnimation("Rush");
+
             Debug.Log("ボスの「突進」攻撃！");
 
             boss.RushAttack();

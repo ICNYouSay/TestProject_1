@@ -180,4 +180,14 @@ public class BossEnemy : EnemyBase
         }
         return false;
     }
+
+    // アニメーションのトリガーを安全に引く共通関数
+    public void PlayAnimation(string triggerName)
+    {
+        if (anim != null)
+        {
+            anim.SetTrigger(triggerName);
+        }
+    }
+
 }
