@@ -30,7 +30,7 @@ public class RushState : EnemyState
             if (rushTimer < 0.5f)
             {
                 // ƒ{ƒX‚ÌŒü‚¢‚Ä‚¢‚é•ûŒü‚É‚‘¬ˆÚ“®
-                boss.transform.position += boss.transform.forward * 25.0f * Time.deltaTime;
+                boss.transform.position += boss.transform.forward * 30.0f * Time.deltaTime;
             }
         }
     }
