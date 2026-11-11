@@ -28,11 +28,6 @@ public class PlayerSetup : NetworkBehaviour
         {
             SelectedCharacterID = GameData.SelectedCharacterIndex;
 
-            EquippedAbility0 = GameData.EquippedAbilities[0];
-            EquippedAbility1 = GameData.EquippedAbilities[1];
-            EquippedAbility2 = GameData.EquippedAbilities[2];
-            EquippedAbility3 = GameData.EquippedAbilities[3];
-            EquippedAbility4 = GameData.EquippedAbilities[4];
         }
 
         // •”‰®‚É“ü‚Á‚½uŠÔi‚Ü‚½‚ÍID‚ªŒˆ‚Ü‚Á‚½uŠÔj‚ÉŒ©‚½–Ú‚ğ¶¬
