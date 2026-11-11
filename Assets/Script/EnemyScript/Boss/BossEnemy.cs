@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Playables;
 
 // ボス敵のベースクラス
 public class BossEnemy : EnemyBase
@@ -22,8 +23,9 @@ public class BossEnemy : EnemyBase
     public ClawState ClawState => clawState;
     public TailState TailState => tailstate;
     public float AttackRange => attackRange;
-    public BossDyingState BossDyingState => bossDyingState;
 
+    private float attackTimer;                   // 攻撃の硬直用タイマー
+  
     protected override void Awake()
     {
         base.Awake();
@@ -44,6 +46,15 @@ public class BossEnemy : EnemyBase
     protected override void Update()
     {
         base.Update();
+
+        // デバッグ用 ボス撃破演出(カメラワーク)
+        if (Input.GetKeyDown(KeyCode.P) && !isStarting)
+        {
+            isStarting = true;
+            // ボス撃破カメラワーク開始
+            BossDefeatedTimeLine.Play();
+        }
+
     }
 
     // プレイヤーを見つけているか
