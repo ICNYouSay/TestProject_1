@@ -95,22 +95,29 @@ public class BossEnemy : EnemyBase
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player == null) return;
 
-        Vector3 direction = (player.transform.position - transform.position).normalized;
-        direction.y = 0;
+        float dist = Vector3.Distance(transform.position, player.transform.position);
 
-        if (direction != Vector3.zero)
+        // 攻撃範囲より遠いときだけ移動する
+        if (dist > attackRange)
         {
-            transform.rotation = Quaternion.LookRotation(direction);
+            Vector3 direction = (player.transform.position - transform.position).normalized;
+            direction.y = 0;
+
+            if (direction != Vector3.zero)
+            {
+                transform.rotation = Quaternion.LookRotation(direction);
+            }
+
+            // プレイヤーに向かって移動する
+            transform.position += direction * moveSpeed * Time.deltaTime;
+
+            // 動いているのでアニメーションを再生する
+            PlayAnimation("Move");
         }
-
-        transform.position += direction * moveSpeed * Time.deltaTime;
-
-        // アニメーション
-        PlayAnimation("Move");
-
-        if (anim != null)
+        else
         {
-            // anim.speed = 1.0f;
+            // 攻撃範囲内に入ったら移動を止める
+            StopMove();
         }
     }
 
@@ -206,8 +213,8 @@ public class BossEnemy : EnemyBase
             BossDefeatedTimeLine.Play(); 
         }
 
-        // 演出が終わったあとにボスを消す（例として3秒後に消滅）
-        StartCoroutine(DestroyBossAfterDelay(3.0f));
+        // 演出が終わったあとにボスを消す(20秒後)
+        StartCoroutine(DestroyBossAfterDelay(20.0f));
     }
 
     // ボスの消滅処理
