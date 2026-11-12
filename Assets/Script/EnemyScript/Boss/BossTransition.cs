@@ -42,22 +42,22 @@ public class BossTransition : IEnemyTransition
                         {
                             return boss.BiteState;   // 約20% かみつき
                         }
-                        else if (randomValue < 0.4f)
-                        {
-                            return boss.ClawState;   // 約20% クロー
-                        }
-                        else if (randomValue < 0.6f)
-                        {
-                            return boss.TailState;   // 約20% しっぽ
-                        }
-                        else if (randomValue < 0.8f)
-                        {
-                            return boss.BreathState; // 約20% ブレス攻撃
-                        }
-                        else
-                        {
-                            return boss.RushState;   // 20% 突進攻撃
-                        }
+                        //else if (randomValue < 0.4f)
+                        //{
+                        //    return boss.ClawState;   // 約20% クロー
+                        //}
+                        //else if (randomValue < 0.6f)
+                        //{
+                        //    return boss.TailState;   // 約20% しっぽ
+                        //}
+                        //else if (randomValue < 0.8f)
+                        //{
+                        //    return boss.BreathState; // 約20% ブレス攻撃
+                        //}
+                        //else
+                        //{
+                        //    return boss.RushState;   // 20% 突進攻撃
+                        //}
 
                     }
                 }
