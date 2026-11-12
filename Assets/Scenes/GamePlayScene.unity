@@ -555,7 +555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fdbe233ab5bb84418ccaa3637eb8de0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStatus
-  maxHP: 100000
+  maxHP: 10000
   currentHP: 0
   baseDefence: 20
   baseAttack: 50
@@ -734,6 +734,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1874011459}
     m_Modifications:
+    - target: {fileID: 1613463635327641661, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1613463635327641661, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1613463635327641661, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 4524145987589312268, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
       propertyPath: moveSpeed
       value: 8
@@ -797,6 +809,62 @@ PrefabInstance:
     - target: {fileID: 5302139577693249034, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
       propertyPath: m_Name
       value: Gomegajius
+      objectReference: {fileID: 0}
+    - target: {fileID: 6516750600137892707, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 6516750600137892707, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 6516750600137892707, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 6809237940977939868, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6809237940977939868, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6809237940977939868, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6809237940977939868, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.0086
+      objectReference: {fileID: 0}
+    - target: {fileID: 6809237940977939868, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6809237940977939868, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6809237940977939868, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6809237940977939868, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6809237940977939868, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.01186
+      objectReference: {fileID: 0}
+    - target: {fileID: 6809237940977939868, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6809237940977939868, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4524145987589312268, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
@@ -3508,7 +3576,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fdbe233ab5bb84418ccaa3637eb8de0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStatus
-  maxHP: 1000
+  maxHP: 10000
   currentHP: 0
   baseDefence: 20
   baseAttack: 50
@@ -3536,7 +3604,6 @@ MonoBehaviour:
   tailHitbox: {fileID: 1310783537}
   breathHitbox: {fileID: 833435676}
   rushHitbox: {fileID: 1734781525}
-  anim: {fileID: 0}
   BossDefeatedTimeLine: {fileID: 2084158876}
 --- !u!136 &1874011462
 CapsuleCollider:
