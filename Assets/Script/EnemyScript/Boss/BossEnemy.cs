@@ -14,6 +14,7 @@ public class BossEnemy : EnemyBase
     [SerializeField] private EnemyHitbox rushHitbox;  // 突進の当たり判定
 
     private Animator anim;                            // アニメーション
+    private CharacterController charController;       // CharacterController用
     private BiteState biteState;                      // かみつき攻撃のステート
     private ClawState clawState;                      // クロー攻撃のステート
     private TailState tailstate;                      // しっぽ攻撃のステート
@@ -48,6 +49,9 @@ public class BossEnemy : EnemyBase
 
         // プレハブ内のGomegajiusからAnimatorを探す
         anim = GetComponentInChildren<Animator>();
+
+        // CharacterControllerを取得する
+        charController = GetComponent<CharacterController>();
 
         // ステートの生成
         biteState = new BiteState();
@@ -109,7 +113,24 @@ public class BossEnemy : EnemyBase
             }
 
             // プレイヤーに向かって移動する
-            transform.position += direction * moveSpeed * Time.deltaTime;
+            Vector3 moveDir = direction * moveSpeed;
+
+            // 地面にしっかり接地させるための処理
+            if (charController.isGrounded)
+            {
+                // 地面にいるときは下向きに押し付ける力を入れる
+                moveDir.y = -2.0f;
+            }
+            else
+            {
+                // 空中にいるときは重力を加算していく
+                moveDir.y += Physics.gravity.y * Time.deltaTime;
+            }
+
+            if (charController != null)
+            {
+                charController.Move(moveDir * Time.deltaTime);
+            }
 
             // 動いているのでアニメーションを再生する
             PlayAnimation("Move");
@@ -182,6 +203,20 @@ public class BossEnemy : EnemyBase
             rushHitbox.TriggerAttack();
         }
     }
+
+    // 突進中の移動用関数
+    public void MoveForRush(float speed)
+    {
+        Vector3 moveDir = transform.forward * speed;
+        moveDir.y += Physics.gravity.y * Time.deltaTime;
+
+        if (charController != null)
+        {
+            charController.Move(moveDir * Time.deltaTime);
+        }
+    }
+
+    // 攻撃の終了処理
     public override bool IsAttackFinished()
     {
         attackTimer += Time.deltaTime;
