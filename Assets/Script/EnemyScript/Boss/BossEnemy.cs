@@ -218,8 +218,8 @@ public class BossEnemy : EnemyBase
             Debug.LogError("【エラー】Timelineが割り当てられていません！");
         }
 
-        // 演出が終わったあとにボスを消す(20秒後)
-        StartCoroutine(DestroyBossAfterDelay(20.0f));
+        // 演出が終わったあとにボスを消す(12秒後)
+        StartCoroutine(DestroyBossAfterDelay(12.0f));
     }
 
     // ボスの消滅処理
