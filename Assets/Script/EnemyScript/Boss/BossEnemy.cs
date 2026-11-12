@@ -227,7 +227,11 @@ public class BossEnemy : EnemyBase
     {
         yield return new WaitForSeconds(delay);
 
-        // Photon Fusion対応ならDespawn、通常ならDestroy
+        // シーンを遷移する
+        Debug.Log("ボス撃破！リザルトシーンへ移動します。");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("ResultScene");
+
+        // その後ボスを消去
         var netObj = GetComponentInParent<Fusion.NetworkObject>();
         if (netObj != null && netObj.Runner != null)
         {
