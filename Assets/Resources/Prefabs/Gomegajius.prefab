@@ -310,7 +310,7 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: c86ee0eee389c11499bfbc14610afab9, type: 3}
-      insertIndex: -1
+      insertIndex: 0
       addedObject: {fileID: 6809237940977939868}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c86ee0eee389c11499bfbc14610afab9, type: 3}
@@ -346,6 +346,12 @@ MonoBehaviour:
   HPBar_Fill: {fileID: 8041918054669699858}
   moveSpeed: 3
   attackRange: 4
+  biteHitbox: {fileID: 0}
+  clawHitbox: {fileID: 0}
+  tailHitbox: {fileID: 0}
+  breathHitbox: {fileID: 0}
+  rushHitbox: {fileID: 0}
+  BossDefeatedTimeLine: {fileID: 0}
 --- !u!114 &8529680359295633230
 MonoBehaviour:
   m_ObjectHideFlags: 0
