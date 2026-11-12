@@ -405,6 +405,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &254163409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 254163405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 244132d072b2fcf4c973673ee60ef361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EffectEvent
+  effect_1: {fileID: 0}
+  effect_2: {fileID: 0}
+  effect_3: {fileID: 0}
+  effect_4: {fileID: 0}
 --- !u!1001 &333110111
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -480,6 +496,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cbf526b12401907458d558071b5b011b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 254163407}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cbf526b12401907458d558071b5b011b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 254163409}
   m_SourcePrefab: {fileID: 100100000, guid: cbf526b12401907458d558071b5b011b, type: 3}
 --- !u!4 &345244363 stripped
 Transform:
@@ -508,6 +527,41 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &345244365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218620558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 244132d072b2fcf4c973673ee60ef361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EffectEvent
+  effect_1: {fileID: 5928384622539942762, guid: 7b7ce5b175fb66b42b9e4062a585f734, type: 3}
+  effect_2: {fileID: 0}
+  effect_3: {fileID: 0}
+  effect_4: {fileID: 0}
+--- !u!114 &345244366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218620558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fdbe233ab5bb84418ccaa3637eb8de0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyStatus
+  maxHP: 100000
+  currentHP: 0
+  baseDefence: 20
+  baseAttack: 50
+  givePower: 5
+  experience: 50
+  buffManager: {fileID: 0}
 --- !u!1 &368095446 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3a3fb57f6d463bc45be9b0622eae4377, type: 3}
@@ -768,6 +822,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5302139577693249034, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
       insertIndex: -1
       addedObject: {fileID: 345244364}
+    - targetCorrespondingSourceObject: {fileID: 5302139577693249034, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 345244366}
+    - targetCorrespondingSourceObject: {fileID: 5302139577693249034, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 345244365}
   m_SourcePrefab: {fileID: 100100000, guid: 230cf95b0a2f0004b98df30c28650985, type: 3}
 --- !u!1 &540623051
 GameObject:
@@ -3410,7 +3470,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1874011459}
   - component: {fileID: 1874011461}
-  - component: {fileID: 1874011460}
   m_Layer: 0
   m_Name: BoosRoot
   m_TagString: Untagged
@@ -3435,25 +3494,6 @@ Transform:
   - {fileID: 671014385}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1874011460
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1874011458}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fdbe233ab5bb84418ccaa3637eb8de0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyStatus
-  maxHP: 100000
-  currentHP: 0
-  baseDefence: 20
-  baseAttack: 50
-  givePower: 5
-  experience: 50
-  buffManager: {fileID: 0}
 --- !u!114 &1874011461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3475,7 +3515,7 @@ MonoBehaviour:
   tailHitbox: {fileID: 1310783537}
   breathHitbox: {fileID: 833435676}
   rushHitbox: {fileID: 1734781525}
-  anim: {fileID: 0}
+  anim: {fileID: 345244364}
   BossDefeatedTimeLine: {fileID: 2084158876}
 --- !u!1 &1916070669 stripped
 GameObject:
