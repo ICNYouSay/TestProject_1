@@ -634,25 +634,6 @@ GameObject:
   - component: {fileID: 368095450}
   m_Layer: 0
   m_Name: 
-  m_EditorClassIdentifier: Effekseer::Effekseer.EffekseerEmitter
-  TimingOfUpdate: 0
-  EmitterScale: 0
-  TimeScale: 0
-  effectAsset: {fileID: 11400000, guid: df39d4cfde7622444a55da6e6ba71e18, type: 2}
-  playOnStart: 0
-  isLooping: 0
---- !u!1 &368095446
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 368095451}
-  - component: {fileID: 368095450}
-  m_Layer: 0
-  m_Name: 
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1155,7 +1136,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 630828459}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.011417294, y: 0.6519603, z: -0.07667025, w: 0.75428057}
+  m_LocalRotation: {x: -0.0114172995, y: 0.6519603, z: -0.076670244, w: 0.75428057}
   m_LocalPosition: {x: -1.8997252, y: 1.7000277, z: -2.499874}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2664,7 +2645,7 @@ MonoBehaviour:
   TimingOfUpdate: 0
   EmitterScale: 1
   TimeScale: 0
-  effectAsset: {fileID: 11400000, guid: 1dbace12ed4b84147811c8c193d0d272, type: 2}
+  effectAsset: {fileID: 11400000, guid: df39d4cfde7622444a55da6e6ba71e18, type: 2}
   playOnStart: 0
   isLooping: 0
 --- !u!1 &1561006106
