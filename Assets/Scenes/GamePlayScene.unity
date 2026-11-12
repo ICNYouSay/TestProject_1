@@ -3470,9 +3470,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1874011459}
   - component: {fileID: 1874011461}
+  - component: {fileID: 1874011460}
+  - component: {fileID: 1874011462}
   m_Layer: 0
   m_Name: BoosRoot
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3494,6 +3496,25 @@ Transform:
   - {fileID: 671014385}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1874011460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1874011458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fdbe233ab5bb84418ccaa3637eb8de0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyStatus
+  maxHP: 1000
+  currentHP: 0
+  baseDefence: 20
+  baseAttack: 50
+  givePower: 5
+  experience: 50
+  buffManager: {fileID: 0}
 --- !u!114 &1874011461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3509,7 +3530,7 @@ MonoBehaviour:
   HPBar: {fileID: 880558197}
   HPBar_Fill: {fileID: 611498889}
   moveSpeed: 8
-  attackRange: 4
+  attackRange: 12
   biteHitbox: {fileID: 1292303973}
   clawHitbox: {fileID: 540623052}
   tailHitbox: {fileID: 1310783537}
@@ -3517,6 +3538,29 @@ MonoBehaviour:
   rushHitbox: {fileID: 1734781525}
   anim: {fileID: 345244364}
   BossDefeatedTimeLine: {fileID: 2084158876}
+--- !u!136 &1874011462
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1874011458}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 6.6
+  m_Height: 20
+  m_Direction: 2
+  m_Center: {x: 0, y: 4, z: 0}
 --- !u!1 &1916070669 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: cbf526b12401907458d558071b5b011b, type: 3}
