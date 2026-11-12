@@ -10,7 +10,10 @@ public class BossDyingState : EnemyState
         {
             // 動きや攻撃を完全に止める
             boss.StopMove();
-            
+
+            // アニメーション
+            boss.PlayAnimation("Dying");
+
             Debug.Log("【ボス撃破】BossDyingStateに突入！");
 
             // ボス側のカメラ演出
