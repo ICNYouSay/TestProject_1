@@ -13,7 +13,7 @@ public class BossEnemy : EnemyBase
     [SerializeField] private EnemyHitbox breathHitbox;// ブレスの当たり判定
     [SerializeField] private EnemyHitbox rushHitbox;  // 突進の当たり判定
 
-    public Animator anim;                            // アニメーション
+    private Animator anim;                            // アニメーション
     private BiteState biteState;                      // かみつき攻撃のステート
     private ClawState clawState;                      // クロー攻撃のステート
     private TailState tailstate;                      // しっぽ攻撃のステート

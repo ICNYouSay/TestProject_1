@@ -3536,7 +3536,7 @@ MonoBehaviour:
   tailHitbox: {fileID: 1310783537}
   breathHitbox: {fileID: 833435676}
   rushHitbox: {fileID: 1734781525}
-  anim: {fileID: 345244364}
+  anim: {fileID: 0}
   BossDefeatedTimeLine: {fileID: 2084158876}
 --- !u!136 &1874011462
 CapsuleCollider:
