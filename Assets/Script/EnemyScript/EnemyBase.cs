@@ -145,6 +145,12 @@ public abstract class EnemyBase : MonoBehaviour
     //体力が0かどうかを判定する関数
     public virtual bool IsDead()
     {
+        if(enemyStatus == null)
+        {
+            Debug.LogWarning("EnemyStatusがアタッチされていません。");
+            return false;
+        }
+
         return enemyStatus.IsDead();
     }
 
