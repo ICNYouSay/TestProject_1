@@ -56,37 +56,37 @@ public class EnemyHitbox : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        // まずBoxColliderがあるか探す
-        BoxCollider boxCol = GetComponent<BoxCollider>();
-        if (boxCol != null)
-        {
-            bool isActive = boxCol.enabled;
+        //// まずBoxColliderがあるか探す
+        //BoxCollider boxCol = GetComponent<BoxCollider>();
+        //if (boxCol != null)
+        //{
+        //    bool isActive = boxCol.enabled;
 
-            // OFFなら描画しない
-            if (!isActive) return; 
+        //    // OFFなら描画しない
+        //    if (!isActive) return; 
 
-            Gizmos.color = Color.red;
-            Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, transform.lossyScale);
-            // 描画
-            Gizmos.DrawWireCube(boxCol.center, boxCol.size);
-            return;
-        }
+        //    Gizmos.color = Color.red;
+        //    Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, transform.lossyScale);
+        //    // 描画
+        //    Gizmos.DrawWireCube(boxCol.center, boxCol.size);
+        //    return;
+        //}
 
-        // SphereColliderがあるか探す
-        SphereCollider sphereCol = GetComponent<SphereCollider>();
-        if (sphereCol != null)
-        {
-            bool isActive = sphereCol.enabled;
+        //// SphereColliderがあるか探す
+        //SphereCollider sphereCol = GetComponent<SphereCollider>();
+        //if (sphereCol != null)
+        //{
+        //    bool isActive = sphereCol.enabled;
 
-            // OFFなら描画しない
-            if (!isActive) return; 
+        //    // OFFなら描画しない
+        //    if (!isActive) return; 
 
-            Gizmos.color = Color.red;
-            Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, transform.lossyScale);
-            // 描画
-            Gizmos.DrawWireSphere(sphereCol.center, sphereCol.radius);
-            return;
-        }
+        //    Gizmos.color = Color.red;
+        //    Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, transform.lossyScale);
+        //    // 描画
+        //    Gizmos.DrawWireSphere(sphereCol.center, sphereCol.radius);
+        //    return;
+        //}
     }
 
     private void OnTriggerEnter(Collider other)

@@ -1,7 +1,8 @@
+using Fusion;
 using UnityEngine;
 
 // 敵のステータスを管理するクラス
-public class EnemyStatus : MonoBehaviour
+public class EnemyStatus : NetworkBehaviour
 {
     [Header("最大HP")]
     [SerializeField]
@@ -67,6 +68,14 @@ public class EnemyStatus : MonoBehaviour
     private void Awake()
     {
         currentHP = maxHP;
+    }
+
+    //--------------------
+    // 更新
+    //--------------------
+    public override void FixedUpdateNetwork()
+    {
+        base.FixedUpdateNetwork();
     }
 
     //--------------------
