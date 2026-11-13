@@ -271,6 +271,7 @@ public class BossEnemy : EnemyBase
         if (netObj != null && netObj.Runner != null)
         {
             netObj.Runner.Despawn(netObj);
+            netObj.Runner.Shutdown();
         }
         else
         {
