@@ -90,7 +90,7 @@ public class BossEnemy : EnemyBase
         if (player == null) return false;
 
         float dist = Vector3.Distance(transform.position, player.transform.position);
-        return dist < 20.0f;
+        return dist < 40.0f;
     }
 
     // ’ÇÕ‚Ìˆ—

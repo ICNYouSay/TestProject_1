@@ -16,6 +16,7 @@ public class PlayerStatus : MonoBehaviour
     //=================================
     //ネットワーク同期するステータス
     //=================================
+
     //最大HP
     [Networked]
     public float maxHP { get; private set; }
@@ -67,7 +68,11 @@ public class PlayerStatus : MonoBehaviour
         Debug.Log(data.name + "の現在体力は" + currentHP);
         Debug.Log(data.name + "の攻撃力は" + baseAttack);
         Debug.Log(data.name + "の防御力は" + baseDefence);
+    }
 
+    public void Update()
+    {
+        Debug.Log("現在の体力 = " + currentHP);
     }
 
     //--------------------
