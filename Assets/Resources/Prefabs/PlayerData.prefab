@@ -172,6 +172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStatus
   characterData: {fileID: 0}
   buffManager: {fileID: 8922268810441386383}
+  abilityList: {fileID: 11400000, guid: 2c14c3b150f95c74bb4f7fc8e9abc16b, type: 2}
 --- !u!114 &8922268810441386383
 MonoBehaviour:
   m_ObjectHideFlags: 0
