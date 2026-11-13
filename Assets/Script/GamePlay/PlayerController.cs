@@ -43,7 +43,7 @@ public class PlayerController : NetworkBehaviour
 				_currentLogic = new CailLogic();
                 _currentLogic.Initialize(GetComponentInChildren<Cail_Animation>());
                 break;
-			//case 1: _currentLogic = new MichaelLogic(); break;
+			case 1: _currentLogic = new MichaelLogic(); break;
 		}
 
 		// 見た目のモデルを Instantiate して子に配置
