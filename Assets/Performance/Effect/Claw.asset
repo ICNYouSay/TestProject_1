@@ -17,7 +17,7 @@ MonoBehaviour:
   - path: ../../Texture/FireFog.png
     texture: {fileID: 2800000, guid: cd7e347119001124fab45c006f8843c0, type: 3}
   - path: ../../Texture/Fog002.png
-    texture: {fileID: 2800000, guid: d9c231dc0c7ac8d4d8e7e0adf2c37795, type: 3}
+    texture: {fileID: 2800000, guid: 920d542ff4781ac419d0ef5243e3ba66, type: 3}
   - path: ../../Texture/Line6.png
     texture: {fileID: 2800000, guid: c2e672a30211fb241b3d382f5ced504c, type: 3}
   soundResources:
@@ -30,4 +30,4 @@ MonoBehaviour:
   modelResources: []
   materialResources: []
   curveResources: []
-  Scale: 0.01
+  Scale: 2

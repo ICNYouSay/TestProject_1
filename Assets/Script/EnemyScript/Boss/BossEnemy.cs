@@ -69,17 +69,17 @@ public class BossEnemy : EnemyBase
         anim.Update(Time.deltaTime);
 
         // デバッグ用 ボス撃破演出(カメラワーク)
-        if (Input.GetKeyDown(KeyCode.P) && !isStarting)
-        {
-            // 演出を開始する
-            isStarting = true;
+        //if (Input.GetKeyDown(KeyCode.P) && !isStarting)
+        //{
+        //    // 演出を開始する
+        //    isStarting = true;
 
-            // ボスの状態を死亡ステートに切り替える
-            ChangeState(bossDyingState);
+        //    // ボスの状態を死亡ステートに切り替える
+        //    ChangeState(bossDyingState);
 
-            // ボス撃破カメラワーク開始
-            BossDefeatedTimeLine.Play();
-        }
+        //    // ボス撃破カメラワーク開始
+        //    BossDefeatedTimeLine.Play();
+        //}
 
     }
 
@@ -90,7 +90,7 @@ public class BossEnemy : EnemyBase
         if (player == null) return false;
 
         float dist = Vector3.Distance(transform.position, player.transform.position);
-        return dist < 20.0f;
+        return dist < 40.0f;
     }
 
     // 追跡の処理
@@ -271,6 +271,7 @@ public class BossEnemy : EnemyBase
         if (netObj != null && netObj.Runner != null)
         {
             netObj.Runner.Despawn(netObj);
+            netObj.Runner.Shutdown();
         }
         else
         {

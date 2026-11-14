@@ -13,9 +13,14 @@ public class PlayerStatus : MonoBehaviour
     [SerializeField]
     private BuffManager buffManager;
 
+    [Header("アビリティ一覧を保管してるSO")]
+    [SerializeField]
+    private AbilityList abilityList;
+
     //=================================
     //ネットワーク同期するステータス
     //=================================
+
     //最大HP
     [Networked]
     public float maxHP { get; private set; }
@@ -55,19 +60,36 @@ public class PlayerStatus : MonoBehaviour
         //キャラクターデータを取得
         characterData = data;
 
+        int abi_hp = 0;
+        int abi_atk = 0;
+        int abi_def = 0;
+
         //最大体力をデータから取得(現在HPも設定)
-        maxHP = data.hp;
+        for (int i = 0; i < GameData.EquippedAbilities.Length; i++)
+        {
+            if (GameData.EquippedAbilities[i] != -1)
+            {
+                abi_hp += abilityList.abilities[GameData.EquippedAbilities[i]].hp;
+                abi_atk += abilityList.abilities[GameData.EquippedAbilities[i]].atk;
+                abi_def += abilityList.abilities[GameData.EquippedAbilities[i]].def;
+            }
+        }
+        maxHP = abi_hp * data.hp;
         currentHP = maxHP;
 
         //攻撃力/防御力をデータから取得
-        baseAttack = data.atk;
-        baseDefence = data.def;
+        baseAttack = abi_atk * data.atk;
+        baseDefence = abi_def * data.def;
 
         Debug.Log(data.name + "の最大体力は" + maxHP);
         Debug.Log(data.name + "の現在体力は" + currentHP);
         Debug.Log(data.name + "の攻撃力は" + baseAttack);
         Debug.Log(data.name + "の防御力は" + baseDefence);
+    }
 
+    public void Update()
+    {
+        Debug.Log("現在の体力 = " + currentHP);
     }
 
     //--------------------

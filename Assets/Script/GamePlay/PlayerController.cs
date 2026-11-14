@@ -43,7 +43,7 @@ public class PlayerController : NetworkBehaviour
 				_currentLogic = new CailLogic();
                 _currentLogic.Initialize(GetComponentInChildren<Cail_Animation>());
                 break;
-			//case 1: _currentLogic = new MichaelLogic(); break;
+			case 1: _currentLogic = new MichaelLogic(); break;
 		}
 
 		// 見た目のモデルを Instantiate して子に配置
@@ -83,7 +83,7 @@ public class PlayerController : NetworkBehaviour
         }
     }
 
-	public void PlayerWalk()
+    public void PlayerWalk()
     {
         // 現在接続されているGamepadを取得
         gamepad = Gamepad.current;
@@ -170,5 +170,12 @@ public class PlayerController : NetworkBehaviour
         {
 			PlayerWalk();
 		}
+
+        //もしY座標が一定値以下になったら、キャラクターをリスポーンさせる
+        if (transform.position.y <= -10)
+        {
+            transform.position = new Vector3(0, 5, 0);
+        }
+
     }
 }
