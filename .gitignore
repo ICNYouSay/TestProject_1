@@ -66,3 +66,8 @@ Desktop.ini
 # Temporary files
 *.tmp
 *.temp
+/Assets/MobileDependencyResolver/Editor/1.2.185/Google.IOSResolver.pdb.meta
+/Assets/MobileDependencyResolver/Editor/1.2.185/Google.JarResolver.pdb.meta
+/Assets/MobileDependencyResolver/Editor/1.2.185/Google.PackageManagerResolver.pdb.meta
+/Assets/MobileDependencyResolver/Editor/1.2.185/Google.VersionHandlerImpl.pdb.meta
+/Assets/MobileDependencyResolver/Editor/Google.VersionHandler.pdb.meta
