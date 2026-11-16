@@ -9,9 +9,9 @@ public class AbilityData : ScriptableObject
     [Header("アビリティのステータス")]
     public string abilityName;  // あび名
 
-    public float hp;                // HP
-    public float atk;               // 攻撃力
-    public float def;               // 防御力
+    public int hp;                // HP
+    public int atk;               // 攻撃力
+    public int def;               // 防御力
 
     [Header("効果説明")]
     public string description;         // アビの説明
