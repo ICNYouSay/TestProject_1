@@ -5,7 +5,7 @@ using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class CharacterSelectManager : MonoBehaviour
+public class CharacterSelectUIManager : MonoBehaviour
 {
 	[Header("全キャラクターのデータ(ScriptableObject)")]
 	public CharacterData[] allCharacterData;
@@ -36,6 +36,13 @@ public class CharacterSelectManager : MonoBehaviour
 	public Slider hpSlider;
 	public Slider atkSlider;
 	public Slider defSlider;
+
+    [Header("アビリティ用のパーツ")]
+    public Slider abi_hpSlider;
+    public Slider abi_atkSlider;
+    public Slider abi_defSlider;
+    public TextMeshProUGUI abi_nameText;        // 名前テキスト
+    public TextMeshProUGUI abi_statusText;      // ステータス表示テキスト
 
     // フェードアウト用Timeline
     [SerializeField]
