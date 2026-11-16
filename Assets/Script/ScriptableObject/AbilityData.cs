@@ -15,6 +15,7 @@ public class AbilityData : ScriptableObject
 
     [Header("効果説明")]
     public string description;         // アビの説明
+    public int CT;                      // クールタイム
 
     public enum AbilityType
     {
