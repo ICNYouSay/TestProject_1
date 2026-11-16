@@ -186,8 +186,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHitbox
   attackDamage: 150
-  startDelay: 0.5
-  activeDuration: 2.5
+  startDelay: 2
+  activeDuration: 2
 --- !u!1001 &78498686
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -648,7 +648,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHitbox
   attackDamage: 100
-  startDelay: 0.5
+  startDelay: 0.75
   activeDuration: 1.5
 --- !u!65 &322591327
 BoxCollider:
@@ -777,7 +777,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHitbox
   attackDamage: 200
-  startDelay: 0.5
+  startDelay: 0.75
   activeDuration: 2
 --- !u!65 &366121281
 BoxCollider:
@@ -1912,75 +1912,6 @@ MonoBehaviour:
   effectAsset: {fileID: 0}
   playOnStart: 0
   isLooping: 0
---- !u!1 &1215505237
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1215505238}
-  - component: {fileID: 1215505240}
-  - component: {fileID: 1215505239}
-  m_Layer: 0
-  m_Name: BreathHitbox
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1215505238
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1215505237}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.000000007450581, w: 1}
-  m_LocalPosition: {x: 0.03650475, y: 0, z: 18.361156}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1874011459}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1215505239
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1215505237}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a0fcc1e2147f074ebbe504efedf829c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyHitbox
-  attackDamage: 100
-  startDelay: 0.5
-  activeDuration: 3
---- !u!65 &1215505240
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1215505237}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 8, y: 2, z: 30}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1230797961
 GameObject:
   m_ObjectHideFlags: 0
@@ -3325,6 +3256,37 @@ MonoBehaviour:
   effectAsset: {fileID: 11400000, guid: 4acdbf7c3d75a87498e4afd0f1076d98, type: 2}
   playOnStart: 0
   isLooping: 0
+--- !u!1 &1770057077
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1770057078}
+  m_Layer: 0
+  m_Name: FireballPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1770057078
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1770057077}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.111320496, y: 3.48, z: 0.54}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1874011459}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1809196319
 GameObject:
   m_ObjectHideFlags: 0
@@ -3441,7 +3403,7 @@ Transform:
   - {fileID: 322591325}
   - {fileID: 366121279}
   - {fileID: 18525597}
-  - {fileID: 1215505238}
+  - {fileID: 1770057078}
   - {fileID: 210849776}
   - {fileID: 1541912997}
   - {fileID: 1731287508}
@@ -3487,7 +3449,9 @@ MonoBehaviour:
   biteHitbox: {fileID: 322591326}
   clawHitbox: {fileID: 366121280}
   tailHitbox: {fileID: 18525599}
-  breathHitbox: {fileID: 1215505239}
+  fireballPrefab: {fileID: 783980776254546810, guid: f11dc7d26cec3084abd28ee250066d3c, type: 3}
+  fireballPoint: {fileID: 1770057078}
+  breathDelay: 1.2
   rushHitbox: {fileID: 210849777}
   BossDefeatedTimeLine: {fileID: 2084158876}
 --- !u!136 &1874011462

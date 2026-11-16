@@ -89,7 +89,7 @@ public class PlayerStatus : MonoBehaviour
 
     public void Update()
     {
-        Debug.Log("Œ»İ‚Ì‘Ì—Í = " + currentHP);
+        //Debug.Log("Œ»İ‚Ì‘Ì—Í = " + currentHP);
     }
 
     //--------------------

@@ -5,24 +5,26 @@ using UnityEngine.Playables;
 public class BossEnemy : EnemyBase
 {
     [Header("ボスの設定")]
-    [SerializeField] private float moveSpeed;         // ボスの移動速度
-    [SerializeField] private float attackRange;       // 攻撃が届く距離
-    [SerializeField] private EnemyHitbox biteHitbox;  // かみつき攻撃の当たり判定
-    [SerializeField] private EnemyHitbox clawHitbox;  // クロー攻撃の当たり判定
-    [SerializeField] private EnemyHitbox tailHitbox;  // しっぽ攻撃の当たり判定
-    [SerializeField] private EnemyHitbox breathHitbox;// ブレスの当たり判定
-    [SerializeField] private EnemyHitbox rushHitbox;  // 突進の当たり判定
+    [SerializeField] private float moveSpeed;                     // ボスの移動速度
+    [SerializeField] private float attackRange;                   // 攻撃が届く距離
+    [SerializeField] private EnemyHitbox biteHitbox;              // かみつき攻撃の当たり判定
+    [SerializeField] private EnemyHitbox clawHitbox;              // クロー攻撃の当たり判定
+    [SerializeField] private EnemyHitbox tailHitbox;              // しっぽ攻撃の当たり判定
+    [SerializeField] private GameObject fireballPrefab;           // ブレスの弾のプレハブ
+    [SerializeField] private Transform  fireballPoint;            // 口元の発射位置
+    [SerializeField] private float breathDelay;                   // 溜めモーションの待ち時間（秒）
+    [SerializeField] private EnemyHitbox rushHitbox;              // 突進の当たり判定
 
-    private Animator anim;                            // アニメーション
-    private CharacterController charController;       // CharacterController用
-    private BiteState biteState;                      // かみつき攻撃のステート
-    private ClawState clawState;                      // クロー攻撃のステート
-    private TailState tailstate;                      // しっぽ攻撃のステート
-    private BreathState breathState;                  // ブレス攻撃のステート
-    private RushState rushState;                      // 突進攻撃のステート
-    private BossDyingState bossDyingState;            // ボス死亡時のステート
+    private Animator anim;                                        // アニメーション
+    private CharacterController charController;                   // CharacterController用
+    private BiteState biteState;                                  // かみつき攻撃のステート
+    private ClawState clawState;                                  // クロー攻撃のステート
+    private TailState tailstate;                                  // しっぽ攻撃のステート
+    private BreathState breathState;                              // ブレス攻撃のステート
+    private RushState rushState;                                  // 突進攻撃のステート
+    private BossDyingState bossDyingState;                        // ボス死亡時のステート
 
-    private float attackTimer;                        // 攻撃の硬直用タイマー
+    private float attackTimer;                                    // 攻撃の硬直用タイマー
 
     public BiteState BiteState => biteState;
     public ClawState ClawState => clawState;
@@ -188,12 +190,26 @@ public class BossEnemy : EnemyBase
     // ブレス攻撃の処理
     public void BreathAttack()
     {
-        Debug.Log("ボスの「ブレス」処理実行！");
-        if (breathHitbox != null)
+        Debug.Log("ボスの「ブレス」予備動作スタート！");
+
+        // 溜め時間を待ってから弾を発射を開始
+        StartCoroutine(ShootFireballAfterDelay(breathDelay));
+    }
+
+    // 溜めが終わった瞬間に弾を生み出す
+    private System.Collections.IEnumerator ShootFireballAfterDelay(float delay)
+    {
+        // 指定した溜め時間待つ
+        yield return new WaitForSeconds(delay);
+
+        // 溜めが終わった瞬間に弾を生成
+        if (fireballPrefab != null && fireballPoint != null)
         {
-            breathHitbox.TriggerAttack();
+            Instantiate(fireballPrefab, fireballPoint.position, fireballPoint.rotation);
+            Debug.Log("火球を発射しました！");
         }
     }
+
     // 突進攻撃の処理
     public void RushAttack()
     {
