@@ -659,8 +659,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 436784186}
   m_HandleRect: {fileID: 436784185}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.99726605
+  m_Value: 1
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2206,6 +2206,11 @@ MonoBehaviour:
   hpSlider: {fileID: 1326455609}
   atkSlider: {fileID: 785076711}
   defSlider: {fileID: 805010782}
+  abi_hpSlider: {fileID: 2103452441}
+  abi_atkSlider: {fileID: 1949346850}
+  abi_defSlider: {fileID: 615021230}
+  abi_nameText: {fileID: 2020151191}
+  abi_statusText: {fileID: 1918627356}
   fadeOutDirector: {fileID: 494426098}
   fadeImage: {fileID: 105296079}
 --- !u!4 &590356813
@@ -3620,7 +3625,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 617862645}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9989305
+  m_Size: 0.9999855
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3780,7 +3785,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00007589432}
+  m_AnchoredPosition: {x: 0, y: 0.000116647745}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &954307329
@@ -7508,7 +7513,7 @@ GameObject:
   - component: {fileID: 2020151192}
   - component: {fileID: 2020151191}
   m_Layer: 5
-  m_Name: CharacterNameText
+  m_Name: AbilityNameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8110,7 +8115,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000034794608}
+  m_AnchoredPosition: {x: 0, y: -0.000037003738}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &2099125327
