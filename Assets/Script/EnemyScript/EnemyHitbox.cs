@@ -21,9 +21,15 @@ public class EnemyHitbox : MonoBehaviour
         _col = GetComponent<BoxCollider>();
         _sphereCol = GetComponent<SphereCollider>();
 
-        // 最初はOFF
+        // 最初は必ずOFFにしておく
         if (_col != null) _col.enabled = false;
-        if (_sphereCol != null) _sphereCol.enabled = false; 
+        if (_sphereCol != null) _sphereCol.enabled = false;
+
+        // もし「Fireball（飛ぶ弾）」がついているなら、自動でTriggerAttackをスタートさせる！
+        if (GetComponent<Fireball>() != null)
+        {
+            TriggerAttack();
+        }
     }
 
     // 敵が攻撃する時に呼ぶ関数
@@ -56,37 +62,37 @@ public class EnemyHitbox : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        //// まずBoxColliderがあるか探す
-        //BoxCollider boxCol = GetComponent<BoxCollider>();
-        //if (boxCol != null)
-        //{
-        //    bool isActive = boxCol.enabled;
+        // まずBoxColliderがあるか探す
+        BoxCollider boxCol = GetComponent<BoxCollider>();
+        if (boxCol != null)
+        {
+            bool isActive = boxCol.enabled;
 
-        //    // OFFなら描画しない
-        //    if (!isActive) return; 
+            // OFFなら描画しない
+            if (!isActive) return;
 
-        //    Gizmos.color = Color.red;
-        //    Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, transform.lossyScale);
-        //    // 描画
-        //    Gizmos.DrawWireCube(boxCol.center, boxCol.size);
-        //    return;
-        //}
+            Gizmos.color = Color.red;
+            Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, transform.lossyScale);
+            // 描画
+            Gizmos.DrawWireCube(boxCol.center, boxCol.size);
+            return;
+        }
 
-        //// SphereColliderがあるか探す
-        //SphereCollider sphereCol = GetComponent<SphereCollider>();
-        //if (sphereCol != null)
-        //{
-        //    bool isActive = sphereCol.enabled;
+        // SphereColliderがあるか探す
+        SphereCollider sphereCol = GetComponent<SphereCollider>();
+        if (sphereCol != null)
+        {
+            bool isActive = sphereCol.enabled;
 
-        //    // OFFなら描画しない
-        //    if (!isActive) return; 
+            // OFFなら描画しない
+            if (!isActive) return;
 
-        //    Gizmos.color = Color.red;
-        //    Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, transform.lossyScale);
-        //    // 描画
-        //    Gizmos.DrawWireSphere(sphereCol.center, sphereCol.radius);
-        //    return;
-        //}
+            Gizmos.color = Color.red;
+            Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, transform.lossyScale);
+            // 描画
+            Gizmos.DrawWireSphere(sphereCol.center, sphereCol.radius);
+            return;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
