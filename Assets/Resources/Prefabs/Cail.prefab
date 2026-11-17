@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3097706871567207633}
   - component: {fileID: 4272447748626080408}
   - component: {fileID: 1471563837547058284}
+  - component: {fileID: 5108503052048022524}
   m_Layer: 7
   m_Name: Skill_Hitbox
   m_TagString: Untagged
@@ -49,6 +50,7 @@ MonoBehaviour:
   attackDamage: 1000
   startDelay: 2.5
   activeDuration: 1
+  hitEffect: {fileID: 5108503052048022524}
 --- !u!65 &4272447748626080408
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -97,6 +99,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5108503052048022524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75228256760850552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35d396bcb8480c24eb784eebe6096a99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Effekseer::Effekseer.EffekseerEmitter
+  TimingOfUpdate: 0
+  EmitterScale: 1
+  TimeScale: 0
+  effectAsset: {fileID: 11400000, guid: 9f57ac8a38648bb40b6a06a7724d6d44, type: 2}
+  playOnStart: 0
+  isLooping: 0
 --- !u!1 &1513334056372939434
 GameObject:
   m_ObjectHideFlags: 0
@@ -159,6 +179,7 @@ GameObject:
   - component: {fileID: 6968300443018465572}
   - component: {fileID: 621884271940207626}
   - component: {fileID: 1374566123392502508}
+  - component: {fileID: 839947150905891901}
   m_Layer: 7
   m_Name: Cail_Normal_Hitbox
   m_TagString: Untagged
@@ -175,7 +196,7 @@ Transform:
   m_GameObject: {fileID: 8260199766978776012}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -2.26, z: -0}
+  m_LocalPosition: {x: 0, y: -3.83, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -196,6 +217,7 @@ MonoBehaviour:
   attackDamage: 1000
   startDelay: 2.5
   activeDuration: 1
+  hitEffect: {fileID: 839947150905891901}
 --- !u!65 &621884271940207626
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -244,6 +266,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &839947150905891901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8260199766978776012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35d396bcb8480c24eb784eebe6096a99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Effekseer::Effekseer.EffekseerEmitter
+  TimingOfUpdate: 0
+  EmitterScale: 1
+  TimeScale: 0
+  effectAsset: {fileID: 11400000, guid: 9f57ac8a38648bb40b6a06a7724d6d44, type: 2}
+  playOnStart: 0
+  isLooping: 0
 --- !u!1 &8796348392686816953
 GameObject:
   m_ObjectHideFlags: 0

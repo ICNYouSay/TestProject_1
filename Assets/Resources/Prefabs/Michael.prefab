@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: 5329622974089276613}
   - component: {fileID: 4097421609944189255}
   - component: {fileID: 4525799506177880500}
+  - component: {fileID: 3392726359076684520}
   m_Layer: 7
   m_Name: Skill_Hitbox
   m_TagString: Untagged
@@ -181,6 +182,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillHitbox
   attackDamage: 30
+  startDelay: 0
+  activeDuration: 0
+  hitEffect: {fileID: 3392726359076684520}
 --- !u!65 &4525799506177880500
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -202,6 +206,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3392726359076684520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2899667008045239575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35d396bcb8480c24eb784eebe6096a99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Effekseer::Effekseer.EffekseerEmitter
+  TimingOfUpdate: 0
+  EmitterScale: 1
+  TimeScale: 0
+  effectAsset: {fileID: 11400000, guid: 9f57ac8a38648bb40b6a06a7724d6d44, type: 2}
+  playOnStart: 0
+  isLooping: 0
 --- !u!1 &6418266632583685578
 GameObject:
   m_ObjectHideFlags: 0

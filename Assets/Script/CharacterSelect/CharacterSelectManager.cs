@@ -202,13 +202,13 @@ public class CharacterSelectManager : MonoBehaviour
 		{
 			// キャラ選択メニューを閉じる
 			currentMenu = MenuState.None;
-			okButton.GetComponentInChildren<TextMeshProUGUI>().text = "GO!MOOOOOVE!!";
+			okButton.GetComponentInChildren<TextMeshProUGUI>().text = "出撃!!";
 		}
 		else if (currentMenu == MenuState.AbilitySelect)
 		{
 			// アビリティ選択メニューを閉じる
 			currentMenu = MenuState.None;
-			okButton.GetComponentInChildren<TextMeshProUGUI>().text = "GO!MOOOOOVE!!";
+			okButton.GetComponentInChildren<TextMeshProUGUI>().text = "出撃!!";
 		}
 		else if (currentMenu == MenuState.None && !isStarting)
 		{
