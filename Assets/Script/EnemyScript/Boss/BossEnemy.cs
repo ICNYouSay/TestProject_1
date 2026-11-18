@@ -250,6 +250,12 @@ public class BossEnemy : EnemyBase
     {
         if (anim != null)
         {
+            // もし今すでにそのアニメーションを再生中なら連打して巻き戻さない
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName(triggerName))
+            {
+                return; // すでに再生中だから何もしない
+            }
+
             anim.SetTrigger(triggerName);
         }
     }
