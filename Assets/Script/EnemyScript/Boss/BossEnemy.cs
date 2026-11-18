@@ -148,6 +148,9 @@ public class BossEnemy : EnemyBase
     {
         base.StopMove();
 
+        // アニメーションを止める
+        PlayAnimation("Stop");
+
         if (anim != null)
         {
             //anim.speed = 0.0f;
