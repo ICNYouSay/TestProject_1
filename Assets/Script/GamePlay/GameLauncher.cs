@@ -4,8 +4,13 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class GameLauncher : MonoBehaviour, INetworkRunnerCallbacks
 {
+    [Header("ボスの参照")]
+    [SerializeField] private BossEnemy bossEnemy; 　　　　// ボス
+    private bool hasTransitioned = false;        　　　　 // 多重遷移の防止
+
     private NetworkRunner runner;
     // 取得した最新の部屋一覧を保持しておくリスト
     private List<SessionInfo> _cachedSessionList = new List<SessionInfo>();
@@ -21,23 +26,42 @@ public class GameLauncher : MonoBehaviour, INetworkRunnerCallbacks
     }
 
 
-	private void Update()
-	{
-		if(Input.GetKeyDown(KeyCode.R))
-		{
-			GameObject[] data = GameObject.FindGameObjectsWithTag("Player");
-			// プレイヤーデータを削除
-			for (int i = 0; i < data.Length; i++)
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            GameObject[] data = GameObject.FindGameObjectsWithTag("Player");
+            // プレイヤーデータを削除
+            for (int i = 0; i < data.Length; i++)
             {
-				Debug.Log("Destroy PlayerData");
-                Destroy(data[i]); 
-			}
+                Debug.Log("Destroy PlayerData");
+                Destroy(data[i]);
+            }
 
-			runner.Shutdown();
+            runner.Shutdown();
             // リザルトシーンへ遷移(デバッグ用)
             UnityEngine.SceneManagement.SceneManager.LoadScene("ResultScene");
-		}
-	}
+        }
+    }
+
+    // ボスから通知を受け取る専用の関数
+    public void OnBossDefeated()
+    {
+        // 多重実行防止
+        if (hasTransitioned) return;
+        hasTransitioned = true;
+
+        Debug.Log("GameLauncher：ボス撃破の通知を受信しました！リザルトへ移行します。");
+
+        // ネットワークの終了処理
+        if (runner != null)
+        {
+            runner.Shutdown();
+        }
+
+        // リザルトシーンへ遷移
+        UnityEngine.SceneManagement.SceneManager.LoadScene("ResultScene");
+    }
 
     public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList)
     {

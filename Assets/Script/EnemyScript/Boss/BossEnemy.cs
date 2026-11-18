@@ -26,6 +26,8 @@ public class BossEnemy : EnemyBase
 
     private float attackTimer;                                    // 攻撃の硬直用タイマー
 
+    [Header("ボスの状態フラグ")]
+    public bool isDefeated = false; 　　　　　　　　　　　　　　　// ボス撃破フラグ
     public BiteState BiteState => biteState;
     public ClawState ClawState => clawState;
     public TailState TailState => tailstate;
@@ -287,9 +289,21 @@ public class BossEnemy : EnemyBase
     {
         yield return new WaitForSeconds(delay);
 
-        // シーンを遷移する
-        Debug.Log("ボス撃破！リザルトシーンへ移動します。");
-        UnityEngine.SceneManagement.SceneManager.LoadScene("ResultScene");
+        // 撃破フラグをONにする
+        isDefeated = true;
+        Debug.Log("【ボス完全撃破】撃破フラグをONにしました！");
+
+        // GameLauncherを探してボスが倒されたことを直接通知する
+        GameLauncher launcher = FindFirstObjectByType<GameLauncher>();
+        if (launcher != null)
+        {
+            launcher.OnBossDefeated();
+        }
+        else
+        {
+            // 万が一GameLauncherが見つからない場合の保険
+            UnityEngine.SceneManagement.SceneManager.LoadScene("ResultScene");
+        }
 
         // その後ボスを消去
         var netObj = GetComponentInParent<Fusion.NetworkObject>();
