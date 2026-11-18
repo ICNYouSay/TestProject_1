@@ -2,9 +2,7 @@ using Effekseer;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Timeline;
-using UnityEngine.UIElements;
-using static UnityEditor.PlayerSettings;
+
 
 public class PortalSystem : MonoBehaviour
 {

@@ -1,3 +1,4 @@
+using Effekseer;
 using UnityEngine;
 
 public class SkillHitbox : MonoBehaviour
@@ -11,6 +12,9 @@ public class SkillHitbox : MonoBehaviour
 
     [Tooltip("判定が出ている持続時間")]
     [SerializeField] private float activeDuration; // 判定を残す秒数
+
+    [Header("ヒットエフェクト")]
+    [SerializeField] private EffekseerEmitter hitEffect;
 
     private BoxCollider _col;
 
@@ -82,6 +86,7 @@ public class SkillHitbox : MonoBehaviour
             EnemyBase enemy = other.GetComponentInParent<EnemyBase>();
             if (enemy != null)
             {
+                hitEffect.Play();
                 enemy.TakeDamage(attackDamage);
                 Debug.Log($"【命中】{enemy.gameObject.name} に {attackDamage} ダメージ！");
             }
