@@ -3569,6 +3569,17 @@ MonoBehaviour:
   effect_2: {fileID: 301225637}
   effect_3: {fileID: 1731287509}
   effect_4: {fileID: 269415073}
+  effect_5: {fileID: 0}
+  effect_6: {fileID: 0}
+  effect_7: {fileID: 0}
+  effect_8: {fileID: 0}
+  effect_9: {fileID: 0}
+  effect_10: {fileID: 0}
+  effect:
+  - {fileID: 1541912998}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &1926741558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3740,7 +3751,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1939754518}
   - component: {fileID: 1939754517}
-  - component: {fileID: 1939754516}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -3748,18 +3758,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1939754516
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1939754515}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
 --- !u!108 &1939754517
 Light:
   m_ObjectHideFlags: 0

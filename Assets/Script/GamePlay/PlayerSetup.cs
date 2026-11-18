@@ -27,7 +27,6 @@ public class PlayerSetup : NetworkBehaviour
         if (Object.HasInputAuthority)
         {
             SelectedCharacterID = GameData.SelectedCharacterIndex;
-
         }
 
         // •”‰®‚É“ü‚Á‚½uŠÔi‚Ü‚½‚ÍID‚ªŒˆ‚Ü‚Á‚½uŠÔj‚ÉŒ©‚½–Ú‚ğ¶¬
