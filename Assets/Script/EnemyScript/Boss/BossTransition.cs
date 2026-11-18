@@ -38,25 +38,54 @@ public class BossTransition : IEnemyTransition
                         // 確率で攻撃を変更
                         float randomValue = Random.value;
 
-                        if (randomValue < 0.2f)
+                        // 第2形態かどうかで攻撃の確率を変化させる
+                        if (boss.IsPhase2)
                         {
-                            return boss.BiteState;   // 約20% かみつき
-                        }
-                        else if (randomValue < 0.4f)
-                        {
-                            return boss.ClawState;   // 約20% クロー
-                        }
-                        else if (randomValue < 0.6f)
-                        {
-                            return boss.TailState;   // 約20% しっぽ
-                        }
-                        else if (randomValue < 0.8f)
-                        {
-                            return boss.BreathState; // 約20% ブレス攻撃
+                            // 第2形態の確率分岐
+                            if (randomValue < 0.15f)
+                            {
+                                return boss.BiteState;   // 15% かみつき
+                            }
+                            else if (randomValue < 0.3f)
+                            {
+                                return boss.ClawState;   // 15% クロー
+                            }
+                            else if (randomValue < 0.45f)
+                            {
+                                return boss.TailState;   // 15% しっぽ
+                            }
+                            else if (randomValue < 0.65f)
+                            {
+                                return boss.BreathState; // 20% ブレス
+                            }
+                            else
+                            {
+                                return boss.RushState;   // 35% 突進
+                            }
                         }
                         else
                         {
-                            return boss.RushState;   // 20% 突進攻撃
+                            // 第1形態の確率分岐
+                            if (randomValue < 0.2f)
+                            {
+                                return boss.BiteState;   // 20% かみつき
+                            }
+                            else if (randomValue < 0.4f)
+                            {
+                                return boss.ClawState;   // 20% クロー
+                            }
+                            else if (randomValue < 0.6f)
+                            {
+                                return boss.TailState;   // 20% しっぽ
+                            }
+                            else if (randomValue < 0.8f)
+                            {
+                                return boss.BreathState; // 20% ブレス攻撃
+                            }
+                            else
+                            {
+                                return boss.RushState;   // 20% 突進攻撃
+                            }
                         }
 
                     }
