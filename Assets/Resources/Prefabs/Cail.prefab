@@ -457,10 +457,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 244132d072b2fcf4c973673ee60ef361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EffectEvent
-  effect_1: {fileID: 9185023027382090430}
-  effect_2: {fileID: 491961648756407355}
-  effect_3: {fileID: 2793317331056741457}
-  effect_4: {fileID: 6418465991923783982}
+  effect:
+  - {fileID: 9185023027382090430}
+  - {fileID: 491961648756407355}
+  - {fileID: 2793317331056741457}
+  - {fileID: 6418465991923783982}
 --- !u!114 &9185023027382090430
 MonoBehaviour:
   m_ObjectHideFlags: 0
