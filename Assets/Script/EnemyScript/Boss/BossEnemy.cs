@@ -29,10 +29,11 @@ public class BossEnemy : EnemyBase
     private BossDyingState bossDyingState;                        // ボス死亡時のステート
 
     private float attackTimer;                                    // 攻撃の硬直用タイマー
+    private float invincibilityTimer = 0.0f;                      // ヒットストップ後の無敵時間
 
     [Header("ボスの状態フラグ")]
     public bool isDefeated = false; 　　　　　　　　　　　　　　　// ボス撃破フラグ
-
+    public bool isInvincible = false;                             // 無敵かどうか
     public BiteState BiteState => biteState;
     public ClawState ClawState => clawState;
     public TailState TailState => tailstate;
@@ -79,6 +80,13 @@ public class BossEnemy : EnemyBase
         base.Update();
 
         anim.Update(Time.deltaTime);
+
+        // 無敵タイマーのカウントダウン
+        if (invincibilityTimer > 0)
+        {
+            invincibilityTimer -= Time.deltaTime;
+            isInvincible = (invincibilityTimer > 0);
+        }
 
     }
 
@@ -154,8 +162,19 @@ public class BossEnemy : EnemyBase
     // プレイヤーからダメージを受けたときの処理
     public override void TakeDamage(int damage)
     {
+        // 無敵状態ならダメージ処理を呼ばない
+        if (isInvincible)
+        {
+            Debug.Log("ボスは無敵だ！攻撃は効かない！");
+            return;
+        }
+
         // 通常のダメージ処理を呼ぶ
         base.TakeDamage(damage);
+
+        // ダメージを受けたら0.2秒だけ無敵にする
+        invincibilityTimer = 0.2f;
+        isInvincible = true;
 
         // まだ第2形態ではなくHPが最大HPの半分以下になった時
         if (!isPhase2 && enemyStatus != null)

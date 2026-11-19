@@ -14,6 +14,9 @@ public class Phase2TransitionState : EnemyState
             transitionTimer = 0f;
             Debug.Log("【形態変化】第2形態へ移行！");
 
+            // 立ち上がり中は無敵
+            boss.isInvincible = true;
+
             // 立ち上がるアニメーションを再生
             boss.PlayAnimation("Stand");
         }
@@ -35,5 +38,10 @@ public class Phase2TransitionState : EnemyState
 
     public override void Exit(EnemyBase enemy)
     {
+        BossEnemy boss = enemy as BossEnemy;
+        if (boss != null)
+        {
+            boss.isInvincible = false; // 立ち上がったら無敵を解除
+        }
     }
 }
