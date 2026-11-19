@@ -1745,6 +1745,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CameraManager
   virtualCameraPrefab: {fileID: 7089439851258663635, guid: 74d74f4cadf652a41bf4944516b3b060, type: 3}
   startCamera: {fileID: 1609072630}
+  eventDollyCart: {fileID: 1774895806}
+  eventVirtualCamera: {fileID: 1712414379}
+  eventPlayableDirector: {fileID: 1991245136}
 --- !u!4 &1050147522
 Transform:
   m_ObjectHideFlags: 0
@@ -3370,8 +3373,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1774895802}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.059631735, y: 0.42908153, z: -0.028403113, w: 0.9008476}
+  m_LocalPosition: {x: -41.27, y: -0.120000005, z: 75.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3651,6 +3654,7 @@ MonoBehaviour:
   fireballPoint: {fileID: 1770057078}
   breathDelay: 1.2
   rushHitbox: {fileID: 210849777}
+  isPhase2: 0
   isDefeated: 0
   BossDefeatedTimeLine: {fileID: 2084158876}
 --- !u!136 &1874011462
