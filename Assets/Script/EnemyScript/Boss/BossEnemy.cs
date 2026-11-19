@@ -15,6 +15,9 @@ public class BossEnemy : EnemyBase
     [SerializeField] private float breathDelay;                   // 溜めモーションの待ち時間（秒）
     [SerializeField] private EnemyHitbox rushHitbox;              // 突進の当たり判定
 
+    [Header("形態変化の設定")]
+    [SerializeField] private bool isPhase2 = false;               // 第2形態の判定
+    
     private Animator anim;                                        // アニメーション
     private CharacterController charController;                   // CharacterController用
     private BiteState biteState;                                  // かみつき攻撃のステート
@@ -28,6 +31,7 @@ public class BossEnemy : EnemyBase
 
     [Header("ボスの状態フラグ")]
     public bool isDefeated = false; 　　　　　　　　　　　　　　　// ボス撃破フラグ
+
     public BiteState BiteState => biteState;
     public ClawState ClawState => clawState;
     public TailState TailState => tailstate;
@@ -35,6 +39,7 @@ public class BossEnemy : EnemyBase
     public RushState RushState => rushState;
     public BossDyingState BossDyingState => bossDyingState;
     public float AttackRange => attackRange;
+    public bool IsPhase2 => isPhase2;
 
     [Header("ボス撃破用のTimeLine")]
     [SerializeField]
@@ -71,19 +76,6 @@ public class BossEnemy : EnemyBase
         base.Update();
 
         anim.Update(Time.deltaTime);
-
-        // デバッグ用 ボス撃破演出(カメラワーク)
-        //if (Input.GetKeyDown(KeyCode.P) && !isStarting)
-        //{
-        //    // 演出を開始する
-        //    isStarting = true;
-
-        //    // ボスの状態を死亡ステートに切り替える
-        //    ChangeState(bossDyingState);
-
-        //    // ボス撃破カメラワーク開始
-        //    BossDefeatedTimeLine.Play();
-        //}
 
     }
 
@@ -144,6 +136,33 @@ public class BossEnemy : EnemyBase
             // 攻撃範囲内に入ったら移動を止める
             StopMove();
         }
+    }
+
+    // プレイヤーからダメージを受けたときの処理
+    public override void TakeDamage(int damage)
+    {
+        // 通常のダメージ処理を呼ぶ
+        base.TakeDamage(damage);
+
+        // まだ第2形態ではなくHPが最大HPの半分以下になった時
+        if (!isPhase2 && enemyStatus != null)
+        {
+            if (enemyStatus.CurrentHP <= enemyStatus.MaxHP / 2)
+            {
+                TriggerPhase2();
+            }
+        }
+    }
+
+    // 第2形態に移行するときの処理
+    private void TriggerPhase2()
+    {
+        isPhase2 = true;
+        Debug.Log("ボスのHPが半分を切った！第2形態に突入！");
+
+        // ここで第2形態の強化を行う
+        moveSpeed += 3.0f; // 移動速度アップ
+
     }
 
     public override void StopMove()
