@@ -25,6 +25,7 @@ public class BossEnemy : EnemyBase
     private TailState tailstate;                                  // しっぽ攻撃のステート
     private BreathState breathState;                              // ブレス攻撃のステート
     private RushState rushState;                                  // 突進攻撃のステート
+    private Phase2TransitionState phase2TransitionState;          // 第2形態のステート
     private BossDyingState bossDyingState;                        // ボス死亡時のステート
 
     private float attackTimer;                                    // 攻撃の硬直用タイマー
@@ -37,6 +38,7 @@ public class BossEnemy : EnemyBase
     public TailState TailState => tailstate;
     public BreathState BreathState => breathState;
     public RushState RushState => rushState;
+    public Phase2TransitionState Phase2TransitionState => phase2TransitionState;
     public BossDyingState BossDyingState => bossDyingState;
     public float AttackRange => attackRange;
     public bool IsPhase2 => isPhase2;
@@ -68,6 +70,7 @@ public class BossEnemy : EnemyBase
         tailstate = new TailState();
         breathState = new BreathState();
         rushState = new RushState();
+        phase2TransitionState = new Phase2TransitionState();
         bossDyingState = new BossDyingState();
     }
 
@@ -130,8 +133,16 @@ public class BossEnemy : EnemyBase
                 charController.Move(moveDir * Time.deltaTime);
             }
 
-            // 動いているのでアニメーションを再生する
-            PlayAnimation("Move");
+            // 歩きアニメーション
+            if (isPhase2)
+            {
+                PlayAnimation("StandMove"); // 第2形態の歩きアニメーション
+            }
+            else
+            {
+                PlayAnimation("Move");      // 通常の歩きアニメーション
+            }
+
         }
         else
         {
@@ -152,6 +163,7 @@ public class BossEnemy : EnemyBase
             if (enemyStatus.CurrentHP <= enemyStatus.MaxHP / 2)
             {
                 TriggerPhase2();
+                ChangeState(phase2TransitionState);
             }
         }
     }
@@ -172,7 +184,7 @@ public class BossEnemy : EnemyBase
         base.StopMove();
 
         // アニメーションを止める
-        PlayAnimation("Stop");
+        //PlayAnimation("Stop");
 
         if (anim != null)
         {
