@@ -85,8 +85,10 @@ public class BossEnemy : EnemyBase
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player == null) return false;
 
+        // ƒ{ƒX‚Ìõ“G”ÍˆÍ
         float dist = Vector3.Distance(transform.position, player.transform.position);
-        return dist < 40.0f;
+
+        return dist < 60.0f;
     }
 
     // ’ÇÕ‚Ìˆ—
