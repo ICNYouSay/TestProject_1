@@ -11,6 +11,13 @@ public class BossDyingState : EnemyState
             // “®‚«‚âUŒ‚‚ğŠ®‘S‚É~‚ß‚é
             boss.StopMove();
 
+            // €‚ñ‚¾uŠÔ‚ÉCharacterController‚ğOFF‚É‚·‚é(•‚‚«–h~)
+            CharacterController cc = boss.GetComponent<CharacterController>();
+            if (cc != null)
+            {
+                cc.enabled = false;
+            }
+
             // ƒAƒjƒ[ƒVƒ‡ƒ“
             boss.PlayAnimation("Dying");
 

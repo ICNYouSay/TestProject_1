@@ -3,56 +3,98 @@ using Effekseer;
 
 public class EffectEvent : MonoBehaviour
 {
-    [Header("1個目に再生するエフェクト")]
+    [Header("再生するエフェクト")]
     [SerializeField]
-    private EffekseerEmitter effect_1;
-
-    [Header("2個目に再生するエフェクト")]
-    [SerializeField]
-    private EffekseerEmitter effect_2;
-
-    [Header("3個目に再生するエフェクト")]
-    [SerializeField]
-    private EffekseerEmitter effect_3;
-
-    [Header("4個目に再生するエフェクト")]
-    [SerializeField]
-    private EffekseerEmitter effect_4;
+    private EffekseerEmitter[] effect;
 
     //1個目に設定されたエフェクトを再生
     public void PlayEffect_1()
     {
-        if (effect_1 != null)
+        if (effect.Length > 0 && effect[0] != null)
         {
-            effect_1.Play();
+            effect[0].Play();
         }
     }
 
     //2個目に設定されたエフェクトを再生
     public void PlayEffect_2()
     {
-        if (effect_2 != null)
+        if (effect.Length > 0 && effect[1] != null)
         {
-            effect_2.Play();
+            effect[1].Play();
         }
     }
 
     //3個目に設定されたエフェクトを再生
     public void PlayEffect_3()
     {
-        if (effect_3 != null)
+        if (effect.Length > 0 && effect[2] != null)
         {
-            effect_3.Play();
+            effect[2].Play();
         }
     }
 
     //4個目に設定されたエフェクトを再生
     public void PlayEffect_4()
     {
-        if (effect_4 != null)
+        if (effect.Length > 0 && effect[3] != null)
         {
-            effect_4.Play();
+            effect[3].Play();
         }
     }
 
+    //5個目に設定されたエフェクトを再生
+    public void PlayEffect_5()
+    {
+        if (effect.Length > 0 && effect[4] != null)
+        {
+            effect[4].Play();
+        }
+    }
+
+    //6個目に設定されたエフェクトを再生
+    public void PlayEffect_6()
+    {
+        if (effect.Length > 0 && effect[5] != null)
+        {
+            effect[5].Play();
+        }
+    }
+
+    //7個目に設定されたエフェクトを再生
+    public void PlayEffect_7()
+    {
+        if (effect.Length > 0 && effect[6] != null)
+        {
+            effect[6].Play();
+        }
+    }
+
+
+    //8個目に設定されたエフェクトを再生
+    public void PlayEffect_8()
+    {
+        if (effect.Length > 0 && effect[7] != null)
+        {
+            effect[7].Play();
+        }
+    }
+
+    //9個目に設定されたエフェクトを再生
+    public void PlayEffect_9()
+    {
+        if (effect.Length > 0 && effect[8] != null)
+        {
+            effect[8].Play();
+        }
+    }
+
+    //10個目に設定されたエフェクトを再生
+    public void PlayEffect_10()
+    {
+        if (effect.Length > 0 && effect[9] != null)
+        {
+            effect[9].Play();
+        }
+    }
 }

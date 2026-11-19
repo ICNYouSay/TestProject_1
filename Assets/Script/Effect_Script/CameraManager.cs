@@ -1,45 +1,34 @@
 using Cinemachine;
-using Photon.Realtime;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class CameraManager : MonoBehaviour
 {
-    //インスタンス
     public static CameraManager Instance;
 
     [Header("VirtualCameraPrefabを設定")]
-    [SerializeField]
-    private CinemachineVirtualCamera virtualCameraPrefab;
+    [SerializeField] private CinemachineVirtualCamera virtualCameraPrefab;
 
     [Header("ゲームプレイスタート用演出カメラ")]
-    [SerializeField]
-    private CinemachineVirtualCamera startCamera;
+    [SerializeField] private CinemachineVirtualCamera startCamera;
 
-    //現在使用するVirtualCamera
     private CinemachineVirtualCamera currentCamera;
-
-    //VirtualCameraのAim設定
     private CinemachineComposer composer;
 
     private void Awake()
     {
-        //自身をInstanceとして登録
         Instance = this;
     }
 
-    //カメラの追従対象を変更する
     public void SetTarget(Transform target)
     {
-        // 古いVirtualCameraを削除
         if (currentCamera != null)
         {
             Destroy(currentCamera.gameObject);
         }
 
-        // 新しいVirtualCamera生成
         currentCamera = Instantiate(virtualCameraPrefab);
 
-        // CameraTarget取得
         Transform cameraTarget = target.Find("CameraTarget");
 
         foreach (Transform t in target.GetComponentsInChildren<Transform>(true))
@@ -51,11 +40,9 @@ public class CameraManager : MonoBehaviour
             }
         }
 
-        // Follow・LookAt設定
         currentCamera.Follow = cameraTarget;
         currentCamera.LookAt = cameraTarget;
 
-        // Third Person Follow取得
         Cinemachine3rdPersonFollow thirdPerson =
             currentCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
 
@@ -66,7 +53,6 @@ public class CameraManager : MonoBehaviour
             thirdPerson.CameraDistance = 8.0f;
         }
 
-        // CameraControllerへ渡す
         CameraController controller = Camera.main.GetComponent<CameraController>();
 
         if (controller != null)
@@ -74,10 +60,8 @@ public class CameraManager : MonoBehaviour
             controller.SetVirtualCamera(currentCamera);
             controller.SetTarget(cameraTarget);
         }
-
     }
 
-    //VirtualCameraの切り替え
     public void SwitchToEventCamera(CinemachineVirtualCamera eventCamera)
     {
         if (currentCamera != null)
@@ -103,5 +87,4 @@ public class CameraManager : MonoBehaviour
         Camera.main.GetComponent<CameraController>()
                    .EnablePlayerControl(true);
     }
-
 }

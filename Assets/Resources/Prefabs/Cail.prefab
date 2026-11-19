@@ -149,6 +149,7 @@ Transform:
   m_Children:
   - {fileID: 3697652148676656296}
   - {fileID: 4454249536412510405}
+  - {fileID: 210912002613592099}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &51802144210361001
@@ -167,6 +168,61 @@ MonoBehaviour:
   backOffset: 0.55
   heightOffset: -1
   spawnDistance: 0.5
+--- !u!1 &6229345712497826002
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 210912002613592099}
+  - component: {fileID: 1216311494741878212}
+  m_Layer: 0
+  m_Name: AnimationSmoothPath_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &210912002613592099
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6229345712497826002}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5202616058924346272}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1216311494741878212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6229345712497826002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a200b19ca1a9685429ed7e043c28e904, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Cinemachine::Cinemachine.CinemachineSmoothPath
+  m_Resolution: 20
+  m_Appearance:
+    pathColor: {r: 0, g: 1, b: 0, a: 1}
+    inactivePathColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    width: 0.2
+  m_Looped: 0
+  m_Waypoints:
+  - position: {x: 0, y: 0, z: -5}
+    roll: 0
+  - position: {x: 0, y: 0, z: 5}
+    roll: 0
 --- !u!1 &8260199766978776012
 GameObject:
   m_ObjectHideFlags: 0
@@ -457,10 +513,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 244132d072b2fcf4c973673ee60ef361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EffectEvent
-  effect_1: {fileID: 9185023027382090430}
-  effect_2: {fileID: 491961648756407355}
-  effect_3: {fileID: 2793317331056741457}
-  effect_4: {fileID: 6418465991923783982}
+  effect:
+  - {fileID: 9185023027382090430}
+  - {fileID: 491961648756407355}
+  - {fileID: 2793317331056741457}
+  - {fileID: 6418465991923783982}
 --- !u!114 &9185023027382090430
 MonoBehaviour:
   m_ObjectHideFlags: 0

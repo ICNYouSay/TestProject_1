@@ -15,6 +15,9 @@ public class BossEnemy : EnemyBase
     [SerializeField] private float breathDelay;                   // 溜めモーションの待ち時間（秒）
     [SerializeField] private EnemyHitbox rushHitbox;              // 突進の当たり判定
 
+    [Header("形態変化の設定")]
+    [SerializeField] private bool isPhase2 = false;               // 第2形態の判定
+    
     private Animator anim;                                        // アニメーション
     private CharacterController charController;                   // CharacterController用
     private BiteState biteState;                                  // かみつき攻撃のステート
@@ -22,17 +25,24 @@ public class BossEnemy : EnemyBase
     private TailState tailstate;                                  // しっぽ攻撃のステート
     private BreathState breathState;                              // ブレス攻撃のステート
     private RushState rushState;                                  // 突進攻撃のステート
+    private Phase2TransitionState phase2TransitionState;          // 第2形態のステート
     private BossDyingState bossDyingState;                        // ボス死亡時のステート
 
     private float attackTimer;                                    // 攻撃の硬直用タイマー
+    private float invincibilityTimer = 0.0f;                      // ヒットストップ後の無敵時間
 
+    [Header("ボスの状態フラグ")]
+    public bool isDefeated = false; 　　　　　　　　　　　　　　　// ボス撃破フラグ
+    public bool isInvincible = false;                             // 無敵かどうか
     public BiteState BiteState => biteState;
     public ClawState ClawState => clawState;
     public TailState TailState => tailstate;
     public BreathState BreathState => breathState;
     public RushState RushState => rushState;
+    public Phase2TransitionState Phase2TransitionState => phase2TransitionState;
     public BossDyingState BossDyingState => bossDyingState;
     public float AttackRange => attackRange;
+    public bool IsPhase2 => isPhase2;
 
     [Header("ボス撃破用のTimeLine")]
     [SerializeField]
@@ -61,6 +71,7 @@ public class BossEnemy : EnemyBase
         tailstate = new TailState();
         breathState = new BreathState();
         rushState = new RushState();
+        phase2TransitionState = new Phase2TransitionState();
         bossDyingState = new BossDyingState();
     }
 
@@ -70,18 +81,12 @@ public class BossEnemy : EnemyBase
 
         anim.Update(Time.deltaTime);
 
-        // デバッグ用 ボス撃破演出(カメラワーク)
-        //if (Input.GetKeyDown(KeyCode.P) && !isStarting)
-        //{
-        //    // 演出を開始する
-        //    isStarting = true;
-
-        //    // ボスの状態を死亡ステートに切り替える
-        //    ChangeState(bossDyingState);
-
-        //    // ボス撃破カメラワーク開始
-        //    BossDefeatedTimeLine.Play();
-        //}
+        // 無敵タイマーのカウントダウン
+        if (invincibilityTimer > 0)
+        {
+            invincibilityTimer -= Time.deltaTime;
+            isInvincible = (invincibilityTimer > 0);
+        }
 
     }
 
@@ -91,8 +96,10 @@ public class BossEnemy : EnemyBase
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player == null) return false;
 
+        // ボスの索敵範囲
         float dist = Vector3.Distance(transform.position, player.transform.position);
-        return dist < 40.0f;
+
+        return dist < 60.0f;
     }
 
     // 追跡の処理
@@ -134,8 +141,16 @@ public class BossEnemy : EnemyBase
                 charController.Move(moveDir * Time.deltaTime);
             }
 
-            // 動いているのでアニメーションを再生する
-            PlayAnimation("Move");
+            // 歩きアニメーション
+            if (isPhase2)
+            {
+                PlayAnimation("StandMove"); // 第2形態の歩きアニメーション
+            }
+            else
+            {
+                PlayAnimation("Move");      // 通常の歩きアニメーション
+            }
+
         }
         else
         {
@@ -144,12 +159,51 @@ public class BossEnemy : EnemyBase
         }
     }
 
+    // プレイヤーからダメージを受けたときの処理
+    public override void TakeDamage(int damage)
+    {
+        // 無敵状態ならダメージ処理を呼ばない
+        if (isInvincible)
+        {
+            Debug.Log("ボスは無敵だ！攻撃は効かない！");
+            return;
+        }
+
+        // 通常のダメージ処理を呼ぶ
+        base.TakeDamage(damage);
+
+        // ダメージを受けたら0.2秒だけ無敵にする
+        invincibilityTimer = 0.2f;
+        isInvincible = true;
+
+        // まだ第2形態ではなくHPが最大HPの半分以下になった時
+        if (!isPhase2 && enemyStatus != null)
+        {
+            if (enemyStatus.CurrentHP <= enemyStatus.MaxHP / 2)
+            {
+                TriggerPhase2();
+                ChangeState(phase2TransitionState);
+            }
+        }
+    }
+
+    // 第2形態に移行するときの処理
+    private void TriggerPhase2()
+    {
+        isPhase2 = true;
+        Debug.Log("ボスのHPが半分を切った！第2形態に突入！");
+
+        // ここで第2形態の強化を行う
+        moveSpeed += 3.0f; // 移動速度アップ
+
+    }
+
     public override void StopMove()
     {
         base.StopMove();
 
         // アニメーションを止める
-        PlayAnimation("Stop");
+        //PlayAnimation("Stop");
 
         if (anim != null)
         {
@@ -287,9 +341,21 @@ public class BossEnemy : EnemyBase
     {
         yield return new WaitForSeconds(delay);
 
-        // シーンを遷移する
-        Debug.Log("ボス撃破！リザルトシーンへ移動します。");
-        UnityEngine.SceneManagement.SceneManager.LoadScene("ResultScene");
+        // 撃破フラグをONにする
+        isDefeated = true;
+        Debug.Log("【ボス完全撃破】撃破フラグをONにしました！");
+
+        // GameLauncherを探してボスが倒されたことを直接通知する
+        GameLauncher launcher = FindFirstObjectByType<GameLauncher>();
+        if (launcher != null)
+        {
+            launcher.OnBossDefeated();
+        }
+        else
+        {
+            // 万が一GameLauncherが見つからない場合の保険
+            UnityEngine.SceneManagement.SceneManager.LoadScene("ResultScene");
+        }
 
         // その後ボスを消去
         var netObj = GetComponentInParent<Fusion.NetworkObject>();
