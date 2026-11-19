@@ -25,18 +25,21 @@ public class BossEnemy : EnemyBase
     private TailState tailstate;                                  // しっぽ攻撃のステート
     private BreathState breathState;                              // ブレス攻撃のステート
     private RushState rushState;                                  // 突進攻撃のステート
+    private Phase2TransitionState phase2TransitionState;          // 第2形態のステート
     private BossDyingState bossDyingState;                        // ボス死亡時のステート
 
     private float attackTimer;                                    // 攻撃の硬直用タイマー
+    private float invincibilityTimer = 0.0f;                      // ヒットストップ後の無敵時間
 
     [Header("ボスの状態フラグ")]
     public bool isDefeated = false; 　　　　　　　　　　　　　　　// ボス撃破フラグ
-
+    public bool isInvincible = false;                             // 無敵かどうか
     public BiteState BiteState => biteState;
     public ClawState ClawState => clawState;
     public TailState TailState => tailstate;
     public BreathState BreathState => breathState;
     public RushState RushState => rushState;
+    public Phase2TransitionState Phase2TransitionState => phase2TransitionState;
     public BossDyingState BossDyingState => bossDyingState;
     public float AttackRange => attackRange;
     public bool IsPhase2 => isPhase2;
@@ -68,6 +71,7 @@ public class BossEnemy : EnemyBase
         tailstate = new TailState();
         breathState = new BreathState();
         rushState = new RushState();
+        phase2TransitionState = new Phase2TransitionState();
         bossDyingState = new BossDyingState();
     }
 
@@ -77,6 +81,13 @@ public class BossEnemy : EnemyBase
 
         anim.Update(Time.deltaTime);
 
+        // 無敵タイマーのカウントダウン
+        if (invincibilityTimer > 0)
+        {
+            invincibilityTimer -= Time.deltaTime;
+            isInvincible = (invincibilityTimer > 0);
+        }
+
     }
 
     // プレイヤーを見つけているか
@@ -85,8 +96,10 @@ public class BossEnemy : EnemyBase
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player == null) return false;
 
+        // ボスの索敵範囲
         float dist = Vector3.Distance(transform.position, player.transform.position);
-        return dist < 40.0f;
+
+        return dist < 60.0f;
     }
 
     // 追跡の処理
@@ -128,8 +141,16 @@ public class BossEnemy : EnemyBase
                 charController.Move(moveDir * Time.deltaTime);
             }
 
-            // 動いているのでアニメーションを再生する
-            PlayAnimation("Move");
+            // 歩きアニメーション
+            if (isPhase2)
+            {
+                PlayAnimation("StandMove"); // 第2形態の歩きアニメーション
+            }
+            else
+            {
+                PlayAnimation("Move");      // 通常の歩きアニメーション
+            }
+
         }
         else
         {
@@ -141,8 +162,19 @@ public class BossEnemy : EnemyBase
     // プレイヤーからダメージを受けたときの処理
     public override void TakeDamage(int damage)
     {
+        // 無敵状態ならダメージ処理を呼ばない
+        if (isInvincible)
+        {
+            Debug.Log("ボスは無敵だ！攻撃は効かない！");
+            return;
+        }
+
         // 通常のダメージ処理を呼ぶ
         base.TakeDamage(damage);
+
+        // ダメージを受けたら0.2秒だけ無敵にする
+        invincibilityTimer = 0.2f;
+        isInvincible = true;
 
         // まだ第2形態ではなくHPが最大HPの半分以下になった時
         if (!isPhase2 && enemyStatus != null)
@@ -150,6 +182,7 @@ public class BossEnemy : EnemyBase
             if (enemyStatus.CurrentHP <= enemyStatus.MaxHP / 2)
             {
                 TriggerPhase2();
+                ChangeState(phase2TransitionState);
             }
         }
     }
@@ -170,7 +203,7 @@ public class BossEnemy : EnemyBase
         base.StopMove();
 
         // アニメーションを止める
-        PlayAnimation("Stop");
+        //PlayAnimation("Stop");
 
         if (anim != null)
         {

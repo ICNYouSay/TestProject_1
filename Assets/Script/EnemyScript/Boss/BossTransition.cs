@@ -41,27 +41,7 @@ public class BossTransition : IEnemyTransition
                         // 第2形態かどうかで攻撃の確率を変化させる
                         if (boss.IsPhase2)
                         {
-                            // 第2形態の確率分岐
-                            if (randomValue < 0.1f)
-                            {
-                                return boss.BiteState;   // 10% かみつき
-                            }
-                            else if (randomValue < 0.2f)
-                            {
-                                return boss.ClawState;   // 10% クロー
-                            }
-                            else if (randomValue < 0.3f)
-                            {
-                                return boss.TailState;   // 10% しっぽ
-                            }
-                            else if (randomValue < 0.6f)
-                            {
-                                return boss.BreathState; // 30% ブレス
-                            }
-                            else
-                            {
-                                return boss.RushState;   // 40% 突進
-                            }
+                            return boss.RushState;// 100% 突進
                         }
                         else
                         {
