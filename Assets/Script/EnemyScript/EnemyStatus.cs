@@ -9,8 +9,8 @@ public class EnemyStatus : NetworkBehaviour
     private float maxHP = 1000;
 
     [Header("現在HP")]
-    [Networked] 
-    private float currentHP { get; set; }
+    [SerializeField]
+    private float currentHP;
 
     [Header("基礎防御力")]
     [SerializeField]
@@ -67,18 +67,7 @@ public class EnemyStatus : NetworkBehaviour
     //--------------------
     private void Awake()
     {
-
-    }
-
-    public override void Spawned()
-    {
-        base.Spawned();
-
-        // ネットワーク上でオブジェクトが生成されたとき、ホストだけが初期HPを設定する
-        if (Object.HasStateAuthority)
-        {
-            currentHP = maxHP;
-        }
+        currentHP = maxHP;
     }
 
     //--------------------
@@ -94,9 +83,6 @@ public class EnemyStatus : NetworkBehaviour
     //--------------------
     public void TakeDamage(float damage)
     {
-        // ネットワーク上でデータを書き換える権限を持っている人だけが計算する
-        if (Object != null && !Object.HasStateAuthority) return;
-
         // バフ込み防御力を使用
         float finalDamage = Mathf.Max(0, damage - Defence);
 
@@ -115,8 +101,6 @@ public class EnemyStatus : NetworkBehaviour
     //--------------------
     public void Heal(float healAmount)
     {
-        if (Object != null && !Object.HasStateAuthority) return;
-
         currentHP += healAmount;
 
         if (currentHP > maxHP)
