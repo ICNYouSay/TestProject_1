@@ -32,6 +32,9 @@ public abstract class EnemyBase : MonoBehaviour
 
     //死亡状態を取得するプロパティ
     public DyingState DyingState => dyingState;
+
+    // ステータスを取得するプロパティ
+    public EnemyStatus EnemyStatus => enemyStatus;
     // HPバーのGameObjectを保持する変数
     public GameObject HPBar; 
     // HPバーのImageコンポーネントを持つ2Dオブジェクトを保持する変数 
