@@ -3926,7 +3926,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99a9c787e5d1bbf48a389834c4a9641c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Cinemachine::Cinemachine.CinemachineDollyCart
-  m_Path: {fileID: 671014384}
+  m_Path: {fileID: 0}
   m_UpdateMethod: 0
   m_PositionUnits: 1
   m_Speed: 0
@@ -4067,12 +4067,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1874011459}
   - component: {fileID: 1874011461}
-  - component: {fileID: 1874011460}
   - component: {fileID: 1874011462}
   - component: {fileID: 1874011463}
   - component: {fileID: 1874011465}
   - component: {fileID: 1874011464}
   - component: {fileID: 1874011466}
+  - component: {fileID: 1874011467}
   m_Layer: 0
   m_Name: BoosRoot
   m_TagString: Enemy
@@ -4107,25 +4107,6 @@ Transform:
   - {fileID: 1866903643}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1874011460
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1874011458}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fdbe233ab5bb84418ccaa3637eb8de0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyStatus
-  maxHP: 5000
-  currentHP: 0
-  baseDefence: 20
-  baseAttack: 50
-  givePower: 5
-  experience: 50
-  buffManager: {fileID: 0}
 --- !u!114 &1874011461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4150,6 +4131,7 @@ MonoBehaviour:
   breathDelay: 1.2
   rushHitbox: {fileID: 210849777}
   isPhase2: 0
+  currentTarget: {fileID: 0}
   isDefeated: 0
   isInvincible: 0
   BossDefeatedTimeLine: {fileID: 2084158876}
@@ -4235,11 +4217,10 @@ MonoBehaviour:
   SortKey: 2592790200
   SendPriority: 1
   EnableInterpolation: 1
-  Flags: 262402
+  Flags: 131330
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 1874011464}
-  - {fileID: 1874011460}
   - {fileID: 1926741558}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &1874011466
@@ -4256,6 +4237,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossHPBarManager
   targetBoss: {fileID: 1874011461}
   hpBarFill: {fileID: 271866901}
+--- !u!114 &1874011467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1874011458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d780efe2bf95e1479369d47632b9701, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossStatus
+  maxHP: 5000
+  currentHP: 0
+  baseDefence: 20
+  baseAttack: 50
+  givePower: 5
+  experience: 50
+  buffManager: {fileID: 0}
 --- !u!1001 &1908754317
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4882,6 +4882,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NetworkConnectManager
   playerPrefab: {fileID: 2851591835344119872, guid: e064c91a3b800c64887c8f9cd3fe6621, type: 3}
+  bossPrefab: {fileID: 0}
+  bossSpawnPos: {x: -18.87, y: -1.65, z: 51.44}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -3,18 +3,38 @@ using UnityEngine.UI;
 
 public class BossHPBarManager : MonoBehaviour
 {
-    public BossEnemy targetBoss; // ここにボスをアタッチ
+    public BossEnemy targetBoss; // ここにボス（BoosRoot）をセットする
     public Image hpBarFill;      // 画面上のHPバーの画像
+
+    private BossStatus bossStatus;
+
+    void Start()
+    {
+        // もしインスペクターでボスが入っていなければ、自動で探す
+        if (targetBoss == null)
+        {
+            targetBoss = FindFirstObjectByType<BossEnemy>();
+        }
+
+        if (targetBoss != null)
+        {
+            bossStatus = targetBoss.GetComponent<BossStatus>();
+        }
+    }
 
     void Update()
     {
-        if (targetBoss != null && hpBarFill != null)
+        if (bossStatus == null && targetBoss != null)
         {
-            // 最大HPが0だと割り算でエラーになるので防止
-            if (targetBoss.EnemyStatus.MaxHP <= 0) return;
+            bossStatus = targetBoss.GetComponent<BossStatus>();
+        }
 
-            // ratioを0.0 ～ 1.0の間に強制的に収める
-            float ratio = (float)targetBoss.EnemyStatus.CurrentHP / targetBoss.EnemyStatus.MaxHP;
+        // ボスと画像とステータスがそろっていればバーを更新する
+        if (targetBoss != null && hpBarFill != null && bossStatus != null)
+        {
+            if (bossStatus.MaxHP <= 0) return;
+
+            float ratio = (float)bossStatus.CurrentHP / bossStatus.MaxHP;
             hpBarFill.fillAmount = Mathf.Clamp01(ratio);
         }
     }

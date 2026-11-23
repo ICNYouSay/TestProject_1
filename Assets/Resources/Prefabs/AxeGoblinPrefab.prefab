@@ -433,6 +433,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 82fa0b92d8aa169498b16977f4e0af4d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3252090283269493728}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 82fa0b92d8aa169498b16977f4e0af4d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1694162435520434514}
   m_SourcePrefab: {fileID: 100100000, guid: 82fa0b92d8aa169498b16977f4e0af4d, type: 3}
 --- !u!4 &7003600215113001543 stripped
 Transform:
@@ -517,3 +520,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BuffManager
   buffs: []
+--- !u!114 &1694162435520434514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7672473388129497341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Fusion.Runtime.dll::Fusion.NetworkObject
+  SortKey: 3506011926
+  SendPriority: 1
+  EnableInterpolation: 1
+  Flags: 262146
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 4328636471253343573}
+  ForceRemoteRenderTimeframe: 0

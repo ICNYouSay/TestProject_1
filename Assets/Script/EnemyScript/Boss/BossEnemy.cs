@@ -34,6 +34,7 @@ public class BossEnemy : EnemyBase
     private float attackTimer;                                    // 攻撃の硬直用タイマー
     private float invincibilityTimer = 0.0f;                      // ヒットストップ後の無敵時間
 
+    private BossStatus bossStatus;                                // ステータス
 
     [Header("ボスの状態フラグ")]
     public bool isDefeated = false; 　　　　　　　　　　　　　　　// ボス撃破フラグ
@@ -69,6 +70,9 @@ public class BossEnemy : EnemyBase
 
         // CharacterControllerを取得する
         charController = GetComponent<CharacterController>();
+
+        // BossStatusを取得する
+        bossStatus = GetComponent<BossStatus>();
 
         // ステートの生成
         biteState = new BiteState();
@@ -217,21 +221,31 @@ public class BossEnemy : EnemyBase
         }
 
         // 通常のダメージ処理を呼ぶ
-        base.TakeDamage(damage);
+        if (bossStatus != null)
+        {
+            bossStatus.TakeDamage(damage);
+        }
 
         // ダメージを受けたら0.2秒だけ無敵にする
         invincibilityTimer = 0.2f;
         isInvincible = true;
 
         // まだ第2形態ではなくHPが最大HPの半分以下になった時
-        if (!isPhase2 && enemyStatus != null)
+        if (!isPhase2 && bossStatus != null)
         {
-            if (enemyStatus.CurrentHP <= enemyStatus.MaxHP / 2)
+            if (bossStatus.CurrentHP <= bossStatus.MaxHP / 2)
             {
                 TriggerPhase2();
                 ChangeState(phase2TransitionState);
             }
         }
+
+        // HPが0になったら死亡ステートへ
+        if (bossStatus != null && bossStatus.IsDead())
+        {
+            ChangeState(bossDyingState);
+        }
+
     }
 
     // 第2形態に移行するときの処理
@@ -415,6 +429,13 @@ public class BossEnemy : EnemyBase
         {
             Destroy(this.gameObject);
         }
+    }
+
+    public override bool IsDead()
+    {
+        if (bossStatus == null) return false;
+
+        return bossStatus.IsDead();
     }
 
 }
