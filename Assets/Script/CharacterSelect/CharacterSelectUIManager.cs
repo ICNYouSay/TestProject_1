@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -55,6 +56,9 @@ public class CharacterSelectUIManager : MonoBehaviour
 	[SerializeField]
 	public Image fadeImage; // フェード用のImageコンポーネント
 
+
+    private Gamepad gamepad;
+
     // キャラ選択、アビリティ選択それぞれのメニューを開いているかどうかを管理するフラグ
     enum MenuState
 	{
@@ -83,6 +87,50 @@ public class CharacterSelectUIManager : MonoBehaviour
     }
 
     private void Update()
+	{
+		gamepad = Gamepad.current;
+
+        SetUIPosition();
+		OnControllerInput(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")));
+    }
+
+	// このシーンをコントローラーで操作するための関数
+	public void OnControllerInput(Vector2 input)
+	{
+		if (currentMenu == MenuState.CharacterSelect)
+		{
+            // キャラ選択メニューが開かれてるとき
+			// 十字キー及び←スティックの上下入力でキャラ選択
+            if (input.y > 0.5f || gamepad.dpad.up.wasPressedThisFrame)
+			{
+                GameData.SelectedCharacterIndex = (GameData.SelectedCharacterIndex + 1) % allCharacterData.Length;
+			}
+			else if (input.y < -0.5f || gamepad.dpad.down.wasPressedThisFrame)
+			{
+                GameData.SelectedCharacterIndex = (GameData.SelectedCharacterIndex - 1 + allCharacterData.Length) % allCharacterData.Length;
+			}
+		}
+		else if (currentMenu == MenuState.AbilitySelect)
+		{
+			// アビリティ選択メニューが開かれてるとき
+			if (input.x > 0.5f || gamepad.dpad.right.wasPressedThisFrame)
+			{
+                GameData.EquippedAbilities[EquipAbilityIndex] = (GameData.EquippedAbilities[EquipAbilityIndex] + 1) % allAbilityData.Length;
+			}
+			else if (input.x < -0.5f || gamepad.dpad.left.wasPressedThisFrame)
+			{
+                GameData.EquippedAbilities[EquipAbilityIndex] = (GameData.EquippedAbilities[EquipAbilityIndex] - 1 + allAbilityData.Length) % allAbilityData.Length;
+			}
+        }
+        else if (currentMenu == MenuState.None)
+		{
+            // 何も開かれていないとき
+        }
+
+    }
+    
+	// UIの配置を管理する関数
+    void SetUIPosition()
 	{
 		// 開いているメニューの状態に合わせて各種UIの位置を調整する
 		if (currentMenu == MenuState.CharacterSelect)

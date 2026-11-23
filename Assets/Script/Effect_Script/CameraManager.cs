@@ -62,28 +62,27 @@ public class CameraManager : MonoBehaviour
         }
     }
 
-    public void SwitchToEventCamera(CinemachineVirtualCamera eventCamera)
+    //プレイヤーカメラからイベントカメラに切り替える
+    public void SwitchToEventCamera(CinemachineVirtualCamera eventCamera, Transform target)
     {
         if (currentCamera != null)
         {
             currentCamera.Priority = 0;
         }
-
+        eventCamera.Follow = target;
+        eventCamera.LookAt = target;
         eventCamera.Priority = 100;
-
         Camera.main.GetComponent<CameraController>()
                    .EnablePlayerControl(false);
     }
 
-    public void ReturnPlayerCamera(CinemachineVirtualCamera eventCamera)
+    // イベントカメラからプレイヤーカメラに戻す
+    public void ReturnToPlayerCamera()
     {
-        eventCamera.Priority = 0;
-
         if (currentCamera != null)
         {
             currentCamera.Priority = 100;
         }
-
         Camera.main.GetComponent<CameraController>()
                    .EnablePlayerControl(true);
     }
