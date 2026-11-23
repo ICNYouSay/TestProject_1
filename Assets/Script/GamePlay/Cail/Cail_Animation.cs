@@ -12,7 +12,7 @@ public class Cail_Animation : CharacterAnimation
 	public bool _GungnirPressed;
 	public bool _YburnPressed;
 
-	void Start()
+    void Start()
 	{
 		controller = GetComponentInParent<CharacterController>();
 		anim = GetComponent<Animator>();
@@ -21,7 +21,7 @@ public class Cail_Animation : CharacterAnimation
 
 	private void Update()
 	{
-	}
+    }
 
 	public void NormalAttacked()
     {
@@ -40,8 +40,9 @@ public class Cail_Animation : CharacterAnimation
 
 	public void GungnirJumped()
 	{
-		anim.SetInteger("Gungnir", 2);
-		Debug.Log("Gungnir=2");
+        anim.SetInteger("Gungnir", 2);
+
+        Debug.Log("Gungnir=2");
 	}
 
 	public void GungnirAttacked()
