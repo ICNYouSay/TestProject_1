@@ -28,8 +28,13 @@ public class BossEnemy : EnemyBase
     private Phase2TransitionState phase2TransitionState;          // 第2形態のステート
     private BossDyingState bossDyingState;                        // ボス死亡時のステート
 
+    [Header("ターゲット設定")]
+    [SerializeField] private Transform currentTarget;             // 今狙っているターゲット
+
     private float attackTimer;                                    // 攻撃の硬直用タイマー
     private float invincibilityTimer = 0.0f;                      // ヒットストップ後の無敵時間
+
+    private BossStatus bossStatus;                                // ステータス
 
     [Header("ボスの状態フラグ")]
     public bool isDefeated = false; 　　　　　　　　　　　　　　　// ボス撃破フラグ
@@ -43,6 +48,7 @@ public class BossEnemy : EnemyBase
     public BossDyingState BossDyingState => bossDyingState;
     public float AttackRange => attackRange;
     public bool IsPhase2 => isPhase2;
+    public Transform CurrentTarget => currentTarget;
 
     [Header("ボス撃破用のTimeLine")]
     [SerializeField]
@@ -65,6 +71,9 @@ public class BossEnemy : EnemyBase
         // CharacterControllerを取得する
         charController = GetComponent<CharacterController>();
 
+        // BossStatusを取得する
+        bossStatus = GetComponent<BossStatus>();
+
         // ステートの生成
         biteState = new BiteState();
         clawState = new ClawState();
@@ -80,6 +89,9 @@ public class BossEnemy : EnemyBase
         base.Update();
 
         anim.Update(Time.deltaTime);
+
+        // 毎フレーム一番近いプレイヤーをターゲットとして更新する
+        UpdateTarget();
 
         // 無敵タイマーのカウントダウン
         if (invincibilityTimer > 0)
@@ -105,15 +117,15 @@ public class BossEnemy : EnemyBase
     // 追跡の処理
     public override void Chase()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player == null) return;
+        // 現在ターゲットにしているものを探す
+        if (currentTarget == null) return;
 
-        float dist = Vector3.Distance(transform.position, player.transform.position);
+        float dist = Vector3.Distance(transform.position, currentTarget.position);
 
         // 攻撃範囲より遠いときだけ移動する
         if (dist > attackRange)
         {
-            Vector3 direction = (player.transform.position - transform.position).normalized;
+            Vector3 direction = (currentTarget.position - transform.position).normalized;
             direction.y = 0;
 
             if (direction != Vector3.zero)
@@ -159,6 +171,45 @@ public class BossEnemy : EnemyBase
         }
     }
 
+    // ターゲットの処理
+    public void UpdateTarget()
+    {
+        // シーン内にあるPlayerタグがついたオブジェクトをすべて配列として取得する
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+
+        // プレイヤーが1人も見つからなかったらこれ以上処理をしない
+        if (players.Length == 0) return;
+
+        // 一番近いプレイヤーを入れるための変数
+        Transform nearestPlayer = null;
+
+        // 最短距離を比較するための変数
+        float shortestDistance = Mathf.Infinity;
+
+        // ボス自身の現在の位置を取得する
+        Vector3 currentPosition = transform.position;
+
+        // 見つかったプレイヤー全員を一人ずつチェックしていく
+        foreach (var player in players)
+        {
+            // ボスと今チェックしているプレイヤーとの直線距離を計算する
+            float distanceToPlayer = Vector3.Distance(currentPosition, player.transform.position);
+
+            // もしこれまでに記録した最短距離よりも近かったら
+            if (distanceToPlayer < shortestDistance)
+            {
+                // 最短距離の記録を更新する
+                shortestDistance = distanceToPlayer;
+
+                // 一番近いプレイヤーとしてこの人を記憶する
+                nearestPlayer = player.transform;
+            }
+        }
+
+        // 最終的に一番近かったプレイヤーをボスが狙うターゲットとして設定する
+        currentTarget = nearestPlayer;
+    }
+
     // プレイヤーからダメージを受けたときの処理
     public override void TakeDamage(int damage)
     {
@@ -170,21 +221,31 @@ public class BossEnemy : EnemyBase
         }
 
         // 通常のダメージ処理を呼ぶ
-        base.TakeDamage(damage);
+        if (bossStatus != null)
+        {
+            bossStatus.TakeDamage(damage);
+        }
 
         // ダメージを受けたら0.2秒だけ無敵にする
         invincibilityTimer = 0.2f;
         isInvincible = true;
 
         // まだ第2形態ではなくHPが最大HPの半分以下になった時
-        if (!isPhase2 && enemyStatus != null)
+        if (!isPhase2 && bossStatus != null)
         {
-            if (enemyStatus.CurrentHP <= enemyStatus.MaxHP / 2)
+            if (bossStatus.CurrentHP <= bossStatus.MaxHP / 2)
             {
                 TriggerPhase2();
                 ChangeState(phase2TransitionState);
             }
         }
+
+        // HPが0になったら死亡ステートへ
+        if (bossStatus != null && bossStatus.IsDead())
+        {
+            ChangeState(bossDyingState);
+        }
+
     }
 
     // 第2形態に移行するときの処理
@@ -368,6 +429,13 @@ public class BossEnemy : EnemyBase
         {
             Destroy(this.gameObject);
         }
+    }
+
+    public override bool IsDead()
+    {
+        if (bossStatus == null) return false;
+
+        return bossStatus.IsDead();
     }
 
 }

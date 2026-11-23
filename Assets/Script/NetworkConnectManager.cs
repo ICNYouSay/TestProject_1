@@ -8,6 +8,9 @@ using UnityEngine;
 public class NetworkConnectManager : MonoBehaviour, INetworkRunnerCallbacks
 {
     [SerializeField] private NetworkObject playerPrefab; // プレイヤーのプレハブ
+    [SerializeField] private NetworkObject bossPrefab;   // ボスのプレハブ
+
+    [SerializeField] private Vector3 bossSpawnPos = new Vector3(-18.87f, -1.65f, 51.44f); // ボスを出す位置
 
     public void OnConnectedToServer(NetworkRunner runner)
     {
@@ -61,6 +64,12 @@ public class NetworkConnectManager : MonoBehaviour, INetworkRunnerCallbacks
 
             // 自分のキャラをSpawn（第4引数にplayerを渡すことで、自分が操作権限[State Authority]を持つ）
             runner.Spawn(playerPrefab, spawnPosition, Quaternion.identity, player);
+
+            //if (runner.IsSharedModeMasterClient && bossPrefab != null)
+            //{
+            //    Debug.Log("部屋の親なので、ボスを1匹だけ登場させます！");
+            //    runner.Spawn(bossPrefab, bossSpawnPos, Quaternion.identity);
+            //}
         }
 
     }
