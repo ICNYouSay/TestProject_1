@@ -83,6 +83,7 @@ public class PlayerController : NetworkBehaviour
                 normalAttackInput = true;
             }
         }
+
     }
 
     public void PlayerWalk()
