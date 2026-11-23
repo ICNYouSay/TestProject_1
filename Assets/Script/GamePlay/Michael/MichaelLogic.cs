@@ -13,11 +13,23 @@ public class MichaelLogic : ICharacterLogic
 	public void Initialize(CharacterAnimation anim)
 	{
 		MichaelAnim = anim as Michael_Animation;
-	}
+
+        // アニメーターを取得する
+        if (anim != null)
+        {
+            _animator = anim.GetComponent<Animator>();
+            if (_animator == null) _animator = anim.GetComponentInChildren<Animator>();
+            if (_animator == null) _animator = anim.transform.root.GetComponentInChildren<Animator>();
+        }
+    }
 
     public void NormalAttack(NetworkCharacterController ncc)
     {
-        
+        // 攻撃トリガーを引く
+        if (_animator != null)
+        {
+            _animator.SetTrigger("Attack");
+        }
     }
 
     // Update is called once per frame
