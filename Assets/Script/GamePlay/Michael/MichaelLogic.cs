@@ -4,14 +4,15 @@ using UnityEngine.InputSystem;
 
 public class MichaelLogic : ICharacterLogic
 {
-	private Michael_Animation cailAnim;
+	private Michael_Animation MichaelAnim;
+    public Animator _animator;
 
-	public SkillHitbox gungnirHitbox;
+    public SkillHitbox gungnirHitbox;
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	public void Initialize(CharacterAnimation anim)
 	{
-		cailAnim = anim as Michael_Animation;
+		MichaelAnim = anim as Michael_Animation;
 	}
 
     public void NormalAttack(NetworkCharacterController ncc)
@@ -22,13 +23,14 @@ public class MichaelLogic : ICharacterLogic
     // Update is called once per frame
     public void UniqueSkillA(NetworkCharacterController ncc)
 	{
-		cailAnim.GungnirPressed();
+        Debug.Log("UniqueSkillA");
+        MichaelAnim.StraightPressed();
 		ncc.Move(new Vector3(0, 0, 0));
     }
 
 	public void UniqueSkillB(NetworkCharacterController ncc)
 	{
-		cailAnim.YburnPressed();
+		MichaelAnim.YburnPressed();
 	}
 
 	public void Move(NetworkCharacterController ncc, Vector3 inputVector)
