@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Michael
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   characterName: "\u30DE\u30A4\u30B1\u30EB"
-  modelPrefab: {fileID: 1164519375056235065, guid: 0fd8f5e6d8378804abd8d9c652dc8ff5, type: 3}
+  modelPrefab: {fileID: 2899667008045239575, guid: 0fd8f5e6d8378804abd8d9c652dc8ff5, type: 3}
   rotateoffset: 0
   hp: 0.8
   atk: 1.1
