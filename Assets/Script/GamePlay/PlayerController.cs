@@ -53,6 +53,9 @@ public class PlayerController : NetworkBehaviour
 
 	private void Update()
     {
+        // Œ»İÚ‘±‚³‚ê‚Ä‚¢‚éGamepad‚ğæ“¾
+        gamepad = Gamepad.current;
+
         if (gamepad != null)
         {
             if (gamepad.buttonSouth.wasPressedThisFrame)
@@ -88,8 +91,6 @@ public class PlayerController : NetworkBehaviour
 
     public void PlayerWalk()
     {
-        // Œ»İÚ‘±‚³‚ê‚Ä‚¢‚éGamepad‚ğæ“¾
-        gamepad = Gamepad.current;
 
         float moveX = 0.0f;
 		float moveZ = 0.0f;
