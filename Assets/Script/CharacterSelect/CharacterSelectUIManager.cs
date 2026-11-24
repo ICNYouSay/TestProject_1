@@ -140,14 +140,14 @@ public class CharacterSelectUIManager : MonoBehaviour
 		{
 			int cursorInMenuPos = cursorPos - (int)MenuItem.Character1;
             // キャラ選択メニューが開かれてるとき
-			// 十字キー及び←スティックの上下入力でキャラ選択
-            if (leftStick.y > 0.5f || gamepad.dpad.up.wasPressedThisFrame)
-			{
-                cursorPos = ((cursorInMenuPos + 1) % allCharacterData.Length) + (int)MenuItem.Character1;
+            // 十字キー及び←スティックの上下入力でキャラ選択
+            if (input.y > 0.5f || (gamepad != null && gamepad.dpad.up.wasPressedThisFrame))
+            {
+                GameData.SelectedCharacterIndex = (GameData.SelectedCharacterIndex + 1) % allCharacterData.Length;
 			}
-			else if (leftStick.y < -0.5f || gamepad.dpad.down.wasPressedThisFrame)
-			{
-                cursorPos = ((cursorInMenuPos - 1 + allCharacterData.Length) % allCharacterData.Length) + (int)MenuItem.Character1;
+            else if (input.y < -0.5f || (gamepad != null && gamepad.dpad.down.wasPressedThisFrame))
+            {
+                GameData.SelectedCharacterIndex = (GameData.SelectedCharacterIndex - 1 + allCharacterData.Length) % allCharacterData.Length;
 			}
 		}
 		else if (currentMenu == MenuState.AbilitySelect)
