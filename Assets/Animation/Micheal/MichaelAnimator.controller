@@ -223,8 +223,8 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 6
-    m_ConditionEvent: Straight
+  - m_ConditionMode: 1
+    m_ConditionEvent: GOStraight
     m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 861250081494662975}
@@ -355,13 +355,13 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 1
     m_Controller: {fileID: 9100000}
-  - m_Name: Straight
-    m_Type: 3
+  - m_Name: Attack
+    m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: Attack
+  - m_Name: GOStraight
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -427,7 +427,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -6302457428847131756, guid: 6909387124f767f4e9bf09939356ffc3, type: 3}
+  m_Motion: {fileID: 7400000, guid: 6b6b5413191582640832eeb1eb2945be, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -512,8 +512,8 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 6
-    m_ConditionEvent: Straight
+  - m_ConditionMode: 1
+    m_ConditionEvent: GOStraight
     m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 861250081494662975}
@@ -550,7 +550,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 0}
+  m_Motion: {fileID: 2880102745703120708, guid: a39da469bb594ab4fb88dee2040bafca, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
