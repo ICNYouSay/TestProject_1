@@ -45,7 +45,7 @@ public class CharacterSelectUIManager : MonoBehaviour
     public TextMeshProUGUI abi_nameText;        // 名前テキスト
     public TextMeshProUGUI abi_statusText;      // ステータス表示テキスト
 
-    // フェードアウト用Timeline
+	[Header("フェードアウト用Timeline")]
     [SerializeField]
     private PlayableDirector fadeOutDirector;
 
@@ -57,7 +57,41 @@ public class CharacterSelectUIManager : MonoBehaviour
 	public Image fadeImage; // フェード用のImageコンポーネント
 
 
+	[Header("カーソル")]
+	public GameObject cursorImage; // カーソル用のImageコンポーネント
+
     private Gamepad gamepad;
+
+	private int cursorPos = (int)MenuItem.OKButton;
+    // メニュー項目の一覧を整理する列挙型
+    enum MenuItem
+	{
+		None = 0,
+
+		OKButton,
+        CharacterSelect,
+        AbilitySelect1,
+		AbilitySelect2,
+		AbilitySelect3,
+		AbilitySelect4,
+		AbilitySelect5,
+
+		Character1,
+		Character2,
+		Character3,
+		Character4,
+
+		Ability1,
+		Ability2,
+		Ability3,
+		Ability4,
+		Ability5,
+		Ability6,
+		Ability7,
+		Ability8,
+		Ability9,
+		Ability10,
+    }
 
     // キャラ選択、アビリティ選択それぞれのメニューを開いているかどうかを管理するフラグ
     enum MenuState
@@ -91,14 +125,20 @@ public class CharacterSelectUIManager : MonoBehaviour
 		gamepad = Gamepad.current;
 
         SetUIPosition();
-		OnControllerInput(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")));
+		OnControllerInput();
+
+		UpdateCursorPos();
     }
 
 	// このシーンをコントローラーで操作するための関数
-	public void OnControllerInput(Vector2 input)
+	public void OnControllerInput()
 	{
-		if (currentMenu == MenuState.CharacterSelect)
+		if (gamepad == null) return;
+
+        Vector2 leftStick = gamepad.leftStick.ReadValue();
+        if (currentMenu == MenuState.CharacterSelect)
 		{
+			int cursorInMenuPos = cursorPos - (int)MenuItem.Character1;
             // キャラ選択メニューが開かれてるとき
             // 十字キー及び←スティックの上下入力でキャラ選択
             if (input.y > 0.5f || (gamepad != null && gamepad.dpad.up.wasPressedThisFrame))
@@ -111,24 +151,124 @@ public class CharacterSelectUIManager : MonoBehaviour
 			}
 		}
 		else if (currentMenu == MenuState.AbilitySelect)
-		{
+        {
+            int cursorInMenuPos = cursorPos - (int)MenuItem.Ability1;
             // アビリティ選択メニューが開かれてるとき
-            if (input.x > 0.5f || (gamepad != null && gamepad.dpad.right.wasPressedThisFrame))
-            {
-                GameData.EquippedAbilities[EquipAbilityIndex] = (GameData.EquippedAbilities[EquipAbilityIndex] + 1) % allAbilityData.Length;
+            if (leftStick.x > 0.5f || gamepad.dpad.right.wasPressedThisFrame)
+			{
+                cursorPos = ((cursorPos + 1) % allAbilityData.Length) + (int)MenuItem.Ability1;
 			}
-            else if (input.x < -0.5f || (gamepad != null && gamepad.dpad.left.wasPressedThisFrame))
-            {
-                GameData.EquippedAbilities[EquipAbilityIndex] = (GameData.EquippedAbilities[EquipAbilityIndex] - 1 + allAbilityData.Length) % allAbilityData.Length;
+			else if (leftStick.x < -0.5f || gamepad.dpad.left.wasPressedThisFrame)
+			{
+                cursorPos = ((cursorPos - 1 + allAbilityData.Length) % allAbilityData.Length) + (int)MenuItem.Ability1;
 			}
         }
         else if (currentMenu == MenuState.None)
 		{
             // 何も開かれていないとき
+            if (leftStick.x > 0.5f || gamepad.dpad.right.wasPressedThisFrame)
+            {
+                cursorPos = ((cursorPos + 1) % allAbilityData.Length) + (int)MenuItem.Ability1;
+            }
+            else if (leftStick.x < -0.5f || gamepad.dpad.left.wasPressedThisFrame)
+            {
+                cursorPos = ((cursorPos - 1 + allAbilityData.Length) % allAbilityData.Length) + (int)MenuItem.Ability1;
+            }
         }
 
+		// 決定ボタンを押し込め
+		if (gamepad.buttonEast.wasPressedThisFrame)
+		{
+            switch ((MenuItem)cursorPos)
+            {
+                case MenuItem.OKButton:
+					OnClickOKButton();
+                    break;
+                case MenuItem.CharacterSelect:
+					OnClickCharacterChangeButton();
+                    break;
+                case MenuItem.AbilitySelect1:
+                case MenuItem.AbilitySelect2:
+                case MenuItem.AbilitySelect3:
+                case MenuItem.AbilitySelect4:
+                case MenuItem.AbilitySelect5:
+                    int abilityIndex = cursorPos - (int)MenuItem.AbilitySelect1;
+					OnClickAbilityChangeButton(abilityIndex);
+                    break;
+                case MenuItem.Character1:
+                case MenuItem.Character2:
+                case MenuItem.Character3:
+                case MenuItem.Character4:
+                    int characterIndex = cursorPos - (int)MenuItem.Character1;
+					SelectCharacter(characterIndex);
+                    break;
+                case MenuItem.Ability1:
+                case MenuItem.Ability2:
+                case MenuItem.Ability3:
+                case MenuItem.Ability4:
+                case MenuItem.Ability5:
+                case MenuItem.Ability6:
+                case MenuItem.Ability7:
+                case MenuItem.Ability8:
+                case MenuItem.Ability9:
+                case MenuItem.Ability10:
+                    int abilityListIndex = cursorPos - (int)MenuItem.Ability1;
+					SelectAbility(abilityListIndex);
+                    break;
+            }
+        }
     }
     
+	void UpdateCursorPos()
+	{
+		if (gamepad == null)
+		{
+            cursorImage.transform.position = new Vector3(-1000, -1000, 0); // コントローラーが接続されていない場合はカーソルを画面外に移動
+			return;
+        }
+
+		// カーソルの位置を更新する
+		Vector3 targetPos = Vector3.zero;
+		switch ((MenuItem)cursorPos)
+		{
+			case MenuItem.OKButton:
+				targetPos = okButton.transform.position - new Vector3(100, 0, 0);
+				break;
+			case MenuItem.CharacterSelect:
+				targetPos = characterChangeButton.transform.position - new Vector3(100, 0, 0);
+				break;
+			case MenuItem.AbilitySelect1:
+			case MenuItem.AbilitySelect2:
+			case MenuItem.AbilitySelect3:
+			case MenuItem.AbilitySelect4:
+			case MenuItem.AbilitySelect5:
+				int abilityIndex = cursorPos - (int)MenuItem.AbilitySelect1;
+				targetPos = abilityChangeButton.transform.position + new Vector3(abilityIndex * 100, 0, 0);
+				break;
+			case MenuItem.Character1:
+			case MenuItem.Character2:
+			case MenuItem.Character3:
+			case MenuItem.Character4:
+				int characterIndex = cursorPos - (int)MenuItem.Character1;
+				targetPos = characterList.transform.position + new Vector3(characterIndex * 200, 0, 0);
+				break;
+			case MenuItem.Ability1:
+			case MenuItem.Ability2:
+			case MenuItem.Ability3:
+			case MenuItem.Ability4:
+			case MenuItem.Ability5:
+			case MenuItem.Ability6:
+			case MenuItem.Ability7:
+			case MenuItem.Ability8:
+			case MenuItem.Ability9:
+			case MenuItem.Ability10:
+				int abilityListIndex = cursorPos - (int)MenuItem.Ability1;
+				targetPos = abilityList.transform.position + new Vector3(abilityListIndex * 100, 0, 0);
+				break;
+		}
+		cursorImage.transform.position = Vector3.Lerp(cursorImage.transform.position, targetPos, Time.deltaTime * 10f);
+    }
+
 	// UIの配置を管理する関数
     void SetUIPosition()
 	{
@@ -159,7 +299,7 @@ public class CharacterSelectUIManager : MonoBehaviour
 			if (characterChangeButton != null)
 				characterChangeButton.transform.localPosition   += (new Vector3(1300, 260, 0) - characterChangeButton.transform.localPosition) / 30; ///< キャラチェンボタン
 			if (abilityChangeButton != null)
-				abilityChangeButton.transform.localPosition     += (new Vector3(1300, -100, 0) - abilityChangeButton.transform.localPosition) / 30; ///< アビチェンボタン
+				abilityChangeButton.transform.localPosition     += (new Vector3(600, 360, 0) - abilityChangeButton.transform.localPosition) / 30; ///< アビチェンボタン
 			if (statusPanel != null) 
 				statusPanel.transform.localPosition             += (new Vector3(-440, 720, 0) - statusPanel.transform.localPosition) / 30; ///< ステータスパネル
 			if (characterList != null)

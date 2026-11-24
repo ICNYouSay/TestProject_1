@@ -52,13 +52,27 @@ public class Cail_Animation : CharacterAnimation
 		_GungnirPressed = false;
 	}
 
-	public void YburnPressed()
-	{ 		
-		if (anim.GetInteger("Yburn") == 0)
-		{
-			anim.SetInteger("Yburn", 1);
-			Debug.Log("Yburn=1");
-			_YburnPressed = true;
-		}
-	}
+    public void YburnPressed()
+    {
+        if (anim.GetInteger("Yburn") == 0)
+        {
+            anim.SetInteger("Yburn", 1);
+            Debug.Log("Yburn=1");
+            _YburnPressed = true;
+        }
+    }
+
+    public void YburnJumped()
+    {
+        anim.SetInteger("Yburn", 2);
+        Debug.Log("Yburn=2");
+    }
+
+    public void YburnAttacked()
+    {
+        anim.SetInteger("Yburn", 0);
+        Debug.Log("Yburn=0");
+        _YburnPressed = false;
+    }
+
 }
