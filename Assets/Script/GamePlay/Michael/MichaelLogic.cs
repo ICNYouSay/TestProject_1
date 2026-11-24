@@ -88,7 +88,7 @@ public class MichaelLogic : ICharacterLogic
         // “Áê‹Z‚Ì“–‚½‚è”»’è‚ğo‚·
         if (straightHitbox != null)
         {
-            straightHitbox.TriggerHitbox(500, 2.0f, 0.4f);
+            straightHitbox.TriggerHitbox(600, 2.75f, 0.4f);
         }
 
     }
