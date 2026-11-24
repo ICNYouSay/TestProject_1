@@ -217,6 +217,11 @@ public class CharacterSelectUIManager : MonoBehaviour
                     break;
             }
         }
+
+		if (gamepad.buttonNorth.wasPressedThisFrame)
+		{
+			OnClickOKButton();
+		}
     }
     
 	void UpdateCursorPos()
@@ -250,7 +255,7 @@ public class CharacterSelectUIManager : MonoBehaviour
 			case MenuItem.Character3:
 			case MenuItem.Character4:
 				int characterIndex = cursorPos - (int)MenuItem.Character1;
-				targetPos = characterList.transform.position + new Vector3(characterIndex * 200, 0, 0);
+				targetPos = characterList.transform.position + new Vector3(0, characterIndex * 150, 0);
 				break;
 			case MenuItem.Ability1:
 			case MenuItem.Ability2:
