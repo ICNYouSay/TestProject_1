@@ -111,7 +111,7 @@ public class MichaelLogic : ICharacterLogic
         // “Áê‹Z‚Ì“–‚½‚è”»’è‚ğo‚·
         if (kostarpunchHitbox != null)
         {
-            kostarpunchHitbox.TriggerHitbox(1200, 3.5f, 0.5f);
+            kostarpunchHitbox.TriggerHitbox(1200, 3.0f, 0.5f);
         }
     }
 
