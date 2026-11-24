@@ -100,25 +100,25 @@ public class CharacterSelectUIManager : MonoBehaviour
 		if (currentMenu == MenuState.CharacterSelect)
 		{
             // キャラ選択メニューが開かれてるとき
-			// 十字キー及び←スティックの上下入力でキャラ選択
-            if (input.y > 0.5f || gamepad.dpad.up.wasPressedThisFrame)
-			{
+            // 十字キー及び←スティックの上下入力でキャラ選択
+            if (input.y > 0.5f || (gamepad != null && gamepad.dpad.up.wasPressedThisFrame))
+            {
                 GameData.SelectedCharacterIndex = (GameData.SelectedCharacterIndex + 1) % allCharacterData.Length;
 			}
-			else if (input.y < -0.5f || gamepad.dpad.down.wasPressedThisFrame)
-			{
+            else if (input.y < -0.5f || (gamepad != null && gamepad.dpad.down.wasPressedThisFrame))
+            {
                 GameData.SelectedCharacterIndex = (GameData.SelectedCharacterIndex - 1 + allCharacterData.Length) % allCharacterData.Length;
 			}
 		}
 		else if (currentMenu == MenuState.AbilitySelect)
 		{
-			// アビリティ選択メニューが開かれてるとき
-			if (input.x > 0.5f || gamepad.dpad.right.wasPressedThisFrame)
-			{
+            // アビリティ選択メニューが開かれてるとき
+            if (input.x > 0.5f || (gamepad != null && gamepad.dpad.right.wasPressedThisFrame))
+            {
                 GameData.EquippedAbilities[EquipAbilityIndex] = (GameData.EquippedAbilities[EquipAbilityIndex] + 1) % allAbilityData.Length;
 			}
-			else if (input.x < -0.5f || gamepad.dpad.left.wasPressedThisFrame)
-			{
+            else if (input.x < -0.5f || (gamepad != null && gamepad.dpad.left.wasPressedThisFrame))
+            {
                 GameData.EquippedAbilities[EquipAbilityIndex] = (GameData.EquippedAbilities[EquipAbilityIndex] - 1 + allAbilityData.Length) % allAbilityData.Length;
 			}
         }
