@@ -7,8 +7,9 @@ public class CailLogic : ICharacterLogic
 	private Cail_Animation cailAnim;
 	public Animator _animator;
 
-	public SkillHitbox gungnirHitbox;
-	public SkillHitbox normalAttackHitbox;
+	public SkillHitbox gungnirHitbox;       // スキル1
+    public SkillHitbox yburnHitbox;         // スキル2
+    public SkillHitbox normalAttackHitbox;  // 通常攻撃
 
 	// 通常攻撃（3段コンボ）用変数
 	private int comboStep = 0;              // 現在のコンボ段数（0: 未攻撃, 1: 1段目, 2: 2段目, 3: 3段目）
@@ -31,7 +32,8 @@ public class CailLogic : ICharacterLogic
 			foreach (var hb in hitboxes)
 			{
 				if (hb.gameObject.name == "Skill_Hitbox") gungnirHitbox = hb;
-				if (hb.gameObject.name == "Cail_Normal_Hitbox") normalAttackHitbox = hb;
+                if (hb.gameObject.name == "Yburn_Hitbox") yburnHitbox = hb;
+                if (hb.gameObject.name == "Cail_Normal_Hitbox") normalAttackHitbox = hb;
 			}
 		}
 
@@ -78,8 +80,8 @@ public class CailLogic : ICharacterLogic
         _animator.SetBool("CanWalk", true);
     }
 
-	// Update is called once per frame
-	public void UniqueSkillA(NetworkCharacterController ncc)
+    // 特殊技Aの処理
+    public void UniqueSkillA(NetworkCharacterController ncc)
 	{
 		cailAnim.GungnirPressed();
 		ncc.Move(new Vector3(0, 0, 500));
@@ -92,12 +94,21 @@ public class CailLogic : ICharacterLogic
 
 	}
 
-	public void UniqueSkillB(NetworkCharacterController ncc)
-	{
-		cailAnim.YburnPressed();
-	}
+    // 特殊技Bの処理
+    public void UniqueSkillB(NetworkCharacterController ncc)
+    {
+        cailAnim.YburnPressed();
 
-	public void Move(NetworkCharacterController ncc, Vector3 inputVector)
+        ncc.Move(new Vector3(0, 0, 0));
+
+        // ワイバーン用のヒットボックスを起動する
+        if (yburnHitbox != null)
+        {
+            yburnHitbox.TriggerHitbox(1000, 4.5f, 0.3f);
+        }
+    }
+
+    public void Move(NetworkCharacterController ncc, Vector3 inputVector)
 	{
 		ncc.Move(inputVector);
 	}
