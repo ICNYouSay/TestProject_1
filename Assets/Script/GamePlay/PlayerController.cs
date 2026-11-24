@@ -22,9 +22,9 @@ public class PlayerController : NetworkBehaviour
 	private bool uniqueSkillAInput = false;
 	private bool uniqueSkillBInput = false;
 
-    [Networked] public int SelectedCharacterID { get; set; }
+    private PlayerSetup playerSetup;
 
-	private Gamepad gamepad;
+    private Gamepad gamepad;
 
 	void Start()
 	{
@@ -32,12 +32,15 @@ public class PlayerController : NetworkBehaviour
 
 	public override void Spawned()
 	{
-		controller = GetComponent<CharacterController>();
+        playerSetup = GetComponent<PlayerSetup>();
+        controller = GetComponent<CharacterController>();
 		anim = GetComponentInChildren<Animator>();
 		_ncc = GetComponent<NetworkCharacterController>();
 
+
+
 		// キャラIDに応じてロジッククラスを生成してセットする（AddComponentはしない！）
-		switch (SelectedCharacterID)
+		switch (playerSetup.SelectedCharacterID)
 		{
 			case 0: 
 				_currentLogic = new CailLogic();
@@ -45,7 +48,8 @@ public class PlayerController : NetworkBehaviour
                 break;
 			case 1: 
 				_currentLogic = new MichaelLogic(); 
-				break;
+				_currentLogic.Initialize(GetComponentInChildren<Michael_Animation>());
+                break;
 		}
 
 		// 見た目のモデルを Instantiate して子に配置

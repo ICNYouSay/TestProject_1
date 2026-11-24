@@ -9,7 +9,7 @@ public class Michael_Animation : CharacterAnimation
 
 
 	// キー入力判定用フラグ
-	public bool _GungnirPressed;
+	public bool _StraightPressed;
 	public bool _YburnPressed;
 
     void Start()
@@ -23,37 +23,24 @@ public class Michael_Animation : CharacterAnimation
 	{
 	}
 
-	public void GungnirPressed()
+	public void StraightPressed()
 	{
-		if (anim.GetInteger("Gungnir") == 0)
-		{
-			anim.SetInteger("Gungnir", 1);
-			Debug.Log("Gungnir=1");
-			_GungnirPressed = true;
-		}
+        Debug.Log("G.O.ストレート発動！");
+        _StraightPressed = true;
+    }
+
+	public void StraightJumped()
+	{
+
 	}
 
-	public void GungnirJumped()
+	public void StraightAttacked()
 	{
-		anim.SetInteger("Gungnir", 2);
-		Debug.Log("Gungnir=2");
-		_ncc.Move(new Vector3(0.0f, 0.0f, 5.0f));
-	}
 
-	public void GungnirAttacked()
-	{
-		anim.SetInteger("Gungnir", 0);
-		Debug.Log("Gungnir=0");
-		_GungnirPressed = false;
 	}
 
 	public void YburnPressed()
 	{ 		
-		if (anim.GetInteger("Yburn") == 0)
-		{
-			anim.SetInteger("Yburn", 1);
-			Debug.Log("Yburn=1");
-			_YburnPressed = true;
-        }
+
     }
 }
