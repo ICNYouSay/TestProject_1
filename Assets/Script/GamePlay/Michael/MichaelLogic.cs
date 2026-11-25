@@ -8,8 +8,9 @@ public class MichaelLogic : ICharacterLogic
     public Animator _animator;
 
     // マイケル用のヒットボックス
-    public SkillHitbox normalAttackHitbox;
-    public SkillHitbox straightHitbox; // G.O.ストレート用
+    public SkillHitbox normalAttackHitbox; // 通常攻撃
+    public SkillHitbox straightHitbox;     // 固有1
+    public SkillHitbox kostarpunchHitbox;  // 固有2
 
     // マイケル用の通常攻撃（2段コンボ）変数
     private int comboStep = 0;
@@ -32,6 +33,7 @@ public class MichaelLogic : ICharacterLogic
             {
                 if (hb.gameObject.name == "Michael_Normal_Hitbox") normalAttackHitbox = hb;
                 if (hb.gameObject.name == "Michael_Straight_Hitbox") straightHitbox = hb;
+                if (hb.gameObject.name == "Michael_KOStarPunch_Hitbox") kostarpunchHitbox = hb;
             }
         }
     }
@@ -71,7 +73,7 @@ public class MichaelLogic : ICharacterLogic
         }
     }
 
-    // 特殊技A（G.O.ストレート）の処理
+    // 特殊技Aの処理
     public void UniqueSkillA(NetworkCharacterController ncc)
     {
         Debug.Log("【マイケル特殊技】G.O.ストレート！");
@@ -93,9 +95,24 @@ public class MichaelLogic : ICharacterLogic
 
     }
 
+    // 特殊技Bの処理
     public void UniqueSkillB(NetworkCharacterController ncc)
     {
-        MichaelAnim.YburnPressed();
+        Debug.Log("【マイケル特殊技】K.O.スターパンチ！");
+
+        // Animatorのトリガーを引く
+        if (_animator != null)
+        {
+            _animator.SetTrigger("KOStarPunch");
+        }
+
+        ncc.Move(new Vector3(0, 0, 0));
+
+        // 特殊技の当たり判定を出す
+        if (kostarpunchHitbox != null)
+        {
+            kostarpunchHitbox.TriggerHitbox(1200, 3.0f, 0.5f);
+        }
     }
 
     public void Move(NetworkCharacterController ncc, Vector3 inputVector)
