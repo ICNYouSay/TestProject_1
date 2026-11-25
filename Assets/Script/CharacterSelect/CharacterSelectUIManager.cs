@@ -66,7 +66,7 @@ public class CharacterSelectUIManager : MonoBehaviour
     // メニュー項目の一覧を整理する列挙型
     enum MenuItem
 	{
-		None = 0,
+		None = -1,
 
 		OKButton,
         CharacterSelect,
@@ -76,12 +76,14 @@ public class CharacterSelectUIManager : MonoBehaviour
 		AbilitySelect4,
 		AbilitySelect5,
 
+		CharacterOKButton,
 		Character1,
 		Character2,
 		Character3,
 		Character4,
 
-		Ability1,
+		AbilityOKButton,
+        Ability1,
 		Ability2,
 		Ability3,
 		Ability4,
@@ -138,29 +140,29 @@ public class CharacterSelectUIManager : MonoBehaviour
         Vector2 leftStick = gamepad.leftStick.ReadValue();
         if (currentMenu == MenuState.CharacterSelect)
 		{
-			int cursorInMenuPos = cursorPos - (int)MenuItem.Character1;
+			int cursorInMenuPos = cursorPos - (int)MenuItem.CharacterOKButton;
             // キャラ選択メニューが開かれてるとき
             // 十字キー及び←スティックの上下入力でキャラ選択
             if (leftStick.y > 0.5f || (gamepad != null && gamepad.dpad.up.wasPressedThisFrame))
             {
-                GameData.SelectedCharacterIndex = (GameData.SelectedCharacterIndex + 1) % allCharacterData.Length;
+                cursorPos = (cursorInMenuPos + 1) % (allCharacterData.Length + 1) + (int)MenuItem.CharacterOKButton;
 			}
             else if (leftStick.y < -0.5f || (gamepad != null && gamepad.dpad.down.wasPressedThisFrame))
             {
-                GameData.SelectedCharacterIndex = (GameData.SelectedCharacterIndex - 1 + allCharacterData.Length) % allCharacterData.Length;
+                cursorPos = (cursorInMenuPos - 1 + (allCharacterData.Length + 1)) % (allCharacterData.Length + 1) + (int)MenuItem.CharacterOKButton;
 			}
 		}
 		else if (currentMenu == MenuState.AbilitySelect)
         {
-            int cursorInMenuPos = cursorPos - (int)MenuItem.Ability1;
+            int cursorInMenuPos = cursorPos - (int)MenuItem.AbilityOKButton;
             // アビリティ選択メニューが開かれてるとき
             if (leftStick.x > 0.5f || gamepad.dpad.right.wasPressedThisFrame)
 			{
-                cursorPos = ((cursorPos + 1) % allAbilityData.Length) + (int)MenuItem.Ability1;
+                cursorPos = ((cursorInMenuPos + 1) % allAbilityData.Length + 1) + (int)MenuItem.AbilityOKButton;
 			}
 			else if (leftStick.x < -0.5f || gamepad.dpad.left.wasPressedThisFrame)
 			{
-                cursorPos = ((cursorPos - 1 + allAbilityData.Length) % allAbilityData.Length) + (int)MenuItem.Ability1;
+                cursorPos = ((cursorInMenuPos - 1 + allAbilityData.Length) % allAbilityData.Length + 1) + (int)MenuItem.AbilityOKButton;
 			}
         }
         else if (currentMenu == MenuState.None)
@@ -168,11 +170,11 @@ public class CharacterSelectUIManager : MonoBehaviour
             // 何も開かれていないとき
             if (leftStick.x > 0.5f || gamepad.dpad.right.wasPressedThisFrame)
             {
-                cursorPos = ((cursorPos + 1) % allAbilityData.Length) + (int)MenuItem.Ability1;
+                cursorPos = ((cursorPos + 1) % 7);
             }
             else if (leftStick.x < -0.5f || gamepad.dpad.left.wasPressedThisFrame)
             {
-                cursorPos = ((cursorPos - 1 + allAbilityData.Length) % allAbilityData.Length) + (int)MenuItem.Ability1;
+                cursorPos = ((cursorPos - 1 + 7) % 7);
             }
         }
 
@@ -182,7 +184,9 @@ public class CharacterSelectUIManager : MonoBehaviour
             switch ((MenuItem)cursorPos)
             {
                 case MenuItem.OKButton:
-					OnClickOKButton();
+				case MenuItem.CharacterOKButton:
+				case MenuItem.AbilityOKButton:
+                    OnClickOKButton();
                     break;
                 case MenuItem.CharacterSelect:
 					OnClickCharacterChangeButton();
@@ -237,7 +241,9 @@ public class CharacterSelectUIManager : MonoBehaviour
 		switch ((MenuItem)cursorPos)
 		{
 			case MenuItem.OKButton:
-				targetPos = okButton.transform.position - new Vector3(100, 0, 0);
+            case MenuItem.CharacterOKButton:
+            case MenuItem.AbilityOKButton:
+                targetPos = okButton.transform.position - new Vector3(100, 0, 0);
 				break;
 			case MenuItem.CharacterSelect:
 				targetPos = characterChangeButton.transform.position - new Vector3(100, 0, 0);
@@ -254,7 +260,7 @@ public class CharacterSelectUIManager : MonoBehaviour
 			case MenuItem.Character2:
 			case MenuItem.Character3:
 			case MenuItem.Character4:
-				int characterIndex = cursorPos - (int)MenuItem.Character1;
+				int characterIndex = cursorPos - (int)MenuItem.CharacterOKButton;
 				targetPos = characterList.transform.position + new Vector3(0, characterIndex * 150, 0);
 				break;
 			case MenuItem.Ability1:
@@ -267,7 +273,7 @@ public class CharacterSelectUIManager : MonoBehaviour
 			case MenuItem.Ability8:
 			case MenuItem.Ability9:
 			case MenuItem.Ability10:
-				int abilityListIndex = cursorPos - (int)MenuItem.Ability1;
+				int abilityListIndex = cursorPos - (int)MenuItem.AbilityOKButton;
 				targetPos = abilityList.transform.position + new Vector3(abilityListIndex * 100, 0, 0);
 				break;
 		}
