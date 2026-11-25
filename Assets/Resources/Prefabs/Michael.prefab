@@ -273,6 +273,56 @@ MonoBehaviour:
   effectAsset: {fileID: 11400000, guid: 8fe91e872fe7ee545b7a69cb40213a4f, type: 2}
   playOnStart: 0
   isLooping: 0
+--- !u!1 &4319928166832044138
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8254393932000179191}
+  - component: {fileID: 4570670687084227140}
+  m_Layer: 0
+  m_Name: StraightEffectPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8254393932000179191
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4319928166832044138}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.019, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2070523240241993018}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4570670687084227140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4319928166832044138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35d396bcb8480c24eb784eebe6096a99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Effekseer::Effekseer.EffekseerEmitter
+  TimingOfUpdate: 0
+  EmitterScale: 0
+  TimeScale: 0
+  effectAsset: {fileID: 11400000, guid: f54882c1261fc1a4093943a9f3812d07, type: 2}
+  playOnStart: 0
+  isLooping: 0
 --- !u!1 &5552405719724181757
 GameObject:
   m_ObjectHideFlags: 0
@@ -617,10 +667,10 @@ PrefabInstance:
       addedObject: {fileID: 1824381951154945095}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6909387124f767f4e9bf09939356ffc3, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4205833468707868327}
+      addedObject: {fileID: 3391002268522882955}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6909387124f767f4e9bf09939356ffc3, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3391002268522882955}
+      addedObject: {fileID: 8254393932000179191}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6909387124f767f4e9bf09939356ffc3, type: 3}
       insertIndex: -1
@@ -672,7 +722,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Michael_Animation
   _StraightPressed: 0
-  _YburnPressed: 0
+  _KOStarPunchPressed: 0
 --- !u!114 &66937970391505164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -687,7 +737,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EffectEvent
   effect:
   - {fileID: 4240659144707416617}
-  - {fileID: 1438300987064119195}
+  - {fileID: 4570670687084227140}
   - {fileID: 3098133656836767145}
 --- !u!4 &2070523240241993018 stripped
 Transform:
