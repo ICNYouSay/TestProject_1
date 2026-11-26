@@ -11,10 +11,10 @@ public class CharacterSelectUIManager : MonoBehaviour
 	[Header("全キャラクターのデータ(ScriptableObject)")]
 	public CharacterData[] allCharacterData;
 
-    [Header("全アビリティのデータ(ScriptableObject)")]
-    public CharacterData[] allAbilityData;
+	[Header("全アビリティのデータ(ScriptableObject)")]
+	public AbilityData[] allAbilityData;
 
-    [Header("3Dモデル生成場所")]
+	[Header("3Dモデル生成場所")]
 	public Transform spawnPoint;
 
 	[Header("UI設定")]
@@ -22,35 +22,35 @@ public class CharacterSelectUIManager : MonoBehaviour
 	public GameObject characterChangeButton;// キャラチェンボタン
 	public GameObject abilityChangeButton;  // アビチェンボタン
 	public GameObject statusPanel;          // ステータスパネル
-    public GameObject abilityPanel;          // アビリティパネル
-    public GameObject characterList;          // キャラリスト
+	public GameObject abilityPanel;          // アビリティパネル
+	public GameObject characterList;          // キャラリスト
 	public GameObject abilityList;          // アビリスト
 	public TextMeshProUGUI nameText;        // 名前テキスト
 	public TextMeshProUGUI statusText;      // ステータス表示テキスト
 	public TextMeshProUGUI descriptionText; // キャラ説明テキスト
 	private GameObject currentModel;
 
-    [Header("メインカメラ")]
+	[Header("メインカメラ")]
 	public Camera mainCamera;
 
-    [Header("ステータスゲージ")]
+	[Header("ステータスゲージ")]
 	public Slider hpSlider;
 	public Slider atkSlider;
 	public Slider defSlider;
 
-    [Header("アビリティ用のパーツ")]
-    public Slider abi_hpSlider;
-    public Slider abi_atkSlider;
-    public Slider abi_defSlider;
-    public TextMeshProUGUI abi_nameText;        // 名前テキスト
-    public TextMeshProUGUI abi_statusText;      // ステータス表示テキスト
+	[Header("アビリティ用のパーツ")]
+	public Slider abi_hpSlider;
+	public Slider abi_atkSlider;
+	public Slider abi_defSlider;
+	public TextMeshProUGUI abi_nameText;        // 名前テキスト
+	public TextMeshProUGUI abi_statusText;      // ステータス表示テキスト
 
 	[Header("フェードアウト用Timeline")]
-    [SerializeField]
-    private PlayableDirector fadeOutDirector;
+	[SerializeField]
+	private PlayableDirector fadeOutDirector;
 
-    // 二重実行防止
-    private bool isStarting = false;
+	// 二重実行防止
+	private bool isStarting = false;
 
 	[Header("フェード用Image")]
 	[SerializeField]
@@ -60,17 +60,22 @@ public class CharacterSelectUIManager : MonoBehaviour
 	[Header("カーソル")]
 	public GameObject cursorImage; // カーソル用のImageコンポーネント
 
-    private Gamepad gamepad;
+	[Header("ボタンども")]
+	public Button[] abilityEquipedButtons;
+	public Button[] characterSelectButtons;
+	public Button[] abilitySelectButtons;
+
+	private Gamepad gamepad;
 
 	private int cursorPos = (int)MenuItem.OKButton;
-    // メニュー項目の一覧を整理する列挙型
-    enum MenuItem
+	// メニュー項目の一覧を整理する列挙型
+	enum MenuItem
 	{
 		None = -1,
 
 		OKButton,
-        CharacterSelect,
-        AbilitySelect1,
+		CharacterSelect,
+		AbilitySelect1,
 		AbilitySelect2,
 		AbilitySelect3,
 		AbilitySelect4,
@@ -83,7 +88,7 @@ public class CharacterSelectUIManager : MonoBehaviour
 		Character4,
 
 		AbilityOKButton,
-        Ability1,
+		Ability1,
 		Ability2,
 		Ability3,
 		Ability4,
@@ -93,10 +98,10 @@ public class CharacterSelectUIManager : MonoBehaviour
 		Ability8,
 		Ability9,
 		Ability10,
-    }
+	}
 
-    // キャラ選択、アビリティ選択それぞれのメニューを開いているかどうかを管理するフラグ
-    enum MenuState
+	// キャラ選択、アビリティ選択それぞれのメニューを開いているかどうかを管理するフラグ
+	enum MenuState
 	{
 		None = 0,
 		CharacterSelect,
@@ -106,144 +111,146 @@ public class CharacterSelectUIManager : MonoBehaviour
 
 	private int EquipAbilityIndex = 0; // 選択中のアビリティスロットを管理する変数
 
-    void Start()
+	void Start()
 	{
 		ClearUI();
 		SelectCharacter(0);
 
 		fadeImage.transform.SetAsFirstSibling(); // フェード用Imageを最前面に移動
 
-        // Timeline終了時に呼ばれるイベントを登録
-        fadeOutDirector.stopped += OnFadeFinished;
-    }
+		// Timeline終了時に呼ばれるイベントを登録
+		fadeOutDirector.stopped += OnFadeFinished;
+	}
 
-    private void OnDestroy()
-    {
-        fadeOutDirector.stopped -= OnFadeFinished;
-    }
+	private void OnDestroy()
+	{
+		fadeOutDirector.stopped -= OnFadeFinished;
+	}
 
-    private void Update()
+	private void Update()
 	{
 		gamepad = Gamepad.current;
 
-        SetUIPosition();
+		SetUIPosition();
 		OnControllerInput();
 
 		UpdateCursorPos();
-    }
+	}
 
 	// このシーンをコントローラーで操作するための関数
 	public void OnControllerInput()
 	{
 		if (gamepad == null) return;
 
-        Vector2 leftStick = gamepad.leftStick.ReadValue();
-        if (currentMenu == MenuState.CharacterSelect)
+		Vector2 leftStick = gamepad.leftStick.ReadValue();
+		if (currentMenu == MenuState.CharacterSelect)
 		{
 			int cursorInMenuPos = cursorPos - (int)MenuItem.CharacterOKButton;
-            // キャラ選択メニューが開かれてるとき
-            // 十字キー及び←スティックの上下入力でキャラ選択
-            if (leftStick.y > 0.5f || (gamepad != null && gamepad.dpad.up.wasPressedThisFrame))
-            {
-                cursorPos = (cursorInMenuPos + 1) % (allCharacterData.Length + 1) + (int)MenuItem.CharacterOKButton;
+			// キャラ選択メニューが開かれてるとき
+			// 十字キー及び←スティックの上下入力でキャラ選択
+			if (leftStick.y > 0.5f || (gamepad != null && gamepad.dpad.down.wasPressedThisFrame))
+			{
+				cursorPos = (cursorInMenuPos + 1) % (allCharacterData.Length + 1) + (int)MenuItem.CharacterOKButton;
 			}
-            else if (leftStick.y < -0.5f || (gamepad != null && gamepad.dpad.down.wasPressedThisFrame))
-            {
-                cursorPos = (cursorInMenuPos - 1 + (allCharacterData.Length + 1)) % (allCharacterData.Length + 1) + (int)MenuItem.CharacterOKButton;
+			else if (leftStick.y < -0.5f || (gamepad != null && gamepad.dpad.up.wasPressedThisFrame))
+			{
+				cursorPos = (cursorInMenuPos - 1 + (allCharacterData.Length + 1)) % (allCharacterData.Length + 1) + (int)MenuItem.CharacterOKButton;
 			}
 		}
 		else if (currentMenu == MenuState.AbilitySelect)
-        {
-            int cursorInMenuPos = cursorPos - (int)MenuItem.AbilityOKButton;
-            // アビリティ選択メニューが開かれてるとき
-            if (leftStick.x > 0.5f || gamepad.dpad.right.wasPressedThisFrame)
+		{
+			int cursorInMenuPos = cursorPos - (int)MenuItem.AbilityOKButton;
+			// アビリティ選択メニューが開かれてるとき
+			if (leftStick.x > 0.5f || gamepad.dpad.right.wasPressedThisFrame)
 			{
-                cursorPos = ((cursorInMenuPos + 1) % allAbilityData.Length + 1) + (int)MenuItem.AbilityOKButton;
+				cursorPos = ((cursorInMenuPos + 1) % allAbilityData.Length + 1) + (int)MenuItem.AbilityOKButton;
 			}
 			else if (leftStick.x < -0.5f || gamepad.dpad.left.wasPressedThisFrame)
 			{
-                cursorPos = ((cursorInMenuPos - 1 + allAbilityData.Length) % allAbilityData.Length + 1) + (int)MenuItem.AbilityOKButton;
+				cursorPos = ((cursorInMenuPos - 1 + allAbilityData.Length) % allAbilityData.Length + 1) + (int)MenuItem.AbilityOKButton;
 			}
-        }
-        else if (currentMenu == MenuState.None)
+		}
+		else if (currentMenu == MenuState.None)
 		{
-            // 何も開かれていないとき
-            if (leftStick.x > 0.5f || gamepad.dpad.right.wasPressedThisFrame)
-            {
-                cursorPos = ((cursorPos + 1) % 7);
-            }
-            else if (leftStick.x < -0.5f || gamepad.dpad.left.wasPressedThisFrame)
-            {
-                cursorPos = ((cursorPos - 1 + 7) % 7);
-            }
-        }
+			// 何も開かれていないとき
+			if (leftStick.x > 0.5f || gamepad.dpad.right.wasPressedThisFrame)
+			{
+				cursorPos = ((cursorPos + 1) % 7);
+			}
+			else if (leftStick.x < -0.5f || gamepad.dpad.left.wasPressedThisFrame)
+			{
+				cursorPos = ((cursorPos - 1 + 7) % 7);
+			}
+		}
 
 		// 決定ボタンを押し込め
 		if (gamepad.buttonEast.wasPressedThisFrame)
 		{
-            switch ((MenuItem)cursorPos)
-            {
-                case MenuItem.OKButton:
+			switch ((MenuItem)cursorPos)
+			{
+				case MenuItem.OKButton:
 				case MenuItem.CharacterOKButton:
 				case MenuItem.AbilityOKButton:
-                    OnClickOKButton();
-                    break;
-                case MenuItem.CharacterSelect:
+					OnClickOKButton();
+					break;
+				case MenuItem.CharacterSelect:
 					OnClickCharacterChangeButton();
-                    break;
-                case MenuItem.AbilitySelect1:
-                case MenuItem.AbilitySelect2:
-                case MenuItem.AbilitySelect3:
-                case MenuItem.AbilitySelect4:
-                case MenuItem.AbilitySelect5:
-                    int abilityIndex = cursorPos - (int)MenuItem.AbilitySelect1;
+					break;
+				case MenuItem.AbilitySelect1:
+				case MenuItem.AbilitySelect2:
+				case MenuItem.AbilitySelect3:
+				case MenuItem.AbilitySelect4:
+				case MenuItem.AbilitySelect5:
+					int abilityIndex = cursorPos - (int)MenuItem.AbilitySelect1;
 					OnClickAbilityChangeButton(abilityIndex);
-                    break;
-                case MenuItem.Character1:
-                case MenuItem.Character2:
-                case MenuItem.Character3:
-                case MenuItem.Character4:
-                    int characterIndex = cursorPos - (int)MenuItem.Character1;
+					break;
+				case MenuItem.Character1:
+				case MenuItem.Character2:
+				case MenuItem.Character3:
+				case MenuItem.Character4:
+					int characterIndex = cursorPos - (int)MenuItem.Character1;
 					SelectCharacter(characterIndex);
-                    break;
-                case MenuItem.Ability1:
-                case MenuItem.Ability2:
-                case MenuItem.Ability3:
-                case MenuItem.Ability4:
-                case MenuItem.Ability5:
-                case MenuItem.Ability6:
-                case MenuItem.Ability7:
-                case MenuItem.Ability8:
-                case MenuItem.Ability9:
-                case MenuItem.Ability10:
-                    int abilityListIndex = cursorPos - (int)MenuItem.Ability1;
+					break;
+				case MenuItem.Ability1:
+				case MenuItem.Ability2:
+				case MenuItem.Ability3:
+				case MenuItem.Ability4:
+				case MenuItem.Ability5:
+				case MenuItem.Ability6:
+				case MenuItem.Ability7:
+				case MenuItem.Ability8:
+				case MenuItem.Ability9:
+				case MenuItem.Ability10:
+					int abilityListIndex = cursorPos - (int)MenuItem.Ability1;
 					SelectAbility(abilityListIndex);
-                    break;
-            }
-        }
+					break;
+			}
+		}
 
 		if (gamepad.buttonNorth.wasPressedThisFrame)
 		{
 			OnClickOKButton();
 		}
-    }
-    
+	}
+	
 	void UpdateCursorPos()
 	{
 		if (gamepad == null)
 		{
-            cursorImage.transform.position = new Vector3(-1000, -1000, 0); // コントローラーが接続されていない場合はカーソルを画面外に移動
+			cursorImage.transform.position = new Vector3(-1000, -1000, 0); // コントローラーが接続されていない場合はカーソルを画面外に移動
 			return;
-        }
+		}
 
 		// カーソルの位置を更新する
 		Vector3 targetPos = Vector3.zero;
+		int index = 0;
+
 		switch ((MenuItem)cursorPos)
 		{
 			case MenuItem.OKButton:
-            case MenuItem.CharacterOKButton:
-            case MenuItem.AbilityOKButton:
-                targetPos = okButton.transform.position - new Vector3(100, 0, 0);
+			case MenuItem.CharacterOKButton:
+			case MenuItem.AbilityOKButton:
+				targetPos = okButton.transform.position - new Vector3(100, 0, 0);
 				break;
 			case MenuItem.CharacterSelect:
 				targetPos = characterChangeButton.transform.position - new Vector3(100, 0, 0);
@@ -253,15 +260,15 @@ public class CharacterSelectUIManager : MonoBehaviour
 			case MenuItem.AbilitySelect3:
 			case MenuItem.AbilitySelect4:
 			case MenuItem.AbilitySelect5:
-				int abilityIndex = cursorPos - (int)MenuItem.AbilitySelect1;
-				targetPos = abilityChangeButton.transform.position + new Vector3(abilityIndex * 100, 0, 0);
+				index = cursorPos - (int)MenuItem.AbilitySelect1;
+				targetPos = abilityEquipedButtons[index].transform.position - new Vector3(100, 0, 0);
 				break;
 			case MenuItem.Character1:
 			case MenuItem.Character2:
 			case MenuItem.Character3:
 			case MenuItem.Character4:
-				int characterIndex = cursorPos - (int)MenuItem.CharacterOKButton;
-				targetPos = characterList.transform.position + new Vector3(0, characterIndex * 150, 0);
+				index = cursorPos - (int)MenuItem.Character1;
+				targetPos = characterSelectButtons[index].transform.position - new Vector3(100, 0, 0);
 				break;
 			case MenuItem.Ability1:
 			case MenuItem.Ability2:
@@ -273,15 +280,15 @@ public class CharacterSelectUIManager : MonoBehaviour
 			case MenuItem.Ability8:
 			case MenuItem.Ability9:
 			case MenuItem.Ability10:
-				int abilityListIndex = cursorPos - (int)MenuItem.AbilityOKButton;
-				targetPos = abilityList.transform.position + new Vector3(abilityListIndex * 100, 0, 0);
+				index = cursorPos - (int)MenuItem.Ability1;
+				targetPos = abilitySelectButtons[index].transform.position - new Vector3(100, 0, 0);
 				break;
 		}
 		cursorImage.transform.position = Vector3.Lerp(cursorImage.transform.position, targetPos, Time.deltaTime * 10f);
-    }
+	}
 
 	// UIの配置を管理する関数
-    void SetUIPosition()
+	void SetUIPosition()
 	{
 		// 開いているメニューの状態に合わせて各種UIの位置を調整する
 		if (currentMenu == MenuState.CharacterSelect)
@@ -300,8 +307,8 @@ public class CharacterSelectUIManager : MonoBehaviour
 			if (abilityList != null) 
 				abilityList.transform.localPosition             += (new Vector3(-1928, 0, 0) - abilityList.transform.localPosition) / 30; ///< アビリスト
 
-            mainCamera.transform.localRotation = Quaternion.Lerp(mainCamera.transform.localRotation, Quaternion.Euler(0, 30, 0), Time.deltaTime * 2.0f);
-        }
+			mainCamera.transform.localRotation = Quaternion.Lerp(mainCamera.transform.localRotation, Quaternion.Euler(0, 30, 0), Time.deltaTime * 2.0f);
+		}
 		else if (currentMenu == MenuState.AbilitySelect)
 		{
 			// アビリティ選択メニューを開いている場合のUI位置調整
@@ -318,8 +325,8 @@ public class CharacterSelectUIManager : MonoBehaviour
 			if (abilityList != null)
 				abilityList.transform.localPosition             += (new Vector3(-728, 0, 0) - abilityList.transform.localPosition) / 30; ///< アビリスト
 
-            mainCamera.transform.localRotation = Quaternion.Lerp(mainCamera.transform.localRotation, Quaternion.Euler(0, -30, 0), Time.deltaTime * 2.0f);
-        }
+			mainCamera.transform.localRotation = Quaternion.Lerp(mainCamera.transform.localRotation, Quaternion.Euler(0, -30, 0), Time.deltaTime * 2.0f);
+		}
 		else if (currentMenu == MenuState.None)
 		{
 			// 何もメニューを開いていない場合のUI位置調整
@@ -392,7 +399,7 @@ public class CharacterSelectUIManager : MonoBehaviour
 		if (defSlider != null) defSlider.value = data.def;
 
 		characterChangeButton.GetComponentInChildren<TextMeshProUGUI>().text = data.characterName;
-    }
+	}
 
 	public void SelectAbility(int index)
 	{
@@ -400,9 +407,9 @@ public class CharacterSelectUIManager : MonoBehaviour
 		GameData.EquippedAbilities[EquipAbilityIndex] = index;
 
 
-    }
+	}
 
-    public void OnClickOKButton()
+	public void OnClickOKButton()
 	{
 		if (currentMenu == MenuState.CharacterSelect)
 		{
@@ -427,7 +434,7 @@ public class CharacterSelectUIManager : MonoBehaviour
 			fadeOutDirector.Play();
 
 		}
-    }
+	}
 
 
 	public void OnClickCharacterChangeButton()
@@ -441,13 +448,13 @@ public class CharacterSelectUIManager : MonoBehaviour
 		currentMenu = MenuState.AbilitySelect;
 		okButton.GetComponentInChildren<TextMeshProUGUI>().text = "OK";
 		EquipAbilityIndex = index;
-    }
+	}
 
-    // Timeline終了後に呼ばれる
-    private void OnFadeFinished(PlayableDirector director)
-    {
-        // 何もメニューを開いていない状態(ボタンのテキストが出撃になっている状態)ならゲームシーンに遷移する
-        SceneManager.LoadScene("GamePlayScene");
+	// Timeline終了後に呼ばれる
+	private void OnFadeFinished(PlayableDirector director)
+	{
+		// 何もメニューを開いていない状態(ボタンのテキストが出撃になっている状態)ならゲームシーンに遷移する
+		SceneManager.LoadScene("GamePlayScene");
 
-    }
+	}
 }
