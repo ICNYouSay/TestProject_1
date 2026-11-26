@@ -31,7 +31,7 @@ public class CailLogic : ICharacterLogic
 			SkillHitbox[] hitboxes = anim.transform.root.GetComponentsInChildren<SkillHitbox>(true);
 			foreach (var hb in hitboxes)
 			{
-				if (hb.gameObject.name == "Skill_Hitbox") gungnirHitbox = hb;
+				if (hb.gameObject.name == "Gungnir_Hitbox") gungnirHitbox = hb;
                 if (hb.gameObject.name == "Yburn_Hitbox") yburnHitbox = hb;
                 if (hb.gameObject.name == "Cail_Normal_Hitbox") normalAttackHitbox = hb;
 			}
