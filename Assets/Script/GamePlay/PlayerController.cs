@@ -34,13 +34,17 @@ public class PlayerController : NetworkBehaviour
 	{
         playerSetup = GetComponent<PlayerSetup>();
         controller = GetComponent<CharacterController>();
-		anim = GetComponentInChildren<Animator>();
-		_ncc = GetComponent<NetworkCharacterController>();
 
+        // 子だけでなく、自分自身や親からAnimatorを探す
+        anim = GetComponentInChildren<Animator>();
+        if (anim == null) anim = GetComponent<Animator>();
+        if (anim == null) anim = GetComponentInParent<Animator>();
+        if (anim == null) anim = transform.root.GetComponentInChildren<Animator>();
 
+        _ncc = GetComponent<NetworkCharacterController>();
 
-		// キャラIDに応じてロジッククラスを生成してセットする（AddComponentはしない！）
-		switch (playerSetup.SelectedCharacterID)
+        // キャラIDに応じてロジッククラスを生成してセットする
+        switch (playerSetup.SelectedCharacterID)
 		{
 			case 0: 
 				_currentLogic = new CailLogic();
@@ -50,7 +54,11 @@ public class PlayerController : NetworkBehaviour
 				_currentLogic = new MichaelLogic(); 
 				_currentLogic.Initialize(GetComponentInChildren<Michael_Animation>());
                 break;
-			case 2:
+            case 2:
+                _currentLogic = new StraLogic();
+                _currentLogic.Initialize(GetComponentInChildren<Stra_Animation>());
+                break;
+			case 3:
                 _currentLogic = new RapcaLogic();
                 _currentLogic.Initialize(GetComponentInChildren<Rapca_Animation>());
                 break;
@@ -178,10 +186,15 @@ public class PlayerController : NetworkBehaviour
             normalAttackInput = false; // 入力フラグをリセット
         }
 
-        if(anim.GetBool("CanWalk") == true)
+        if (anim != null && anim.GetBool("CanWalk") == true)
         {
-			PlayerWalk();
-		}
+            PlayerWalk();
+        }
+        else if (anim == null)
+        {
+            // Animatorがないキャラならそのまま歩かせる
+            PlayerWalk();
+        }
 
         //もしY座標が一定値以下になったら、キャラクターをリスポーンさせる
         if (transform.position.y <= -10)
