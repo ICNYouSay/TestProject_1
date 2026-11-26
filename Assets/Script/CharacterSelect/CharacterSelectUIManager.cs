@@ -195,7 +195,8 @@ public class CharacterSelectUIManager : MonoBehaviour
 					break;
 				case MenuItem.CharacterSelect:
 					OnClickCharacterChangeButton();
-					break;
+					cursorPos = (int)MenuItem.CharacterOKButton;
+                    break;
 				case MenuItem.AbilitySelect1:
 				case MenuItem.AbilitySelect2:
 				case MenuItem.AbilitySelect3:
@@ -203,7 +204,8 @@ public class CharacterSelectUIManager : MonoBehaviour
 				case MenuItem.AbilitySelect5:
 					int abilityIndex = cursorPos - (int)MenuItem.AbilitySelect1;
 					OnClickAbilityChangeButton(abilityIndex);
-					break;
+					cursorPos = (int)MenuItem.AbilityOKButton;
+                    break;
 				case MenuItem.Character1:
 				case MenuItem.Character2:
 				case MenuItem.Character3:
