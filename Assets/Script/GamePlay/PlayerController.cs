@@ -50,7 +50,11 @@ public class PlayerController : NetworkBehaviour
 				_currentLogic = new MichaelLogic(); 
 				_currentLogic.Initialize(GetComponentInChildren<Michael_Animation>());
                 break;
-		}
+			case 2:
+                _currentLogic = new RapcaLogic();
+                _currentLogic.Initialize(GetComponentInChildren<Rapca_Animation>());
+                break;
+        }
 
 		// 見た目のモデルを Instantiate して子に配置
 	}

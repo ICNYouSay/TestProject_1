@@ -54,6 +54,7 @@ MonoBehaviour:
   allCharacterData:
   - {fileID: 11400000, guid: 9d60bc0d33f24c343a8546e24626f6bc, type: 2}
   - {fileID: 11400000, guid: 298f6f7a4a0f5ad4982761e4623cbb02, type: 2}
+  - {fileID: 11400000, guid: 7f74aef3748ab75458ac2350641e2088, type: 2}
   allAbilityData: []
   modelContainer: {fileID: 3726127093229725856}
   playerController: {fileID: 866457387225006319}
