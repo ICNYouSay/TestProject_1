@@ -89,7 +89,7 @@ public class RapcaLogic : ICharacterLogic
 
         if (timemagicHitbox != null)
         {
-            timemagicHitbox.TriggerHitbox(800, 2.5f, 1.0f);
+            timemagicHitbox.TriggerHitbox(800, 3.0f, 1.0f);
         }
 
     }

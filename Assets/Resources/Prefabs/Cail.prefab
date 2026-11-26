@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1471563837547058284}
   - component: {fileID: 5108503052048022524}
   m_Layer: 7
-  m_Name: Skill_Hitbox
+  m_Name: Gungnir_Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
