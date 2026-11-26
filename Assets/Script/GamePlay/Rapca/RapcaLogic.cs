@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class RapcaLogic : ICharacterLogic
 {
-    private Rapca_Animation rapcaAnim;
+    private Rapca_Animation RapcaAnim;
     public Animator _animator;
 
-    public SkillHitbox skillAHitbox;       // スキル1用
+    public SkillHitbox timemagicHitbox;   // スキル1用
     public SkillHitbox skillBHitbox;       // スキル2用
     public SkillHitbox normalAttackHitbox; // 通常攻撃用
 
@@ -20,7 +20,7 @@ public class RapcaLogic : ICharacterLogic
 
     public void Initialize(CharacterAnimation anim)
     {
-        rapcaAnim = anim as Rapca_Animation;
+        RapcaAnim = anim as Rapca_Animation;
 
         if (anim != null)
         {
@@ -32,7 +32,7 @@ public class RapcaLogic : ICharacterLogic
             foreach (var hb in hitboxes)
             {
                 // ヒットボックスの名前はプレハブに合わせて調整してください
-                if (hb.gameObject.name == "Rapca_SkillA_Hitbox") skillAHitbox = hb;
+                if (hb.gameObject.name == "Rapca_Timemagic_Hitbox") timemagicHitbox = hb;
                 if (hb.gameObject.name == "Rapca_SkillB_Hitbox") skillBHitbox = hb;
                 if (hb.gameObject.name == "Rapca_Normal_Hitbox") normalAttackHitbox = hb;
             }
@@ -63,15 +63,15 @@ public class RapcaLogic : ICharacterLogic
         {
             case 1:
                 Debug.Log("【ラピカ通常 1段目】");
-                if (normalAttackHitbox != null) normalAttackHitbox.TriggerHitbox(50, 0.1f, 0.2f);
+                if (normalAttackHitbox != null) normalAttackHitbox.TriggerHitbox(50, 0.2f, 0.2f);
                 break;
             case 2:
                 Debug.Log("【ラピカ通常 2段目】");
-                if (normalAttackHitbox != null) normalAttackHitbox.TriggerHitbox(70, 0.1f, 0.2f);
+                if (normalAttackHitbox != null) normalAttackHitbox.TriggerHitbox(70, 0.2f, 0.2f);
                 break;
             case 3:
                 Debug.Log("【ラピカ通常 3段目フィニッシュ！】");
-                if (normalAttackHitbox != null) normalAttackHitbox.TriggerHitbox(100, 0.15f, 0.3f);
+                if (normalAttackHitbox != null) normalAttackHitbox.TriggerHitbox(100, 0.2f, 0.3f);
                 comboStep = 0;
                 break;
         }
@@ -79,16 +79,24 @@ public class RapcaLogic : ICharacterLogic
 
     public void UniqueSkillA(NetworkCharacterController ncc)
     {
-        Debug.Log("【ラピカ特殊技A】発動！");
         ncc.Move(new Vector3(0, 0, 0));
-        if (skillAHitbox != null) skillAHitbox.TriggerHitbox(300, 0.5f, 0.5f);
+        RapcaAnim.TimeMagicPressed();
+
+        if (_animator != null)
+        {
+            _animator.SetTrigger("TimeMagic");
+        }
+
+        if (timemagicHitbox != null)
+        {
+            timemagicHitbox.TriggerHitbox(800, 2.5f, 1.0f);
+        }
+
     }
 
     public void UniqueSkillB(NetworkCharacterController ncc)
     {
-        Debug.Log("【ラピカ特殊技B】発動！");
-        ncc.Move(new Vector3(0, 0, 0));
-        if (skillBHitbox != null) skillBHitbox.TriggerHitbox(400, 0.5f, 0.5f);
+        
     }
 
     public void Move(NetworkCharacterController ncc, Vector3 inputVector)
